@@ -19,9 +19,12 @@ with open("input.txt", "r") as f:
                 val = int(val.strip())
                 if fact in ['cats', 'trees'] and (clues[fact] < val):
                     numerator += 1
-                elif fact in ['pomeranians', 'goldfish'] and (clues[fact] > val):
+                elif fact in ['pomeranians', 'goldfish'] \
+                        and (clues[fact] > val):
                     numerator += 1
-                elif clues[fact] == val:
+                elif fact not in ['cats', 'trees',
+                                  'pomeranians', 'goldfish'] \
+                        and (clues[fact] == val):
                     numerator += 1
             if numerator == denominator:
                 print(f"Possible Auntie Sue is one of number {number}")
