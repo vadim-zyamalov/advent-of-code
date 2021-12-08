@@ -117,12 +117,13 @@ with open("input.txt", "r") as f:
         numbers[6] = get_6(numbers, segments, patterns)
         numbers[9] = get_9(numbers, segments, patterns)
         segments['a'] = get_a(numbers, segments, patterns)
+        # d needed for b
         segments['d'] = get_d(numbers, segments, patterns)
         segments['b'] = get_b(numbers, segments, patterns)
-        segments['g'] = get_g(numbers, segments, patterns)
-        segments['e'] = get_e(numbers, segments, patterns)
         segments['c'] = get_c(numbers, segments, patterns)
+        segments['e'] = get_e(numbers, segments, patterns)
         segments['f'] = get_f(numbers, segments, patterns)
+        segments['g'] = get_g(numbers, segments, patterns)
 
         codelist = dict_invert(segments)
         res = ''.join([str(digits.index(decoder(d, codelist))) for d in output])
