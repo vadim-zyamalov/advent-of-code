@@ -28,19 +28,19 @@ with open("./input.txt", "r") as f:
             containers.append(int(line.strip()))
 
 answer = 0
-quantitiy = {}
+quantity = {}
 for i in range(2 ** len(containers)):
     variant = num_to_bin(i, len(containers))
     if calc_vol(variant, containers) == volume:
         answer += 1
         # part 2 below
         number = sum(variant)
-        if not number in quantitiy:
-            quantitiy[number] = 0
-        quantitiy[number] += 1
+        if not number in quantity:
+            quantity[number] = 0
+        quantity[number] += 1
 
-minimal = min(list(quantitiy.keys()))
+minimal = min(list(quantity.keys()))
 
 print("Part 1: {}".format(answer))
-print("Part 2: {}".format(quantitiy[minimal]))
+print("Part 2: {}".format(quantity[minimal]))
 
