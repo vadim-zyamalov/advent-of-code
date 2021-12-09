@@ -4,14 +4,14 @@ route = {}
 
 
 def collect_cities(rdict):
-    res = set()
+    result = set()
     for k in rdict:
-        res.add(k)
+        result.add(k)
         for kd in rdict[k]:
-            res.add(kd)
-    res = list(res)
-    res.sort()
-    return res
+            result.add(kd)
+    result = list(result)
+    result.sort()
+    return result
 
 
 def collect_pair(c1, c2, rdict):
@@ -40,16 +40,16 @@ def collect_map(rdict):
 
 
 def distance(candidate, matrix):
-    res = 0
+    result = 0
     for i in range(1, len(candidate)):
         if matrix[candidate[i-1]][candidate[i]] is None:
             return None
-        res += matrix[candidate[i-1]][candidate[i]]
-    return res
+        result += matrix[candidate[i-1]][candidate[i]]
+    return result
 
 
 with open("input.txt", "r") as f:
-    res = []
+    result = []
     for line in f:
         city1, _, city2, _, dist = line.strip().split()
         if city1 not in route:
@@ -58,9 +58,10 @@ with open("input.txt", "r") as f:
 
         cities = collect_cities(route)
         indices = [i for i in range(len(cities))]
-        candidates = list(permutations(indices))
         matrix = collect_map(route)
-        res = [distance(i, matrix) for i in candidates]
 
-    print("Part 1: {}".format(min(res)))
-    print("Part 2: {}".format(max(res)))
+        candidates = permutations(indices)
+        result = [distance(i, matrix) for i in candidates]
+
+    print("Part 1: {}".format(min(result)))
+    print("Part 2: {}".format(max(result)))

@@ -1,16 +1,16 @@
 def inc(line):
-    res = list(line)
-    pos = len(res) - 1
+    result = list(line)
+    position = len(result) - 1
     while True:
-        if res[pos] != 'z':
-            res[pos] = chr(ord(res[pos]) + 1)
+        if result[position] != 'z':
+            result[position] = chr(ord(result[position]) + 1)
             break
         else:
-            res[pos] = 'a'
-            pos -= 1
-        if pos < 0:
+            result[position] = 'a'
+            position -= 1
+        if position < 0:
             break
-    return ''.join(res)
+    return ''.join(result)
 
 
 def check1(line):

@@ -1,5 +1,5 @@
 floor = 0
-ans = 0
+answer = 0
 
 with open("./input.txt", "r") as f:
     while True:
@@ -8,14 +8,14 @@ with open("./input.txt", "r") as f:
             break
         elif step == '(':
             floor += 1
-            ans += 1
+            answer += 1
         elif step == ')':
             floor -= 1
-            ans += 1
+            answer += 1
         else:
             exit(1)
         if floor < 0:
             break
 
-print("Part 2: {}".format(ans))
+print("Part 2: {}".format(answer))
 

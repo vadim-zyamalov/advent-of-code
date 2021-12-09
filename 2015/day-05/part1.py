@@ -1,4 +1,4 @@
-ans = 0
+answer = 0
 
 vowels = "aeiou"
 bad = ["ab", "cd", "pq", "xy"]
@@ -19,5 +19,5 @@ with open("input.txt", "r") as f:
                 break
             prev = letter
         if nopair and (nvowel > 2) and double:
-            ans += 1
-print("Part 1: {}".format(ans))
+            answer += 1
+print("Part 1: {}".format(answer))

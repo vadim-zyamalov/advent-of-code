@@ -1,4 +1,8 @@
-lengths = {2: 1, 4: 4, 3: 7, 7: 8}
+# key - length, value - digit
+lengths = {2: 1,
+           4: 4,
+           3: 7,
+           7: 8}
 
 digits = [set('abcefg'),
           set('cf'),
@@ -13,18 +17,18 @@ digits = [set('abcefg'),
 
 
 def dict_invert(dictionary):
-    res = {}
+    result = {}
     for k in dictionary:
-        res[dictionary[k]] = k
-    return res
+        result[dictionary[k]] = k
+    return result
 
 
 def decoder(number, codelist):
     tmp = list(number)
-    res = set()
+    result = set()
     for i in tmp:
-        res.add(codelist[i])
-    return res
+        result.add(codelist[i])
+    return result
 
 
 def get_a(numbers, segments, patterns):
@@ -65,10 +69,10 @@ def get_g(numbers, segments, patterns):
 
 
 def get_0(numbers, segments, patterns):
-    tmp_bd = numbers[4] - numbers[1]
     for p in patterns:
         tmp = numbers[8] - p
-        if (len(tmp) == 1) and (len(tmp & tmp_bd) == 1):
+        if (len(tmp) == 1) and \
+                (len(tmp & (numbers[4] - numbers[1])) == 1):
             return p
     exit(1)
 
@@ -89,7 +93,7 @@ def get_9(numbers, segments, patterns):
     exit(1)
 
 
-ans = 0
+answer = 0
 with open("input.txt", "r") as f:
     for line in f:
         segments = {'a': None,
@@ -121,8 +125,8 @@ with open("input.txt", "r") as f:
         segments['g'] = get_g(numbers, segments, patterns)
 
         codelist = dict_invert(segments)
-        res = ''.join([str(digits.index(decoder(d, codelist))) for d in output])
+        result = ''.join([str(digits.index(decoder(d, codelist))) for d in output])
 
-        ans += int(res)
+        answer += int(result)
 
-print("Part 2: {}".format(ans))
+print("Part 2: {}".format(answer))

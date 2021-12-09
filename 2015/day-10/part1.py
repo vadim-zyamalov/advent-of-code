@@ -1,28 +1,5 @@
-def look_and_say_slow(string):
-    res = ''
-    groups = []
-
-    prev = None
-    tmp = []
-    for letter in string:
-        if not prev:
-            tmp.append(letter)
-            prev = letter
-        else:
-            if prev != letter:
-                groups.append(tmp)
-                tmp = [letter]
-                prev = letter
-            else:
-                tmp.append(letter)
-    groups.append(tmp)
-    for group in groups:
-        res = res + str(len(group)) + group[0]
-    return res
-
-
 def look_and_say_fast(string):
-    res = ''
+    result = ''
     count = 0
     prev = None
     for letter in string:
@@ -30,14 +7,15 @@ def look_and_say_fast(string):
             count += 1
             prev = letter
         elif prev != letter:
-            res += str(count) + prev
+            result += str(count) + prev
             count = 1
             prev = letter
         else:
             count += 1
     if count > 0:
-        res += str(count) + str(prev)
-    return res
+        result += str(count) + str(prev)
+    return result
+
 
 part = {1: 40, 2: 50}
 for k in part:

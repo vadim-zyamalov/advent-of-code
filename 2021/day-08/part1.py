@@ -4,12 +4,12 @@ segments = {1: 2,
             8: 7}
 lengths = list(segments.values())
 
-ans = 0
+answer = 0
 with open("input.txt", "r") as f:
     for line in f:
         patterns, _, output = line.strip().partition(' | ')
         output_d = [d for d in output.split()]
         for d in output_d:
             if len(d) in lengths:
-                ans += 1
-print("Part 1: {}".format(ans))
+                answer += 1
+print("Part 1: {}".format(answer))

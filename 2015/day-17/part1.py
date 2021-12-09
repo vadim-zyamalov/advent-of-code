@@ -3,23 +3,23 @@ volume = 150
 
 
 def num_to_bin(i, length):
-    res = []
-    num = i
-    while num > 0:
-        res.append(num % 2)
-        num //= 2
-    while len(res) < length:
-        res.append(0)
-    res.reverse()
-    return res
+    result = []
+    number = i
+    while number > 0:
+        result.append(number % 2)
+        number //= 2
+    while len(result) < length:
+        result.append(0)
+    result.reverse()
+    return result
 
 
 def calc_vol(variant, containers):
     n = len(containers)
-    res = 0
+    result = 0
     for i in range(n):
-        res += variant[i] * containers[i]
-    return res
+        result += variant[i] * containers[i]
+    return result
 
 
 with open("./input.txt", "r") as f:
@@ -27,20 +27,20 @@ with open("./input.txt", "r") as f:
         if line.strip() != "":
             containers.append(int(line.strip()))
 
-ans = 0
-quant = {}
+answer = 0
+quantitiy = {}
 for i in range(2 ** len(containers)):
     variant = num_to_bin(i, len(containers))
     if calc_vol(variant, containers) == volume:
-        ans += 1
+        answer += 1
         # part 2 below
-        num = sum(variant)
-        if not num in quant:
-            quant[num] = 0
-        quant[num] += 1
+        number = sum(variant)
+        if not number in quantitiy:
+            quantitiy[number] = 0
+        quantitiy[number] += 1
 
-minimal = min(list(quant.keys()))
+minimal = min(list(quantitiy.keys()))
 
-print("Part 1: {}".format(ans))
-print("Part 2: {}".format(quant[minimal]))
+print("Part 1: {}".format(answer))
+print("Part 2: {}".format(quantitiy[minimal]))
 

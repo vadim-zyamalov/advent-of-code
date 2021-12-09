@@ -1,4 +1,4 @@
-ans = 0
+answer = 0
 
 with open("./input.txt", "r") as f:
     while True:
@@ -6,11 +6,11 @@ with open("./input.txt", "r") as f:
         if not step:
             break
         elif step == '(':
-            ans += 1
+            answer += 1
         elif step == ')':
-            ans -= 1
+            answer -= 1
         else:
             exit(1)
 
-print("Part 1: {}".format(ans))
+print("Part 1: {}".format(answer))
 

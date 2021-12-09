@@ -8,11 +8,11 @@ def self_product(data, repeat=2):
     n = len(data)
     counter = [0 for _ in range(repeat)]
     while not all(i == (n - 1) for i in counter):
-        pos = repeat - 1
+        position = repeat - 1
         while True:
-            counter[pos] = (counter[pos] + 1) % n
-            if counter[pos] == 0:
-                pos -= 1
+            counter[position] = (counter[position] + 1) % n
+            if counter[position] == 0:
+                position -= 1
             else:
                 break
         yield [data[i] for i in counter]
@@ -26,15 +26,15 @@ def spoons_correct(n, msp=100):
 
 
 def score(recipe, ingredients):
-    ans = 1
+    answer = 1
     for ch in range(len(ingredients[0])):
         res = 0
         for ing in range(len(recipe)):
             res += recipe[ing] * ingredients[ing][ch]
         if res < 0:
             res = 0
-        ans *= res
-    return ans
+        answer *= res
+    return answer
 
 t0 = time.time()
 with open("input.txt", "r") as f:
@@ -44,10 +44,10 @@ with open("input.txt", "r") as f:
         entries = [int(i.strip().split()[1]) for i in other.strip().split(',')][:-1]
         ingredients.append(entries)
 
-ans = 0
+answer = 0
 for s in spoons_correct(len(ingredients), 100):
     tmp = score(s, ingredients)
-    ans = tmp if ans < tmp else ans
+    answer = tmp if answer < tmp else answer
 
-print("Part 1: {}".format(ans))
+print("Part 1: {}".format(answer))
 print('elapsed: {}'.format(time.time() - t0))

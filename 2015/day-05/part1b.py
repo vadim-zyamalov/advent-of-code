@@ -1,4 +1,4 @@
-ans = 0
+answer = 0
 bad = ["ab", "cd", "pq", "xy"]
 
 with open("input.txt", "r") as f:
@@ -14,6 +14,6 @@ with open("input.txt", "r") as f:
             if pair[0] == pair[1]:
                 double = True
         if (vowels > 2) and double and nopair:
-            ans += 1
+            answer += 1
 
-print("Part 1: {}".format(ans))
+print("Part 1: {}".format(answer))

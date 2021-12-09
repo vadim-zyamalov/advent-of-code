@@ -1,4 +1,4 @@
-ans = 0
+answer = 0
 prev = None
 
 a1 = None
@@ -17,7 +17,7 @@ with open("input.txt", "r") as f:
         else:
             a3, a2, a1 = a2, a1, int(i)
             if prev and (prev < a1 + a2 + a3):
-                ans += 1
+                answer += 1
             prev = a1 + a2 + a3
 
-print("Part 2: {}".format(ans))
+print("Part 2: {}".format(answer))

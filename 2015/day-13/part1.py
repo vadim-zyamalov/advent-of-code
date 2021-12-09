@@ -1,38 +1,38 @@
 def permute(elements):
     if len(elements) == 1:
-        return elements
-    res = []
+        return [elements]
+    result = []
     for el in elements:
         for v in permute([l for l in elements if l != el]):
-            res.append([el] + (v if isinstance(v, list) else [v]))
-    return res
+            result.append([el] + v)
+    return result
 
 
 def add_self(preferences):
-    res = preferences.copy()
-    guests = list(res.keys())
-    res['_self_'] = {}
+    result = preferences.copy()
+    guests = list(result.keys())
+    result['_self_'] = {}
     for k in guests:
-        res[k]['_self_'] = 0
-        res['_self_'][k] = 0
-    return res
+        result[k]['_self_'] = 0
+        result['_self_'][k] = 0
+    return result
 
 
 def calc(variant, preferences):
-    ans = 0
-    num = len(variant)
-    for i in range(num):
+    answer = 0
+    number = len(variant)
+    for i in range(number):
         name1 = variant[i]
-        name2 = variant[(i + 1) % num]
-        ans += preferences[name1][name2] if \
+        name2 = variant[(i + 1) % number]
+        answer += preferences[name1][name2] if \
             name1 in preferences and \
             name2 in preferences[name1] \
             else 0
-        ans += preferences[name2][name1] if \
+        answer += preferences[name2][name1] if \
             name2 in preferences and \
             name1 in preferences[name2] \
             else 0
-    return ans
+    return answer
 
 
 preferences = {}

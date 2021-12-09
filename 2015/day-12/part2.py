@@ -2,7 +2,7 @@ def splitx(input):
     opener = '[{'
     closer = ']}'
 
-    res = []
+    result = []
     tmp = ''
     counter = 0
     for letter in input:
@@ -15,17 +15,17 @@ def splitx(input):
             if counter > 0:
                 tmp += letter
             else:
-                res.append(tmp)
+                result.append(tmp)
                 tmp = ''
         elif letter == ',':
             if counter > 1:
                 tmp += letter
             else:
-                res.append(tmp)
+                result.append(tmp)
                 tmp = ''
         else:
             tmp += letter
-    return res
+    return result
 
 
 def elparser(input):
@@ -37,20 +37,20 @@ def parser(input):
     if len(input) == 0:
         return None
     if input[0] == '[':
-        res = []
+        result = []
         elements = splitx(input)
         for i in elements:
             tmp = parser(i.strip())
-            res.append(tmp)
-        return res
+            result.append(tmp)
+        return result
     elif input[0] == '{':
-        res = {}
+        result = {}
         elements = splitx(input)
         for i in elements:
             key, val = elparser(i.strip())
             tmp = parser(val)
-            res[key] = tmp
-        return res
+            result[key] = tmp
+        return result
     elif input.strip().lstrip('-').isnumeric():
         return int(input.strip())
     else:

@@ -1,10 +1,11 @@
 def step(fishes):
-    res = fishes.copy()
-    tmp = res[0]
-    res[:-1] = res[1:]
-    res[8] =  tmp
-    res[6] += tmp
-    return res
+    result = fishes.copy()
+    tmp = result[0]
+    result[:-1] = result[1:]
+    result[8] =  tmp
+    result[6] += tmp
+    return result
+
 
 with open("input.txt", "r") as f:
     tmp = [int(i) for i in f.readline().strip().split(',')]

@@ -33,12 +33,12 @@ def check(boards=boards):
 
 
 def score(board):
-    ans = 0
+    answer = 0
     for i in range(5):
         for j in range(5):
             if board[i][j] is not None:
-                ans += board[i][j]
-    return ans
+                answer += board[i][j]
+    return answer
 
 
 with open("input.txt", "r") as f:

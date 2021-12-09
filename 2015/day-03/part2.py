@@ -1,5 +1,3 @@
-ans = 0
-
 sx, sy = 0, 0
 rx, ry = 0, 0
 houses = set()

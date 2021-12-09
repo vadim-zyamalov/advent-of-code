@@ -1,5 +1,3 @@
-ans = 0
-
 x, y = 0, 0
 houses = set()
 houses.add((x, y))

@@ -1,4 +1,4 @@
-ans = 0
+answer = 0
 
 with open("input.txt", "r") as f:
     for line in f:
@@ -8,8 +8,8 @@ with open("input.txt", "r") as f:
             continue
         for i in range(len(secunda) - 2):
             if secunda[i] in secunda[(i + 2):]:
-                ans += 1
+                answer += 1
                 break
 
-print("Part 2: {}".format(ans))
+print("Part 2: {}".format(answer))
 

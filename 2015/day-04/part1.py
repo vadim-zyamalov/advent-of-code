@@ -8,7 +8,7 @@ puzzle = puzzle.strip()
 nonce = 0
 
 while True:
-    res = hashlib.md5('{}{}'.format(puzzle,str(nonce)).encode())
+    res = hashlib.md5('{}{}'.format(puzzle, str(nonce)).encode())
     if res.hexdigest().startswith('00000'):
         break
     else:
