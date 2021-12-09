@@ -20,4 +20,4 @@ with open("input.txt", "r") as f:
                 ans += 1
             prev = a1 + a2 + a3
 
-print(ans)
+print("Part 2: {}".format(ans))

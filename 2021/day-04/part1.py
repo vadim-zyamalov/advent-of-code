@@ -68,4 +68,4 @@ for i in numbers:
         res = i * max([score(boards[i]) for i in winners])
         break
 
-print(res)
+print("Part 1: {}".format(res))

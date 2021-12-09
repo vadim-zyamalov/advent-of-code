@@ -1,4 +1,5 @@
-vents = {}
+vents1 = {}
+vents2 = {}
 
 
 def counter1(line, vents):
@@ -43,11 +44,19 @@ def counter2(line, vents):
 
 with open("input.txt", "r") as f:
     for line in f:
-        vents = counter2(line, vents)
+        vents1 = counter1(line, vents1)
+        vents2 = counter2(line, vents2)
 
 ans = 0
-for k in vents:
-    if vents[k] > 1:
+for k in vents1:
+    if vents1[k] > 1:
         ans += 1
 
-print(ans)
+print("Part 1: {}".format(ans))
+
+ans = 0
+for k in vents2:
+    if vents2[k] > 1:
+        ans += 1
+
+print("Part 2: {}".format(ans))

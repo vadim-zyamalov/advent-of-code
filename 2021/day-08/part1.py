@@ -12,4 +12,4 @@ with open("input.txt", "r") as f:
         for d in output_d:
             if len(d) in lengths:
                 ans += 1
-print(ans)
+print("Part 1: {}".format(ans))

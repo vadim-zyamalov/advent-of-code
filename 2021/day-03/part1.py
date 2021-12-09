@@ -24,4 +24,4 @@ epsilon = int(
     '0b' + ''.join(['1' if i < total / 2 else '0' for i in count]),
     2)
 
-print(gamma * epsilon)
+print("Part 1: {}".format(gamma * epsilon))

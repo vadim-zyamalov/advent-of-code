@@ -70,5 +70,5 @@ for i in numbers:
     elif winners:
         res = i * max([score(boards[i]) for i in boards.keys()])
         break
-print(boards)
-print(res)
+
+print("Part 2: {}".format(res))

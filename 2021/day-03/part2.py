@@ -33,4 +33,4 @@ for i in range(len(co2_diag[0])):
 
 co2 = int('0b' + co2_diag[0], 2)
 
-print(oxy * co2)
+print("Part 1: {}".format(oxy * co2))

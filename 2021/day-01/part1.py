@@ -7,4 +7,4 @@ with open("input.txt", "r") as f:
             ans += 1
         prev = int(i)
 
-print(ans)
+print("Part 1: {}".format(ans))

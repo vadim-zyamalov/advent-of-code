@@ -32,23 +32,28 @@ def get_a(numbers, segments, patterns):
 
 
 def get_b(numbers, segments, patterns):
-    return list(numbers[4] - numbers[7] - set(segments['d']))[0]
+    tmp_d = get_d(numbers, segments, patterns)
+    return list(numbers[4] - numbers[7] - set(tmp_d))[0]
 
 
 def get_c(numbers, segments, patterns):
-    return list(numbers[8] - numbers[6])[0]
+    tmp_6 = get_6(numbers, segments, patterns)
+    return list(numbers[8] - tmp_6)[0]
 
 
 def get_d(numbers, segments, patterns):
-    return list(numbers[8] - numbers[0])[0]
+    tmp_0 = get_0(numbers, segments, patterns)
+    return list(numbers[8] - tmp_0)[0]
 
 
 def get_e(numbers, segments, patterns):
-    return list(numbers[8] - numbers[9])[0]
+    tmp_9 = get_9(numbers, segments, patterns)
+    return list(numbers[8] - tmp_9)[0]
 
 
 def get_f(numbers, segments, patterns):
-    return list(numbers[1] - set(segments['c']))[0]
+    tmp_c = get_c(numbers, segments, patterns)
+    return list(numbers[1] - set(tmp_c))[0]
 
 
 def get_g(numbers, segments, patterns):
@@ -95,16 +100,10 @@ with open("input.txt", "r") as f:
                     'f': None,
                     'g': None}
 
-        numbers = {0: set(),
-                   1: set(),
-                   2: set(),
-                   3: set(),
+        numbers = {1: set(),
                    4: set(),
-                   5: set(),
-                   6: set(),
                    7: set(),
-                   8: set(),
-                   9: set()}
+                   8: set()}
 
         patterns, _, output = line.strip().partition(' | ')
         patterns = [set(d) for d in patterns.split()]
@@ -113,13 +112,9 @@ with open("input.txt", "r") as f:
             length = len(d)
             if length in lengths:
                 numbers[lengths[length]] = d
-        numbers[0] = get_0(numbers, segments, patterns)
-        numbers[6] = get_6(numbers, segments, patterns)
-        numbers[9] = get_9(numbers, segments, patterns)
         segments['a'] = get_a(numbers, segments, patterns)
-        # d needed for b
-        segments['d'] = get_d(numbers, segments, patterns)
         segments['b'] = get_b(numbers, segments, patterns)
+        segments['d'] = get_d(numbers, segments, patterns)
         segments['c'] = get_c(numbers, segments, patterns)
         segments['e'] = get_e(numbers, segments, patterns)
         segments['f'] = get_f(numbers, segments, patterns)
@@ -130,4 +125,4 @@ with open("input.txt", "r") as f:
 
         ans += int(res)
 
-print(ans)
+print("Part 2: {}".format(ans))

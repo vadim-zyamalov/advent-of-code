@@ -12,4 +12,5 @@ with open("input.txt", "r") as f:
             y -= int(val)
         else:
             exit(1)
-print(x * y)
+
+print("Part 1: {}".format(x * y))
