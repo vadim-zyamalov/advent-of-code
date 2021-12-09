@@ -11,5 +11,5 @@ with open("input.txt", "r") as f:
                 ans += 1
                 break
 
-print(ans)
+print("Part 2: {}".format(ans))
 

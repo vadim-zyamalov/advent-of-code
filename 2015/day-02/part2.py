@@ -7,4 +7,4 @@ with open("input.txt", "r") as f:
         ans += 2 * (dims[0] + dims[1])
         ans += dims[0] * dims[1] * dims[2]
 
-print(ans)
+print("Part 2: {}".format(ans))

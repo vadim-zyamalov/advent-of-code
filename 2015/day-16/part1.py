@@ -19,4 +19,4 @@ with open("input.txt", "r") as f:
                 if clues[fact] == int(val.strip()):
                     numerator += 1
             if numerator == denominator:
-                print(f"Possible Auntie Sue is one of number {number}")
+                print("Part 1: {}".format(number))

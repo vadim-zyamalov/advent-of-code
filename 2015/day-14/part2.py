@@ -28,4 +28,4 @@ for t in range(1, period + 1):
 
 winner = max(score)
 
-print(winner)
+print("Part 2: {}".format(winner))

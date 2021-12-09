@@ -19,4 +19,4 @@ with open("input.txt", "r") as f:
             x -= 1
         houses.add((x, y))
 
-print(len(houses))
+print("Part 1: {}".format(len(houses)))

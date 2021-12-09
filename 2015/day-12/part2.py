@@ -84,4 +84,4 @@ with open("input.txt", "r") as f:
     data = f.read()
     data = parser(data.strip())
 
-print(dive(data))
+print("Part 2: {}".format(dive(data)))

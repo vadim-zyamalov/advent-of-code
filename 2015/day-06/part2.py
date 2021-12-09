@@ -22,4 +22,4 @@ with open("input.txt", "r") as f:
                 else:
                     matrix[i][j] = max(matrix[i][j] - 1, 0)
 
-print(sum([sum(i) for i in matrix]))
+print("Part 2: {}".format(sum([sum(i) for i in matrix])))

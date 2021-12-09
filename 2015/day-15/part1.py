@@ -49,5 +49,5 @@ for s in spoons_correct(len(ingredients), 100):
     tmp = score(s, ingredients)
     ans = tmp if ans < tmp else ans
 
-print('{}, elapsed: {}'.format(ans,
-                               time.time() - t0))
+print("Part 1: {}".format(ans))
+print('elapsed: {}'.format(time.time() - t0))

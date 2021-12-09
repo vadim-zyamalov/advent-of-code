@@ -39,14 +39,13 @@ def look_and_say_fast(string):
         res += str(count) + str(prev)
     return res
 
+part = {1: 40, 2: 50}
+for k in part:
+    with open("input.txt", "r") as f:
+        line = f.read()
+        line = line.strip()
 
-with open("input.txt", "r") as f:
-    line = f.read()
-    line = line.strip()
+    for i in range(part[k]):
+        line = look_and_say_fast(line)
 
-for i in range(50):
-    print('Step {}'.format(i))
-    line = look_and_say_fast(line)
-
-print("The length of the number = {}".format(
-    len(line)))
+    print("Part {}: {}".format(k, len(line)))

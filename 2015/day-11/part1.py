@@ -37,12 +37,13 @@ def check3(line):
     return False
 
 
-with open("input2.txt", "r") as f:
-    line = f.readline()
-    line = line.strip()
+for part in [1, 2]:
+    with open("input{}.txt".format(part), "r") as f:
+        line = f.readline()
+        line = line.strip()
 
-print(line)
-line = inc(line)
-while not (check1(line) and check2(line) and check3(line)):
     line = inc(line)
-print(line)
+    while not (check1(line) and check2(line) and check3(line)):
+        line = inc(line)
+    print("Part {}: {}".format(part, line))
+

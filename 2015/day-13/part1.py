@@ -45,10 +45,10 @@ with open("input.txt", "r") as f:
         preferences[string[0]][string[-1]] = int(string[3]) \
             if string[2] == 'gain' else -int(string[3])
 
-# part2
-preferences = add_self(preferences)
-# end of part2
+for part in [1, 2]:
+    if part == 2:
+        preferences = add_self(preferences)
 
-guests = list(preferences.keys())
-variants = [v for v in permute(guests) if v[0] == guests[0]]
-print(max(calc(v, preferences) for v in variants))
+    guests = list(preferences.keys())
+    variants = [v for v in permute(guests) if v[0] == guests[0]]
+    print("Part {}: {}".format(part, max(calc(v, preferences) for v in variants)))

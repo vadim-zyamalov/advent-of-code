@@ -1,7 +1,7 @@
 floor = 0
 ans = 0
 
-with open("input.txt", "r") as f:
+with open("./input.txt", "r") as f:
     while True:
         step = f.read(1)
         if not step:
@@ -17,5 +17,5 @@ with open("input.txt", "r") as f:
         if floor < 0:
             break
 
-print(ans)
+print("Part 2: {}".format(ans))
 

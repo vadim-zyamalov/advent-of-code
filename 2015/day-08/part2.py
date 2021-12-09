@@ -32,4 +32,4 @@ with open("input.txt", "r") as f:
                 chars_old += 1
                 chars_new += 1
             i += 1
-print(chars_new - chars_old)
+print("Part 2: {}".format(chars_new - chars_old))

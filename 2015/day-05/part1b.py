@@ -16,4 +16,4 @@ with open("input.txt", "r") as f:
         if (vowels > 2) and double and nopair:
             ans += 1
 
-print(ans)
+print("Part 1: {}".format(ans))

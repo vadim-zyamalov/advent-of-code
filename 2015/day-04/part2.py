@@ -14,4 +14,4 @@ while True:
     else:
         nonce += 1
 
-print(nonce)
+print("Part 2: {}".format(nonce))

@@ -62,5 +62,5 @@ with open("input.txt", "r") as f:
         matrix = collect_map(route)
         res = [distance(i, matrix) for i in candidates]
 
-    # print(min(res))
-    print(max(res))
+    print("Part 1: {}".format(min(res)))
+    print("Part 2: {}".format(max(res)))

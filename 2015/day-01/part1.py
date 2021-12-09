@@ -1,6 +1,6 @@
 ans = 0
 
-with open("input.txt", "r") as f:
+with open("./input.txt", "r") as f:
     while True:
         step = f.read(1)
         if not step:
@@ -12,5 +12,5 @@ with open("input.txt", "r") as f:
         else:
             exit(1)
 
-print(ans)
+print("Part 1: {}".format(ans))
 

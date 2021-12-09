@@ -33,4 +33,4 @@ with open("input.txt", "r") as f:
         houses.add((sx, sy))
         houses.add((rx, ry))
 
-print(len(houses))
+print("Part 2: {}".format(len(houses)))

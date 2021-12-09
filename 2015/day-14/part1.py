@@ -15,4 +15,4 @@ for k in deers:
     deers[k]['dist'] = total_flying * deers[k]['speed']
     winner = deers[k]['dist'] if deers[k]['dist'] > winner else winner
 
-print(winner)
+print("Part 1: {}".format(winner))

@@ -28,4 +28,4 @@ with open("input.txt", "r") as f:
                 codes += 1
                 chars += 1
             i += 1
-print(codes - chars)
+print("Part 1: {}".format(codes - chars))
