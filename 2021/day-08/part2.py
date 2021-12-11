@@ -18,7 +18,11 @@ def diff(x, y):
     return x ^ (x & y)
 
 
-def dict_invert(dictionary, original):
+def single(x):
+    return True if (x > 0) and not (x & (x - 1)) else False
+
+
+def create_codelist(dictionary, original):
     result = {}
     for k in dictionary:
         result[dictionary[k]] = original[k]
@@ -73,8 +77,8 @@ def get_g(numbers, segments, patterns):
 def get_0(numbers, segments, patterns):
     for p in patterns:
         tmp = diff(numbers[8], p)
-        if (bin(tmp).count('1') == 1) and \
-                (bin(tmp & diff(numbers[4], numbers[1])).count('1') == 1):
+        if single(tmp) and \
+                single(tmp & diff(numbers[4], numbers[1])):
             return p
     exit(1)
 
@@ -82,7 +86,7 @@ def get_0(numbers, segments, patterns):
 def get_6(numbers, segments, patterns):
     for p in patterns:
         tmp = diff(numbers[8], p)
-        if (bin(tmp).count('1') == 1) and (bin(tmp & numbers[1]).count('1') == 1):
+        if single(tmp) and single(tmp & numbers[1]):
             return p
     exit(1)
 
@@ -90,7 +94,7 @@ def get_6(numbers, segments, patterns):
 def get_9(numbers, segments, patterns):
     for p in patterns:
         tmp = diff(numbers[8], p)
-        if (bin(tmp).count('1') == 1) and (bin(tmp & numbers[4]).count('1') == 0):
+        if single(tmp) and not (tmp & numbers[4]):
             return p
     exit(1)
 
@@ -143,7 +147,7 @@ with open("input.txt", "r") as f:
         segments['f'] = get_f(numbers, segments, patterns)
         segments['g'] = get_g(numbers, segments, patterns)
 
-        codelist = dict_invert(segments, powers)
+        codelist = create_codelist(segments, powers)
         result = sum(
             digits.index(decoder(output[d], codelist)) * \
             (10 ** (len(output) - 1 - d)) \
