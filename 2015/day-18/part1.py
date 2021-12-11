@@ -1,6 +1,7 @@
 grid = []
 steps = 100
 
+
 def status(i, j, grid):
     dimi, dimj = len(grid), len(grid[0])
     number = 0
