@@ -7,6 +7,24 @@ powers = {'a': 1<<6,
           'g': 1<<0}
 
 
+def split_patterns(patterns):
+    unique = {}
+    plural = []
+    for p in patterns:
+        n = bin(p).count('1')
+        if n == 2:
+            unique[1] = p
+        elif n == 4:
+            unique[4] = p
+        elif n == 3:
+            unique[7] = p
+        elif n == 7:
+            unique[8] = p
+        else:
+            plural.append(p)
+    return unique, plural
+
+
 def pattern_to_num(pattern):
     result = 0
     for letter in pattern:
@@ -19,13 +37,13 @@ def diff(x, y):
 
 
 def single(x):
-    return True if (x > 0) and not (x & (x - 1)) else False
+    return True if x and not (x & (x - 1)) else False
 
 
-def create_codelist(dictionary, original):
+def create_codelist(corrupted, original):
     result = {}
-    for k in dictionary:
-        result[dictionary[k]] = original[k]
+    for k in corrupted:
+        result[corrupted[k]] = original[k]
     return result
 
 
@@ -33,7 +51,7 @@ def decoder(number, codelist):
     result = 0
     for i in codelist:
         if (number & i):
-            result += codelist[i]
+            result |= codelist[i]
     return result
 
 
@@ -99,12 +117,6 @@ def get_9(numbers, segments, patterns):
     exit(1)
 
 
-# key - length, value - digit
-lengths = {2: 1,
-           4: 4,
-           3: 7,
-           7: 8}
-
 digits = [pattern_to_num('abcefg'),
           pattern_to_num('cf'),
           pattern_to_num('acdeg'),
@@ -127,18 +139,11 @@ with open("input.txt", "r") as f:
                     'f': None,
                     'g': None}
 
-        numbers = {1: 0,
-                   4: 0,
-                   7: 0,
-                   8: 0}
-
         patterns, _, output = line.strip().partition(' | ')
         patterns = [pattern_to_num(d) for d in patterns.split()]
         output = [pattern_to_num(d) for d in output.split()]
-        for d in patterns:
-            length = bin(d).count('1')
-            if length in lengths:
-                numbers[lengths[length]] = d
+        numbers, patterns = split_patterns(patterns)
+
         segments['a'] = get_a(numbers, segments, patterns)
         segments['b'] = get_b(numbers, segments, patterns)
         segments['d'] = get_d(numbers, segments, patterns)
@@ -148,10 +153,10 @@ with open("input.txt", "r") as f:
         segments['g'] = get_g(numbers, segments, patterns)
 
         codelist = create_codelist(segments, powers)
-        result = sum(
-            digits.index(decoder(output[d], codelist)) * \
-            (10 ** (len(output) - 1 - d)) \
-            for d in range(len(output)))
+        result = 0
+        for d in output:
+            result *= 10
+            result += digits.index(decoder(d, codelist))
         answer += result
 
 print("Part 2: {}".format(answer))
