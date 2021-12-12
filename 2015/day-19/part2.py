@@ -1,12 +1,12 @@
 replacements = []
 molecule = ''
-filter = set()
+processed = set()
 
 
 def process(molecule, replacements, echo):
-    length = len(molecule)
     if molecule == 'e':
-        return 1
+        return 0
+    length = len(molecule)
     pool = []
     for i in range(length):
         if str.islower(molecule[i]):
@@ -16,8 +16,8 @@ def process(molecule, replacements, echo):
         for fst, snd in replacements:
             if molecule[i:].startswith(snd):
                 r = molecule[:i] + fst + molecule[(i+len(snd)):]
-                if r not in filter:
-                    filter.add(r)
+                if r not in processed:
+                    processed.add(r)
                     tmp = process(r, replacements, False)
                     if tmp is not None:
                         pool.append(tmp)
