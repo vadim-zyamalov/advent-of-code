@@ -1,6 +1,6 @@
 import math
 
-health = 100
+player = {'hp': 100}
 
 weapons = {}
 armor = {}
@@ -15,14 +15,13 @@ def items_permute(weapons, armor, rings):
                         yield (w, a, r1, r2)
 
 
-def fight(p_hp, p_damage, p_armor,
-          b_hp, b_damage, b_armor):
+def fight(player, boss):
     while True:
-        b_hp -= max(1, p_damage - b_armor)
-        if b_hp <= 0:
+        boss['hp'] -= max(1, player['damage'] - boss['armor'])
+        if boss['hp'] <= 0:
             return True
-        p_hp -= max(1, b_damage - p_armor)
-        if p_hp <= 0:
+        player['hp'] -= max(1, boss['damage'] - player['armor'])
+        if player['hp'] <= 0:
             return False
 
 
@@ -69,28 +68,25 @@ with open("items.txt", "r") as f:
                                  'armor': 0}
 
 
-b_hp = 0
-b_damage = 0
-b_armor = 0
+boss = {}
 with open("input.txt") as f:
     for line in f:
         _, val = line.strip().split(":")
         if line.startswith("Hit Points"):
-            b_hp = int(val.strip())
+            boss['hp'] = int(val.strip())
         if line.startswith("Damage"):
-            b_damage = int(val.strip())
+            boss['damage'] = int(val.strip())
         if line.startswith("Armor"):
-            b_armor = int(val.strip())
+            boss['armor'] = int(val.strip())
 
 costs = []
 for p in items_permute(weapons,
                        armor,
                        rings):
-    tmp_damage = weapons[p[0]]['damage'] + armor[p[1]]['damage'] + rings[p[2]]['damage'] + rings[p[3]]['damage']
-    tmp_armor  = weapons[p[0]]['armor'] + armor[p[1]]['armor'] + rings[p[2]]['armor'] + rings[p[3]]['armor']
+    player['damage'] = weapons[p[0]]['damage'] + armor[p[1]]['damage'] + rings[p[2]]['damage'] + rings[p[3]]['damage']
+    player['armor']  = weapons[p[0]]['armor'] + armor[p[1]]['armor'] + rings[p[2]]['armor'] + rings[p[3]]['armor']
 
-    if fight(health, tmp_damage, tmp_armor,
-             b_hp, b_damage, b_armor):
+    if fight(player.copy(), boss.copy()):
         tmp = 0
         tmp += weapons[p[0]]['cost']
         tmp += armor[p[1]]['cost']
@@ -103,11 +99,10 @@ costs = []
 for p in items_permute(weapons,
                        armor,
                        rings):
-    tmp_damage = weapons[p[0]]['damage'] + armor[p[1]]['damage'] + rings[p[2]]['damage'] + rings[p[3]]['damage']
-    tmp_armor  = weapons[p[0]]['armor'] + armor[p[1]]['armor'] + rings[p[2]]['armor'] + rings[p[3]]['armor']
+    player['damage'] = weapons[p[0]]['damage'] + armor[p[1]]['damage'] + rings[p[2]]['damage'] + rings[p[3]]['damage']
+    player['armor']  = weapons[p[0]]['armor'] + armor[p[1]]['armor'] + rings[p[2]]['armor'] + rings[p[3]]['armor']
 
-    if not fight(health, tmp_damage, tmp_armor,
-                 b_hp, b_damage, b_armor):
+    if not fight(player.copy(), boss.copy()):
         tmp = 0
         tmp += weapons[p[0]]['cost']
         tmp += armor[p[1]]['cost']
