@@ -1,0 +1,36 @@
+function Dijkstra(Graph, source):
+    create vertex set Q
+
+    for each vertex v in Graph:            
+        dist[v] <- INFINITY                 
+        prev[v] <- UNDEFINED                
+        add v to Q                     
+    dist[source] <- 0
+
+    while Q is not empty:
+        u <- vertex in Q with min dist[u]   
+        remove u from Q
+
+        for each neighbor v of u still in Q:
+            alt <- dist[u] + length(u, v)
+            if alt < dist[v]:              
+                dist[v] <- alt
+                prev[v] <- u
+
+    return dist[], prev[]
+
+function Dijkstra(Graph, source):
+    dist[source] <- 0                 
+    prev[source] <- UNDEFINED                
+    add source to Q
+
+    for each u in Q:
+        for each neighbor v of u:
+            alt <- dist[u] + length(u, v)
+            if v in dist and alt > dist[v]:
+                continue
+            dist[v] <- alt
+            prev[v] <- u
+            add v to the end of Q
+
+    return dist[], prev[]
