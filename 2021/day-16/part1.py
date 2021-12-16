@@ -1,20 +1,17 @@
-message = ''
-
-
 def hex_to_bin(data):
-    result = ''
+    answer = ''
     for letter in data:
         tmp = bin(int(letter, 16))[2:]
         tmp = '0' * (4 - len(tmp)) + tmp
-        result += tmp
-    return result
+        answer += tmp
+    return answer
 
 
-def prod(els):
-    result = 1
-    for el in els:
-        result *= el
-    return result
+def prod(elements):
+    answer = 1
+    for element in elements:
+        answer *= element
+    return answer
 
 
 def parse_literal(data, start):
@@ -46,8 +43,8 @@ def parse_operator(data, start):
         number = int(data[i:(i+11)], 2)
         i += 11
     if length:
-        si = i
-        while (i - si < length):
+        chunk_start = i
+        while i - chunk_start < length:
             tmp, i = parse(data, i)
             value.append(tmp)
     if number:
@@ -77,37 +74,38 @@ def parse(data, start=0):
              'Value': value}, i)
 
 
-def vsum(input):
-    result = input['Version']
-    if isinstance(input['Value'], list):
-        for el in input['Value']:
-            result += vsum(el)
-    return result
+def vsum(packet):
+    answer = packet['Version']
+    if isinstance(packet['Value'], list):
+        for sub_packet in packet['Value']:
+            answer += vsum(sub_packet)
+    return answer
 
 
-def execute(input):
-    typeid = input['TypeID']
+def execute(packet):
+    typeid = packet['TypeID']
     if typeid == 4:
-        return input['Value']
-    else:
-        tmp = []
-        for el in input['Value']:
-            tmp.append(execute(el))
+        return packet['Value']
+    tmp = []
+    for sub_packet in packet['Value']:
+        tmp.append(execute(sub_packet))
 
-        if typeid == 0:
-            return sum(tmp)
-        elif typeid == 1:
-            return prod(tmp)
-        elif typeid == 2:
-            return min(tmp)
-        elif typeid == 3:
-            return max(tmp)
-        elif typeid == 5:
-            return 1 if tmp[0] > tmp[1] else 0
-        elif typeid == 6:
-            return 1 if tmp[0] < tmp[1] else 0
-        elif typeid == 7:
-            return 1 if tmp[0] == tmp[1] else 0
+    answer = None
+    if typeid == 0:
+        answer = sum(tmp)
+    elif typeid == 1:
+        answer = prod(tmp)
+    elif typeid == 2:
+        answer = min(tmp)
+    elif typeid == 3:
+        answer = max(tmp)
+    elif typeid == 5:
+        answer = 1 if tmp[0] > tmp[1] else 0
+    elif typeid == 6:
+        answer = 1 if tmp[0] < tmp[1] else 0
+    elif typeid == 7:
+        answer = 1 if tmp[0] == tmp[1] else 0
+    return answer
 
 
 with open("input.txt", "r") as f:
