@@ -59,6 +59,7 @@ def parse_operator(data, start):
 
 def parse(data, start = 0):
     i = start
+    assert i < len(data)
 
     version = int(data[i:(i+3)], 2)
     i += 3
