@@ -1,3 +1,5 @@
+from PIL import Image, ImageColor
+
 grid = []
 
 moves = [(-1, 0),
@@ -10,6 +12,18 @@ def dump(grid):
             print(digit, end=" ")
         print()
     print()
+
+
+def dump_path(path, grid, filename="output.bmp"):
+    dimi, dimj = len(grid), len(grid[0])
+    im = Image.new('1', (dimi, dimj))
+    for i in range(dimi):
+        for j in range(dimj):
+            if (i, j) in path:
+                im.putpixel((i, j), ImageColor.getcolor('black', '1'))
+            else:
+                im.putpixel((i, j), ImageColor.getcolor('white', '1'))
+    im.save(filename)
 
 
 def neighbours(i, j, grid):
@@ -62,6 +76,8 @@ def process_dijkstra(grid):
     dimi, dimj = len(grid), len(grid[0])
     cost = {}
     points = []
+    track = {}
+
     for i in range(dimi):
         for j in range(dimj):
             cost[i, j] = 10 * dimi * dimj
@@ -77,13 +93,20 @@ def process_dijkstra(grid):
         for (ni, nj) in neighbours(pi, pj, grid):
             if (ni, nj) in points and (cost[ni, nj] > cost[pi, pj] + grid[ni][nj]):
                 cost[ni, nj] = cost[pi, pj] + grid[ni][nj]
-    return cost[dimi - 1, dimj - 1]
+
+    current = (dimi - 1, dimj - 1)
+    path = [current]
+    while (0, 0) not in path:
+        current = track[current]
+        path.append(current)
+    return (cost[dimi - 1, dimj - 1], path)
 
 
 def process_dijkstra_add(grid):
     dimi, dimj = len(grid), len(grid[0])
     cost = {(int(0), int(0)): 0}
     points = [(0, 0)]
+    track = {}
     
     for (pi, pj) in points:
         for (ni, nj) in neighbours(pi, pj, grid):
@@ -91,7 +114,14 @@ def process_dijkstra_add(grid):
                 continue
             cost[ni, nj] = cost[pi, pj] + grid[ni][nj]
             points.append((ni, nj))
-    return cost[dimi - 1, dimj - 1]
+            track[ni, nj] = (pi, pj)
+
+    current = (dimi - 1, dimj - 1)
+    path = [current]
+    while (0, 0) not in path:
+        current = track[current]
+        path.append(current)
+    return (cost[dimi - 1, dimj - 1], path)
 
 
 with open("input.txt", "r") as f:
@@ -101,7 +131,7 @@ with open("input.txt", "r") as f:
         grid.append([int(digit) for digit in line.strip()])
 
 result = process_dijkstra_add(grid)
-print("Part 1: {}".format(result))
+print("Part 1: {}".format(result[0]))
 
 new_grid = deep_copy(grid)
 inc_grid = deep_copy(grid)
@@ -115,4 +145,5 @@ for i in range(4):
     new_grid = append_below(new_grid, inc_grid)
 
 result = process_dijkstra_add(new_grid)
-print("Part 2: {}".format(result))
+print("Part 2: {}".format(result[0]))
+dump_path(result[1], new_grid)
