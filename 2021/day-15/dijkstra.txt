@@ -19,7 +19,7 @@ function Dijkstra(Graph, source):
 
     return dist[], prev[]
 
-function Dijkstra(Graph, source):
+function UCS(Graph, source):
     dist[source] <- 0                 
     prev[source] <- UNDEFINED                
     add source to Q
