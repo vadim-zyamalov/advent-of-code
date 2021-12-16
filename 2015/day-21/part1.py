@@ -1,5 +1,3 @@
-import math
-
 player = {'hp': 100}
 
 weapons = {}
@@ -10,9 +8,9 @@ rings = {}
 def items_permute(weapons, armor, rings):
     for w in weapons:
         for a in armor:
-                for r1 in rings:
-                    for r2 in [k for k in rings if k != r1]:
-                        yield (w, a, r1, r2)
+            for r1 in rings:
+                for r2 in [k for k in rings if k != r1]:
+                    yield (w, a, r1, r2)
 
 
 def fight(player, boss):
@@ -83,8 +81,10 @@ costs = []
 for p in items_permute(weapons,
                        armor,
                        rings):
-    player['damage'] = weapons[p[0]]['damage'] + armor[p[1]]['damage'] + rings[p[2]]['damage'] + rings[p[3]]['damage']
-    player['armor']  = weapons[p[0]]['armor'] + armor[p[1]]['armor'] + rings[p[2]]['armor'] + rings[p[3]]['armor']
+    player['damage'] = weapons[p[0]]['damage'] + armor[p[1]]['damage'] + \
+        rings[p[2]]['damage'] + rings[p[3]]['damage']
+    player['armor'] = weapons[p[0]]['armor'] + armor[p[1]]['armor'] + \
+        rings[p[2]]['armor'] + rings[p[3]]['armor']
 
     if fight(player.copy(), boss.copy()):
         tmp = 0
@@ -99,8 +99,10 @@ costs = []
 for p in items_permute(weapons,
                        armor,
                        rings):
-    player['damage'] = weapons[p[0]]['damage'] + armor[p[1]]['damage'] + rings[p[2]]['damage'] + rings[p[3]]['damage']
-    player['armor']  = weapons[p[0]]['armor'] + armor[p[1]]['armor'] + rings[p[2]]['armor'] + rings[p[3]]['armor']
+    player['damage'] = weapons[p[0]]['damage'] + armor[p[1]]['damage'] + \
+        rings[p[2]]['damage'] + rings[p[3]]['damage']
+    player['armor'] = weapons[p[0]]['armor'] + armor[p[1]]['armor'] + \
+        rings[p[2]]['armor'] + rings[p[3]]['armor']
 
     if not fight(player.copy(), boss.copy()):
         tmp = 0

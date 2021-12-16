@@ -33,7 +33,6 @@ def basin(i, j, visited, levels=levels):
     return result
 
 
-
 with open("./input.txt", "r") as f:
     for line in f:
         levels.append([int(i) for i in line.strip()])

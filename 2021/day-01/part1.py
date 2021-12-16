@@ -1,5 +1,5 @@
 prev = None
-answer  = 0
+answer = 0
 
 with open("input.txt", "r") as f:
     for i in f:

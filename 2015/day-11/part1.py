@@ -14,7 +14,8 @@ def inc(line):
 
 
 def check1(line):
-    variants = [(ord(a), ord(b), ord(c)) for a, b, c in zip(line[:-2], line[1:-1], line[2:])]
+    variants = [(ord(a), ord(b), ord(c))
+                for a, b, c in zip(line[:-2], line[1:-1], line[2:])]
     for i in variants:
         if (i[1] - i[0] == 1) and \
            (i[2] - i[1] == 1):
@@ -46,4 +47,3 @@ for part in [1, 2]:
     while not (check1(line) and check2(line) and check3(line)):
         line = inc(line)
     print("Part {}: {}".format(part, line))
-

@@ -34,5 +34,3 @@ with open("./input.txt", "r") as f:
 
 answer.sort()
 print("Part 2: {}".format(answer[len(answer) // 2]))
-
-

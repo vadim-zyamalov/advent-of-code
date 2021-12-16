@@ -3,7 +3,7 @@ answer = 0
 with open("input.txt", "r") as f:
     for line in f:
         secunda = [f"{a}{b}" for a, b in zip(line[:-1], line[1:])]
-        tertia  = [f"{a}{b}" for a, b in zip(line[:-2], line[2:]) if a == b]
+        tertia = [f"{a}{b}" for a, b in zip(line[:-2], line[2:]) if a == b]
         if len(tertia) == 0:
             continue
         for i in range(len(secunda) - 2):
@@ -12,4 +12,3 @@ with open("input.txt", "r") as f:
                 break
 
 print("Part 2: {}".format(answer))
-

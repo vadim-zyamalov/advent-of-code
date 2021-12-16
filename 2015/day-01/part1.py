@@ -13,4 +13,3 @@ with open("./input.txt", "r") as f:
             exit(1)
 
 print("Part 1: {}".format(answer))
-

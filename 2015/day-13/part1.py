@@ -3,7 +3,7 @@ def permute(elements):
         return [elements]
     result = []
     for el in elements:
-        for v in permute([l for l in elements if l != el]):
+        for v in permute([e for e in elements if e != el]):
             result.append([el] + v)
     return result
 
@@ -51,4 +51,5 @@ for part in [1, 2]:
 
     guests = list(preferences.keys())
     variants = [v for v in permute(guests) if v[0] == guests[0]]
-    print("Part {}: {}".format(part, max(calc(v, preferences) for v in variants)))
+    print("Part {}: {}".format(part,
+                               max(calc(v, preferences) for v in variants)))

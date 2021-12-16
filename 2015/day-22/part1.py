@@ -40,7 +40,10 @@ def player_turn(player, boss, timer, spells):
                 if s == 'Shield':
                     loop_player['armor'] = spells[s]['armor']
                 loop_timer[s] = spells[s]['duration']
-            tmp_result = boss_turn(loop_player.copy(), loop_boss.copy(), loop_timer.copy(), spells)
+            tmp_result = boss_turn(loop_player.copy(),
+                                   loop_boss.copy(),
+                                   loop_timer.copy(),
+                                   spells)
             if tmp_result:
                 for tmp in tmp_result:
                     result.append((tmp[0], spells[s]['cost'] + tmp[1]))
@@ -56,7 +59,10 @@ def boss_turn(player, boss, timer, spells):
     if boss['hp'] <= 0:
         return [(True, 0)]
     player['hp'] -= max(1, boss['damage'] - player['armor'])
-    return player_turn(player.copy(), boss.copy(), timer.copy(), spells)
+    return player_turn(player.copy(),
+                       boss.copy(),
+                       timer.copy(),
+                       spells)
 
 
 spells = {}
@@ -96,7 +102,7 @@ result = player_turn(player.copy(),
                      boss.copy(),
                      timer.copy(),
                      spells)
-min_mana = min(r[1] for r in result if r[0] == True)
+min_mana = min(r[1] for r in result if r[0] is True)
 print("Part 1: {}".format(min_mana))
 
 # Part 2
@@ -105,5 +111,5 @@ result = player_turn(player.copy(),
                      boss.copy(),
                      timer.copy(),
                      spells)
-min_mana = min(r[1] for r in result if r[0] == True)
+min_mana = min(r[1] for r in result if r[0] is True)
 print("Part 2: {}".format(min_mana))

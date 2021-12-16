@@ -1,4 +1,4 @@
-def execute(program, init = {'a': 0, 'b': 0}):
+def execute(program, init={'a': 0, 'b': 0}):
     registers = init.copy()
 
     i = 0

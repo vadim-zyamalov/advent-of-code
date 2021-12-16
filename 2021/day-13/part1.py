@@ -1,6 +1,7 @@
 dots = []
 folds = []
 
+
 # 0 1 2 3 | 5 6 7
 def dump(dots):
     max_x = 0

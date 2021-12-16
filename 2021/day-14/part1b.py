@@ -39,12 +39,12 @@ for fst, snd in zip(molecule[:-1], molecule[1:]):
 
 for i in range(40):
     pairs = step(pairs, rules)
-    if i == 9: # 10-th step
+    if i == 9:  # 10-th step
         tmp = count(pairs, molecule)
         amax = max(tmp.values())
         amin = min(tmp.values())
         print("Part 1: {}".format(amax - amin))
-    if i == 39: # 10-th step
+    if i == 39:  # 40-th step
         tmp = count(pairs, molecule)
         amax = max(tmp.values())
         amin = min(tmp.values())

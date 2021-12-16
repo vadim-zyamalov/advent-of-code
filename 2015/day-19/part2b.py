@@ -3,6 +3,7 @@ molecule = ''
 
 filter = set()
 
+
 def process(molecule, replacements):
     stack = []
 
@@ -11,7 +12,7 @@ def process(molecule, replacements):
 
     while stack != []:
         _, steps, state = stack.pop()
-    
+
         if state == 'e':
             return steps
 

@@ -57,7 +57,7 @@ def parse_operator(data, start):
     return (value, i)
 
 
-def parse(data, start = 0):
+def parse(data, start=0):
     i = start
     assert i < len(data)
 

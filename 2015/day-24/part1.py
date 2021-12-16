@@ -3,7 +3,7 @@ from itertools import combinations
 presents = []
 
 
-def permute_presents_4(presents, start = 1):
+def permute_presents_4(presents, start=1):
     goal_weight = sum(presents) // 4
     max_group = len(presents) // 4
     assert goal_weight * 4 == sum(presents)
@@ -21,7 +21,7 @@ def permute_presents_4(presents, start = 1):
             break
 
 
-def permute_presents_3(presents, start = 1):
+def permute_presents_3(presents, start=1):
     goal_weight = sum(presents) // 3
     max_group = len(presents) // 3
     assert goal_weight * 3 == sum(presents)

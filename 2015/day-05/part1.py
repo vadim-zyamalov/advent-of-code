@@ -20,4 +20,5 @@ with open("input.txt", "r") as f:
             prev = letter
         if nopair and (nvowel > 2) and double:
             answer += 1
+
 print("Part 1: {}".format(answer))

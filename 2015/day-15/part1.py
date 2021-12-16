@@ -36,12 +36,14 @@ def score(recipe, ingredients):
         answer *= res
     return answer
 
+
 t0 = time.time()
 with open("input.txt", "r") as f:
     index = 0
     for line in f:
         _, _, other = line.strip().partition(':')
-        entries = [int(i.strip().split()[1]) for i in other.strip().split(',')][:-1]
+        entries = [int(i.strip().split()[1])
+                   for i in other.strip().split(',')][:-1]
         ingredients.append(entries)
 
 answer = 0

@@ -21,21 +21,30 @@ for part in [1, 2]:
             left = left.strip().split()
 
             if len(left) == 1:
-                signal[right] = uint16(left[0]) if left[0].isnumeric() else None
-                matrix[right] = {'arg': [left[0] if not left[0].isnumeric() else None],
-                                 'sig': [uint16(left[0]) if left[0].isnumeric() else None],
+                signal[right] = uint16(left[0]) if \
+                    left[0].isnumeric() else None
+                matrix[right] = {'arg': [left[0] 
+                                         if not left[0].isnumeric() else None],
+                                 'sig': [uint16(left[0])
+                                         if left[0].isnumeric() else None],
                                  'fun': ''}
             elif len(left) == 2:
                 signal[right] = None
-                matrix[right] = {'arg': [left[1] if not left[1].isnumeric() else None],
-                                 'sig': [uint16(left[1]) if left[1].isnumeric() else None],
+                matrix[right] = {'arg': [left[1]
+                                         if not left[1].isnumeric() else None],
+                                 'sig': [uint16(left[1])
+                                         if left[1].isnumeric() else None],
                                  'fun': left[0]}
             elif len(left) == 3:
                 signal[right] = None
-                matrix[right] = {'arg': [left[0] if not left[0].isnumeric() else None,
-                                         left[2] if not left[2].isnumeric() else None],
-                                 'sig': [uint16(left[0]) if left[0].isnumeric() else None,
-                                         uint16(left[2]) if left[2].isnumeric() else None],
+                matrix[right] = {'arg': [left[0]
+                                         if not left[0].isnumeric() else None,
+                                         left[2]
+                                         if not left[2].isnumeric() else None],
+                                 'sig': [uint16(left[0])
+                                         if left[0].isnumeric() else None,
+                                         uint16(left[2])
+                                         if left[2].isnumeric() else None],
                                  'fun': left[1]}
 
     if part == 2:

@@ -9,7 +9,7 @@ with open("input.txt", "r") as f:
         if len(command) > 4:
             command = command[1:]
 
-        start  = [int(i) for i in command[1].split(',')]
+        start = [int(i) for i in command[1].split(',')]
         finish = [int(i) for i in command[3].split(',')]
         action = command[0]
 

@@ -10,8 +10,10 @@ with open("input.txt", "r") as f:
 period = 2503
 winner = 0
 for k in deers:
-    total_flying = deers[k]['flying'] * (period // (deers[k]['flying'] + deers[k]['resting'])) + \
-         min(period % (deers[k]['flying'] + deers[k]['resting']), deers[k]['flying'])
+    total_flying = deers[k]['flying'] * \
+        (period // (deers[k]['flying'] + deers[k]['resting'])) + \
+        min(period % (deers[k]['flying'] + deers[k]['resting']),
+            deers[k]['flying'])
     deers[k]['dist'] = total_flying * deers[k]['speed']
     winner = deers[k]['dist'] if deers[k]['dist'] > winner else winner
 

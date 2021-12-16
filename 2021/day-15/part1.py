@@ -37,7 +37,7 @@ def neighbours(i, j, grid):
 
 
 def deep_copy(grid):
-    return [[el for el in raw] for raw in grid]
+    return [list(raw) for raw in grid]
 
 
 def increment(grid):
@@ -45,11 +45,12 @@ def increment(grid):
 
 
 def append_right(grid, new_grid):
-    return [[el for el in grid[row] + new_grid[row]] for row in range(len(grid))]
+    return [list(grid[row] + new_grid[row]) for row in range(len(grid))]
 
 
 def append_below(grid, new_grid):
     return [[el for el in row] for row in grid + new_grid]
+
 
 def process(grid):
     dimi, dimj = len(grid), len(grid[0])
@@ -83,15 +84,16 @@ def process_dijkstra(grid):
             cost[i, j] = 10 * dimi * dimj
             points.append((i, j))
     cost[0, 0] = 0
-    
+
     while len(points) > 0:
         min_cost = min([cost[k] for k in cost if k in points])
         pi, pj = [p for p in points if cost[p] == min_cost][0]
-    
+
         points.remove((pi, pj))
 
         for (ni, nj) in neighbours(pi, pj, grid):
-            if (ni, nj) in points and (cost[ni, nj] > cost[pi, pj] + grid[ni][nj]):
+            if (ni, nj) in points and \
+                    (cost[ni, nj] > cost[pi, pj] + grid[ni][nj]):
                 cost[ni, nj] = cost[pi, pj] + grid[ni][nj]
 
     current = (dimi - 1, dimj - 1)
@@ -107,10 +109,11 @@ def process_dijkstra_add(grid):
     cost = {(int(0), int(0)): 0}
     points = [(0, 0)]
     track = {}
-    
+
     for (pi, pj) in points:
         for (ni, nj) in neighbours(pi, pj, grid):
-            if (ni, nj) in cost and (cost[ni, nj] <= cost[pi, pj] + grid[ni][nj]):
+            if (ni, nj) in cost and \
+                    (cost[ni, nj] <= cost[pi, pj] + grid[ni][nj]):
                 continue
             cost[ni, nj] = cost[pi, pj] + grid[ni][nj]
             points.append((ni, nj))

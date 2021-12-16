@@ -1,8 +1,8 @@
-deer   = []
-speed  = []
+deer = []
+speed = []
 flight = []
-rest   = []
-score  = []
+rest = []
+score = []
 
 with open("input.txt", "r") as f:
     for line in f:

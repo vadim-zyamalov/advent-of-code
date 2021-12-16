@@ -13,8 +13,11 @@ def walk(cave, visited, allowed):
         visited_c[cave] += 1
     variants = []
     for next_cave in scheme[cave]:
-        if (small(next_cave) and (visited_c[next_cave] == 0)) or \
-           (small(next_cave) and (next_cave == allowed) and (visited_c[next_cave] <= 1)) or \
+        if (small(next_cave) and
+            (visited_c[next_cave] == 0)) or \
+           (small(next_cave) and
+            (next_cave == allowed) and
+            (visited_c[next_cave] <= 1)) or \
            not small(next_cave):
             result = walk(next_cave, visited_c, allowed)
             if result:

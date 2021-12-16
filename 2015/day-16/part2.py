@@ -28,4 +28,3 @@ with open("input.txt", "r") as f:
                     numerator += 1
             if numerator == denominator:
                 print("Part 2: {}".format(number))
-

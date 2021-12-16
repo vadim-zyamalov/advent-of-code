@@ -18,4 +18,3 @@ with open("./input.txt", "r") as f:
             break
 
 print("Part 2: {}".format(answer))
-

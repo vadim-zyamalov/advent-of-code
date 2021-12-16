@@ -35,7 +35,7 @@ for i in range(2 ** len(containers)):
         answer += 1
         # part 2 below
         number = sum(variant)
-        if not number in quantity:
+        if number not in quantity:
             quantity[number] = 0
         quantity[number] += 1
 
@@ -43,4 +43,3 @@ minimal = min(list(quantity.keys()))
 
 print("Part 1: {}".format(answer))
 print("Part 2: {}".format(quantity[minimal]))
-

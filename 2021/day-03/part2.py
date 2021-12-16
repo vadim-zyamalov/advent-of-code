@@ -12,6 +12,7 @@ def filter(llist, pos, most):
         else:
             return [i for i in llist if i[pos] == '1']
 
+
 diag = []
 with open("input.txt", "r") as f:
     for line in f:

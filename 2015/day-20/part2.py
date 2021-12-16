@@ -43,7 +43,7 @@ while True:
     for step in range(1, steps + 1):
         tmp = 1
         for shift in range(len(factors)):
-            if 1 & (step>>shift):
+            if 1 & (step >> shift):
                 tmp *= factors[len(factors) - 1 - shift]
         if tmp not in visited:
             if tmp not in elves:

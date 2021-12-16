@@ -21,5 +21,3 @@ with open("./input.txt", "r") as f:
                     break
 
 print("Part 1: {}".format(answer))
-
-
