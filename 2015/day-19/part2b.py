@@ -26,7 +26,7 @@ def process(molecule, replacements):
                         stack.append((len(tmp), steps + 1, tmp))
 
 
-with open("input.txt", "r") as f:
+with open("input.txt", "r", encoding="utf-8") as f:
     for line in f:
         if "=>" in line:
             key, _, val = line.strip().partition(" => ")
@@ -36,4 +36,4 @@ with open("input.txt", "r") as f:
         else:
             molecule = line.strip()
 
-print("Part 2: {}".format(process(molecule, replacements)))
+print(f"Part 2: {process(molecule, replacements)}")

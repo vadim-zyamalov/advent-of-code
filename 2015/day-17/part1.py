@@ -41,5 +41,5 @@ for i in range(2 ** len(containers)):
 
 minimal = min(list(quantity.keys()))
 
-print("Part 1: {}".format(answer))
-print("Part 2: {}".format(quantity[minimal]))
+print(f"Part 1: {answer}")
+print(f"Part 2: {quantity[minimal]}")

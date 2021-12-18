@@ -19,7 +19,7 @@ def self_product(data, repeat=2):
 
 
 def spoons_correct(n, msp=100):
-    for i in self_product([i for i in range(0, msp + 1)], repeat=n):
+    for i in self_product(list(range(0, msp + 1)), repeat=n):
         if sum(i) != 100:
             continue
         yield i
@@ -29,10 +29,9 @@ def score(recipe, ingredients):
     answer = 1
     for ch in range(len(ingredients[0])):
         res = 0
-        for ing in range(len(recipe)):
-            res += recipe[ing] * ingredients[ing][ch]
-        if res < 0:
-            res = 0
+        for ing, quantity in enumerate(recipe):
+            res += quantity * ingredients[ing][ch]
+        res = max(0, res)
         if ch < 4:
             answer *= res
         else:
@@ -42,7 +41,7 @@ def score(recipe, ingredients):
 
 
 t0 = time.time()
-with open("input.txt", "r") as f:
+with open("input.txt", "r", encoding="utf-8") as f:
     index = 0
     for line in f:
         _, _, other = line.strip().partition(':')
@@ -54,5 +53,5 @@ for s in spoons_correct(len(ingredients), 100):
     tmp = score(s, ingredients)
     answer = tmp if answer < tmp else answer
 
-print("Part 2: {}".format(answer))
-print('elapsed: {}'.format(time.time() - t0))
+print(f"Part 2: {answer}".format(answer))
+print(f'elapsed: {time.time() - t0}')

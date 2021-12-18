@@ -4,7 +4,7 @@ flight = []
 rest = []
 score = []
 
-with open("input.txt", "r") as f:
+with open("input.txt", "r", encoding="utf-8") as f:
     for line in f:
         string = line.strip().strip('.').split()
         deer.append(string[0])
@@ -22,10 +22,10 @@ for t in range(1, period + 1):
             min(t % (flight[i] + rest[i]), flight[i])
         dist[i] = total_flying * speed[i]
     winner = max(dist)
-    for i in range(len(deer)):
+    for i, _ in enumerate(deer):
         if dist[i] == winner:
             score[i] += 1
 
 winner = max(score)
 
-print("Part 2: {}".format(winner))
+print(f"Part 2: {winner}")

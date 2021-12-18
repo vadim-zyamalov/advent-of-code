@@ -1,6 +1,6 @@
 answer = 0
 
-with open("input.txt", "r") as f:
+with open("input.txt", "r", encoding="utf-8") as f:
     for present in f:
         dims = [int(i) for i in present.strip().split("x")]
         dims.sort()
@@ -8,4 +8,4 @@ with open("input.txt", "r") as f:
         answer += 2 * dims[1] * dims[2]
         answer += 2 * dims[0] * dims[2]
 
-print("Part 1: {}".format(answer))
+print(f"Part 1: {answer}")

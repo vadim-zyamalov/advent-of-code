@@ -37,7 +37,7 @@ def calc(variant, preferences):
 
 preferences = {}
 
-with open("input.txt", "r") as f:
+with open("input.txt", "r", encoding="utf-8") as f:
     for line in f:
         string = line.strip().strip('.').split()
         if string[0] not in preferences:
@@ -51,5 +51,4 @@ for part in [1, 2]:
 
     guests = list(preferences.keys())
     variants = [v for v in permute(guests) if v[0] == guests[0]]
-    print("Part {}: {}".format(part,
-                               max(calc(v, preferences) for v in variants)))
+    print(f"Part {part}: {max(calc(v, preferences) for v in variants)}")

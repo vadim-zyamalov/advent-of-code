@@ -2,7 +2,7 @@ matrix = []
 for i in range(1000):
     matrix.append([0] * 1000)
 
-with open("input.txt", "r") as f:
+with open("input.txt", "r", encoding="utf-8") as f:
     for line in f:
         command = line.strip().split(' ')
 
@@ -22,4 +22,4 @@ with open("input.txt", "r") as f:
                 else:
                     matrix[i][j] = max(matrix[i][j] - 1, 0)
 
-print("Part 2: {}".format(sum([sum(i) for i in matrix])))
+print(f"Part 2: {sum([sum(i) for i in matrix])}")

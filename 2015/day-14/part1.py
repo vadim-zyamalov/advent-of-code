@@ -1,6 +1,6 @@
 deers = {}
 
-with open("input.txt", "r") as f:
+with open("input.txt", "r", encoding="utf-8") as f:
     for line in f:
         string = line.strip().strip('.').split()
         deers[string[0]] = {'speed': int(string[3]),
@@ -9,12 +9,12 @@ with open("input.txt", "r") as f:
 
 period = 2503
 winner = 0
-for k in deers:
-    total_flying = deers[k]['flying'] * \
-        (period // (deers[k]['flying'] + deers[k]['resting'])) + \
-        min(period % (deers[k]['flying'] + deers[k]['resting']),
-            deers[k]['flying'])
-    deers[k]['dist'] = total_flying * deers[k]['speed']
-    winner = deers[k]['dist'] if deers[k]['dist'] > winner else winner
+for _, deer in deers.items():
+    total_flying = deer['flying'] * \
+        (period // (deer['flying'] + deer['resting'])) + \
+        min(period % (deer['flying'] + deer['resting']),
+            deer['flying'])
+    deer['dist'] = total_flying * deer['speed']
+    winner = deer['dist'] if deer['dist'] > winner else winner
 
-print("Part 1: {}".format(winner))
+print(f"Part 1: {winner}")

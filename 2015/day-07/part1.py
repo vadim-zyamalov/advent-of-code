@@ -13,7 +13,7 @@ def update_matrix(code, val, matrix=matrix):
 
 
 for part in [1, 2]:
-    with open("input.txt", "r") as f:
+    with open("input.txt", "r", encoding="utf-8") as f:
         for line in f:
             left, right = line.strip().split('->')
 
@@ -23,7 +23,7 @@ for part in [1, 2]:
             if len(left) == 1:
                 signal[right] = uint16(left[0]) if \
                     left[0].isnumeric() else None
-                matrix[right] = {'arg': [left[0] 
+                matrix[right] = {'arg': [left[0]
                                          if not left[0].isnumeric() else None],
                                  'sig': [uint16(left[0])
                                          if left[0].isnumeric() else None],
@@ -75,5 +75,4 @@ for part in [1, 2]:
                     signal[k] = entry['sig'][0]
                 matrix = update_matrix(k, signal[k])
 
-    print("Part {}: {}".format(part, signal['a']))
-
+    print(f"Part {part}: {signal['a']}")

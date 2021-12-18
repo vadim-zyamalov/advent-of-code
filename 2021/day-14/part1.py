@@ -30,7 +30,7 @@ def borders(molecule):
 molecule = ''
 rules = {}
 
-with open("sample.txt", "r") as f:
+with open("sample.txt", "r", encoding="utf-8") as f:
     molecule = f.readline().strip()
     for line in f:
         if line.strip() == '':
@@ -43,8 +43,8 @@ for i in range(10):
     result = step(result, rules)
     if i == 10 - 1:
         amax, amin = borders(result)
-        print("Part 1: {}".format(amax - amin))
+        print(f"Part 1: {amax - amin}")
         print(count(result))
     if i == 40 - 1:
         amax, amin = borders(result)
-        print("Part 2: {}".format(amax - amin))
+        print(f"Part 2: {amax - amin}")

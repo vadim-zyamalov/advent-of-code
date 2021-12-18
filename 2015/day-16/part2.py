@@ -1,12 +1,12 @@
 clues = {}
 
-with open("clues.txt", "r") as f:
+with open("clues.txt", "r", encoding="utf-8") as f:
     for line in f:
         if line.strip() != '':
             fact, _, val = line.strip().partition(':')
             clues[fact] = int(val.strip())
 
-with open("input.txt", "r") as f:
+with open("input.txt", "r", encoding="utf-8") as f:
     for line in f:
         if line.strip() != '':
             name, _, rest = line.strip().partition(":")
@@ -27,4 +27,4 @@ with open("input.txt", "r") as f:
                         and (clues[fact] == val):
                     numerator += 1
             if numerator == denominator:
-                print("Part 2: {}".format(number))
+                print(f"Part 2: {number}")

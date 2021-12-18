@@ -1,6 +1,6 @@
 target = {}
 
-with open("input.txt", "r") as f:
+with open("input.txt", "r", encoding="utf-8") as f:
     tmp = f.readline().strip().split(": ")
     tmp = tmp[1].split(", ")
     tmp_x = tmp[0][2:].split("..")
@@ -12,7 +12,7 @@ v_y_max = max(abs(target['y'][0]), abs(target['y'][1]))
 if v_y_max == abs(target['y'][0]):
     v_y_max -= 1
 
-print("Part 1: {}".format(v_y_max * (v_y_max + 1) / 2))
+print(f"Part 1: {v_y_max * (v_y_max + 1) / 2}")
 
 v_y_max = max(abs(target['y'][0]), abs(target['y'][1]))
 
@@ -37,15 +37,15 @@ for v in range(-v_y_max, v_y_max + 1):
         n += 1
 
 answer = 0
-for v_x in possible_v_x:
-    for v_y in possible_v_y:
-        tmp = set(possible_v_x[v_x]) & set(possible_v_y[v_y])
+for v_x, periods_x in possible_v_x.items():
+    for v_y, periods_y in possible_v_y.items():
+        tmp = set(periods_x) & set(periods_y)
         if len(tmp) > 0:
             answer += 1
-        elif (max(possible_v_x[v_x]) < min(possible_v_y[v_y])) and \
-             (v_x - (max(possible_v_x[v_x]) - 1) == 0):
+        elif (max(periods_x) < min(periods_y)) and \
+             (v_x - (max(periods_x) - 1) == 0):
             answer += 1
-print("Part 2: {}".format(answer))
+print(f"Part 2: {answer}")
 
 # Bruteforce :)
 answer = 0
@@ -66,4 +66,4 @@ for speed_x in range(1, target['x'][1] + 1):
                (target['y'][0] <= y <= target['y'][1]):
                 answer += 1
                 break
-print("Part 2: {}".format(answer))
+print(f"Part 2: {answer}")

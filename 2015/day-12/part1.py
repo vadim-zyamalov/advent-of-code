@@ -77,8 +77,8 @@ def dive(data):
         return 0
 
 
-with open("input.txt", "r") as f:
+with open("input.txt", "r", encoding="utf-8") as f:
     data = f.read()
     data = parser(data.strip())
 
-print("Part 1: {}".format(dive(data)))
+print(f"Part 1: {dive(data)}")

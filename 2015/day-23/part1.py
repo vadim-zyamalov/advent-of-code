@@ -38,7 +38,7 @@ allowed = ['hlf',
            'jie',
            'jio']
 
-with open("input.txt", "r") as f:
+with open("input.txt", "r", encoding="utf-8") as f:
     for line in f:
         if line.strip() == '':
             continue
@@ -59,8 +59,7 @@ with open("input.txt", "r") as f:
 
 
 # Part 1
-print("Part 1: {}".format(execute(program)))
+print(f"Part 1: {execute(program)}")
 
 # Part 2
-print("Part 2: {}".format(execute(program,
-                                  {'a': 1, 'b': 0})))
+print(f"Part 2: {execute(program, {'a': 1, 'b': 0})}")

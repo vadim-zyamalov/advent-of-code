@@ -3,7 +3,7 @@ from operator import add
 total = 0
 count = []
 
-with open("input.txt", "r") as f:
+with open("input.txt", "r", encoding="utf-8") as f:
     for line in f:
         total += 1
         tmp = []
@@ -24,4 +24,4 @@ epsilon = int(
     '0b' + ''.join(['1' if i < total / 2 else '0' for i in count]),
     2)
 
-print("Part 1: {}".format(gamma * epsilon))
+print(f"Part 1: {gamma * epsilon}")

@@ -47,9 +47,7 @@ for k in scheme:
 
 result = walk('start', visited, '')
 if result:
-    print("Part 1: {}".format(len(result)))
-
-
+    print(f"Part 1: {len(result)}")
 
 # Part 2
 result = []
@@ -68,4 +66,4 @@ for a in allowed_list:
             if path not in result:
                 result.append(path)
 if result:
-    print("Part 2: {}".format(len(result)))
+    print(f"Part 2: {len(result)}")

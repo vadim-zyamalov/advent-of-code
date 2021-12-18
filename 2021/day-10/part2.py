@@ -1,4 +1,4 @@
-with open("./input.txt", "r") as f:
+with open("./input.txt", "r", encoding="utf-8") as f:
     answer = []
     for line in f:
         stack = []
@@ -33,4 +33,4 @@ with open("./input.txt", "r") as f:
         answer.append(result)
 
 answer.sort()
-print("Part 2: {}".format(answer[len(answer) // 2]))
+print(f"Part 2: {answer[len(answer) // 2]}")

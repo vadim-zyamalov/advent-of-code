@@ -1,7 +1,7 @@
 chars_old = 0
 chars_new = 0
 
-with open("input.txt", "r") as f:
+with open("input.txt", "r", encoding="utf-8") as f:
     for line in f:
         string = []
 
@@ -32,4 +32,4 @@ with open("input.txt", "r") as f:
                 chars_old += 1
                 chars_new += 1
             i += 1
-print("Part 2: {}".format(chars_new - chars_old))
+print(f"Part 2: {chars_new - chars_old}")

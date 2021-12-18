@@ -23,7 +23,7 @@ def fight(player, boss):
             return False
 
 
-with open("items.txt", "r") as f:
+with open("items.txt", "r", encoding="utf-8") as f:
     while True:
         line = f.readline()
         if line == '':
@@ -67,7 +67,7 @@ with open("items.txt", "r") as f:
 
 
 boss = {}
-with open("input.txt") as f:
+with open("input.txt", "r", encoding="utf-8") as f:
     for line in f:
         _, val = line.strip().split(":")
         if line.startswith("Hit Points"):
@@ -93,7 +93,7 @@ for p in items_permute(weapons,
         tmp += rings[p[2]]['cost']
         tmp += rings[p[3]]['cost']
         costs.append(tmp)
-print("Part 1: {}".format(min(costs)))
+print(f"Part 1: {min(costs)}")
 
 costs = []
 for p in items_permute(weapons,
@@ -111,4 +111,4 @@ for p in items_permute(weapons,
         tmp += rings[p[2]]['cost']
         tmp += rings[p[3]]['cost']
         costs.append(tmp)
-print("Part 2: {}".format(max(costs)))
+print(f"Part 2: {max(cost)}")

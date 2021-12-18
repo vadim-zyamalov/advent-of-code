@@ -9,7 +9,7 @@ def dump(dots):
     for dot in dots:
         max_x = max(max_x, dot[0])
         max_y = max(max_y, dot[1])
-    result = [['.' for _ in range(max_x + 1)] for _ in range(max_y + 1)]
+    result = [[' ' for _ in range(max_x + 1)] for _ in range(max_y + 1)]
     for dot in dots:
         result[dot[1]][dot[0]] = '#'
     for row in result:
@@ -36,7 +36,7 @@ def fold(rule, dots):
     return list(set(new_dots))
 
 
-with open("input.txt", "r") as f:
+with open("input.txt", "r", encoding="utf-8") as f:
     for line in f:
         if line.strip() == '':
             continue
@@ -49,7 +49,7 @@ with open("input.txt", "r") as f:
                           int(tmp[1]) if tmp[0].endswith('y') else 0))
 
 res = fold(folds[0], dots)
-print("Part 1: {}".format(len(res)))
+print(f"Part 1: {len(res)}")
 
 res = dots.copy()
 for f in folds:

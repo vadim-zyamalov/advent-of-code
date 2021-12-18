@@ -66,7 +66,7 @@ def boss_turn(player, boss, timer, spells):
 
 
 spells = {}
-with open("spells.txt", "r") as f:
+with open("spells.txt", "r", encoding="utf-8") as f:
     for line in f:
         if line.startswith('Name'):
             continue
@@ -88,7 +88,7 @@ player = {'hp': 50,
           'armor': 0}
 
 boss = {}
-with open("input.txt", "r") as f:
+with open("input.txt", "r", encoding="utf-8") as f:
     line = f.readline()
     _, val = line.strip().split(':')
     boss['hp'] = int(val.strip())
@@ -103,7 +103,7 @@ result = player_turn(player.copy(),
                      timer.copy(),
                      spells)
 min_mana = min(r[1] for r in result if r[0] is True)
-print("Part 1: {}".format(min_mana))
+print(f"Part 1: {min_mana}")
 
 # Part 2
 difficulty = 1
@@ -112,4 +112,4 @@ result = player_turn(player.copy(),
                      timer.copy(),
                      spells)
 min_mana = min(r[1] for r in result if r[0] is True)
-print("Part 2: {}".format(min_mana))
+print(f"Part 2: {min_mana}")

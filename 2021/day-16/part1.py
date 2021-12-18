@@ -108,10 +108,10 @@ def execute(packet):
     return answer
 
 
-with open("input.txt", "r") as f:
+with open("input.txt", "r", encoding="utf-8") as f:
     message = f.readline().strip()
 
 bmessage = hex_to_bin(message)
 result = parse(bmessage)
-print("Part 1: {}".format(vsum(result[0])))
-print("Part 2: {}".format(execute(result[0])))
+print(f"Part 1: {vsum(result[0])}")
+print(f"Part 2: {execute(result[0])}")

@@ -1,6 +1,6 @@
 from math import sqrt
 
-with open("input.txt", "r") as f:
+with open("input.txt", "r", encoding="utf-8") as f:
     goal = int(f.readline().strip())
 
 
@@ -47,4 +47,4 @@ while True:
         print(result)
         break
 
-print("Part 1: {}".format(i))
+print(f"Part 1: {i}")

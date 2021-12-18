@@ -39,11 +39,11 @@ def check3(line):
 
 
 for part in [1, 2]:
-    with open("input{}.txt".format(part), "r") as f:
+    with open("input{}.txt".format(part), "r", encoding="utf-8") as f:
         line = f.readline()
         line = line.strip()
 
     line = inc(line)
     while not (check1(line) and check2(line) and check3(line)):
         line = inc(line)
-    print("Part {}: {}".format(part, line))
+    print(f"Part {part}: {line}")

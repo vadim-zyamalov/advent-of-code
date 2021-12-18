@@ -16,7 +16,7 @@ def splitx(molecule):
     return result
 
 
-with open("input.txt", "r") as f:
+with open("input.txt", "r", encoding="utf-8") as f:
     for line in f:
         if "=>" in line:
             key, _, val = line.strip().partition(" => ")
@@ -36,4 +36,4 @@ for atom in range(length):
                 ''.join(molecule[:atom] + [action] + molecule[(atom+1):])
             )
 
-print("Part 1: {}".format(len(result)))
+print(f"Part 1: {len(result)}")

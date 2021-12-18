@@ -1,6 +1,6 @@
 answer = 0
 
-with open("./input.txt", "r") as f:
+with open("./input.txt", "r", encoding="utf-8") as f:
     while True:
         step = f.read(1)
         if not step:
@@ -12,4 +12,4 @@ with open("./input.txt", "r") as f:
         else:
             exit(1)
 
-print("Part 1: {}".format(answer))
+print(f"Part 1: {answer}")

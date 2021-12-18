@@ -25,7 +25,7 @@ rules = {}
 pairs = {}
 molecule = ''
 
-with open("input.txt", "r") as f:
+with open("input.txt", "r", encoding="utf-8") as f:
     molecule = f.readline().strip()
     for line in f:
         if line.strip() == '':
@@ -43,9 +43,9 @@ for i in range(40):
         tmp = count(pairs, molecule)
         amax = max(tmp.values())
         amin = min(tmp.values())
-        print("Part 1: {}".format(amax - amin))
+        print(f"Part 1: {amax - amin}")
     if i == 39:  # 40-th step
         tmp = count(pairs, molecule)
         amax = max(tmp.values())
         amin = min(tmp.values())
-        print("Part 2: {}".format(amax - amin))
+        print(f"Part 2: {amax - amin}")

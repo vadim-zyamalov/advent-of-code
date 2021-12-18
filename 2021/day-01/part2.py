@@ -5,7 +5,7 @@ a1 = None
 a2 = None
 a3 = None
 
-with open("input.txt", "r") as f:
+with open("input.txt", "r", encoding="utf-8") as f:
     for i in f:
         if not a1:
             a1 = int(i)
@@ -20,4 +20,4 @@ with open("input.txt", "r") as f:
                 answer += 1
             prev = a1 + a2 + a3
 
-print("Part 2: {}".format(answer))
+print(f"Part 2: {answer}")

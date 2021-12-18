@@ -17,22 +17,21 @@ def collect_cities(rdict):
 def collect_pair(c1, c2, rdict):
     if c1 in rdict and c2 in rdict[c1]:
         return rdict[c1][c2]
-    elif c2 in rdict and c1 in rdict[c2]:
+    if c2 in rdict and c1 in rdict[c2]:
         return rdict[c2][c1]
-    else:
-        return None
+    return None
 
 
 def collect_map(rdict):
     cities = collect_cities(rdict)
     matrix = [[None for _ in cities] for _ in cities]
 
-    for c1 in range(len(cities)):
-        for c2 in range(len(cities)):
+    for c1, city1 in enumerate(cities):
+        for c2, city2 in enumerate(cities):
             if c1 == c2:
                 continue
             matrix[c1][c2] = collect_pair(
-                cities[c1], cities[c2],
+                city1, city2,
                 rdict
             )
             matrix[c2][c1] = matrix[c1][c2]
@@ -63,5 +62,5 @@ with open("input.txt", "r") as f:
         candidates = permutations(indices)
         result = [distance(i, matrix) for i in candidates]
 
-    print("Part 1: {}".format(min(result)))
-    print("Part 2: {}".format(max(result)))
+    print(f"Part 1: {min(result)}")
+    print(f"Part 2: {max(result)}")

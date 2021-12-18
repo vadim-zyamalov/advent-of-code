@@ -52,7 +52,7 @@ def qe(presents):
     return result
 
 
-with open("input.txt", "r") as f:
+with open("input.txt", "r", encoding="utf-8") as f:
     for line in f:
         if line.strip() == '':
             continue
@@ -63,10 +63,10 @@ variants = []
 for i in permute_presents_3(presents):
     variants.append(qe(i))
 
-print("Part 1: {}".format(min(variants)))
+print(f"Part 1: {min(variants)}")
 
 variants = []
 for i in permute_presents_4(presents):
     variants.append(qe(i))
 
-print("Part 2: {}".format(min(variants)))
+print(f"Part 2: {min(variants)}")

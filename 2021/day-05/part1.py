@@ -23,21 +23,21 @@ def counter(line, vents, nodiag=False):
     return vents
 
 
-with open("input.txt", "r") as f:
+with open("input.txt", "r", encoding="utf-8") as f:
     for line in f:
         vents1 = counter(line, vents1, True)
         vents2 = counter(line, vents2, False)
 
 answer = 0
-for k in vents1:
-    if vents1[k] > 1:
+for key, val in vents1.items():
+    if val > 1:
         answer += 1
 
-print("Part 1: {}".format(answer))
+print(f"Part 1: {answer}")
 
 answer = 0
-for k in vents2:
-    if vents2[k] > 1:
+for key, val in vents2.items():
+    if val > 1:
         answer += 1
 
-print("Part 2: {}".format(answer))
+print(f"Part 2: {answer}")

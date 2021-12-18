@@ -1,3 +1,5 @@
+import sys
+
 x = 0
 y = 0
 aim = 0
@@ -13,6 +15,6 @@ with open("input.txt", "r") as f:
         elif com == 'up':
             aim -= int(val)
         else:
-            exit(1)
+            sys.exit(1)
 
-print("Part 2: {}".format(x * y))
+print(f"Part 2: {x * y}")

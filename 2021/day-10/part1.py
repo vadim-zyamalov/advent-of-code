@@ -1,4 +1,4 @@
-with open("./input.txt", "r") as f:
+with open("./input.txt", "r", encoding="utf-8") as f:
     stack = []
     answer = 0
     for line in f:
@@ -20,4 +20,4 @@ with open("./input.txt", "r") as f:
                     answer += 25137
                     break
 
-print("Part 1: {}".format(answer))
+print(f"Part 1: {answer}")

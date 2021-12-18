@@ -9,4 +9,4 @@ code = 20151125
 for _ in range(2, num + 1):
     code = (code * 252533) % 33554393
 
-print("Part 1: {}".format(code))
+print(f"Part 1: {code}")

@@ -41,7 +41,7 @@ def score(board):
     return answer
 
 
-with open("input.txt", "r") as f:
+with open("input.txt", "r", encoding="utf-8") as f:
     line = f.readline()
     numbers = [int(i) for i in line.strip().split(',')]
 
@@ -68,4 +68,4 @@ for i in numbers:
         res = i * max([score(boards[i]) for i in winners])
         break
 
-print("Part 1: {}".format(res))
+print(f"Part 1: {res}")

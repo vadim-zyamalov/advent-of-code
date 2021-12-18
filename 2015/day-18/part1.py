@@ -43,7 +43,7 @@ def dump(grid):
         print()
 
 
-with open("input.txt", "r") as f:
+with open("input.txt", "r", encoding="utf-8") as f:
     for line in f:
         if line.strip() != '':
             grid.append([0 if c == '.' else 1 for c in line.strip()])
@@ -54,13 +54,11 @@ for step in range(steps):
     ] for i in range(len(grid))]
     grid = new_grid.copy()
 
-print("Part 1: {}".format(
-    sum(v for row in grid for v in row)
-))
+print(f"Part 1: {sum(v for row in grid for v in row)}")
 
 grid = []
 
-with open("input.txt", "r") as f:
+with open("input.txt", "r", encoding="utf-8") as f:
     for line in f:
         if line.strip() != '':
             grid.append([0 if c == '.' else 1 for c in line.strip()])
@@ -73,6 +71,4 @@ for step in range(steps):
     stuck(new_grid)
     grid = new_grid.copy()
 
-print("Part 2: {}".format(
-    sum(v for row in grid for v in row)
-))
+print(f"Part 2: {sum(v for row in grid for v in row)}")

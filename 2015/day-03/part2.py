@@ -3,12 +3,12 @@ rx, ry = 0, 0
 houses = set()
 houses.add((sx, sy))
 
-with open("input.txt", "r") as f:
+with open("input.txt", "r", encoding="utf-8") as f:
     while True:
         step = f.read(1)
         if not step:
             break
-        elif step == "^":
+        if step == "^":
             sy += 1
         elif step == ">":
             sx += 1
@@ -20,7 +20,7 @@ with open("input.txt", "r") as f:
         step = f.read(1)
         if not step:
             break
-        elif step == "^":
+        if step == "^":
             ry += 1
         elif step == ">":
             rx += 1
@@ -31,4 +31,4 @@ with open("input.txt", "r") as f:
         houses.add((sx, sy))
         houses.add((rx, ry))
 
-print("Part 2: {}".format(len(houses)))
+print(f"Part 2: {len(houses)}")

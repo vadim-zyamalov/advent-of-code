@@ -1,6 +1,6 @@
 import hashlib
 
-with open("input.txt", "r") as f:
+with open("input.txt", "r", encoding="utf-8") as f:
     puzzle = f.read()
 
 puzzle = puzzle.strip()
@@ -8,10 +8,10 @@ puzzle = puzzle.strip()
 nonce = 0
 
 while True:
-    res = hashlib.md5('{}{}'.format(puzzle, str(nonce)).encode())
+    res = hashlib.md5(f'{puzzle}{str(nonce)}'.encode())
     if res.hexdigest().startswith('000000'):
         break
     else:
         nonce += 1
 
-print("Part 2: {}".format(nonce))
+print(f"Part 2: {nonce}")

@@ -129,7 +129,7 @@ digits = [pattern_to_num('abcefg'),
           pattern_to_num('abcdfg')]
 
 answer = 0
-with open("input.txt", "r") as f:
+with open("input.txt", "r", encoding="utf-8") as f:
     for line in f:
         segments = {'a': None,
                     'b': None,
@@ -159,4 +159,4 @@ with open("input.txt", "r") as f:
             result += digits.index(decoder(d, codelist))
         answer += result
 
-print("Part 2: {}".format(answer))
+print(f"Part 2: {answer}")

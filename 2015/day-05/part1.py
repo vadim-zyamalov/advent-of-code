@@ -3,7 +3,7 @@ answer = 0
 vowels = "aeiou"
 bad = ["ab", "cd", "pq", "xy"]
 
-with open("input.txt", "r") as f:
+with open("input.txt", "r", encoding="utf-8") as f:
     for line in f:
         prev = ''
         nvowel = 0
@@ -21,4 +21,4 @@ with open("input.txt", "r") as f:
         if nopair and (nvowel > 2) and double:
             answer += 1
 
-print("Part 1: {}".format(answer))
+print(f"Part 1: {answer}")

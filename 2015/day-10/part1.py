@@ -17,13 +17,13 @@ def look_and_say_fast(string):
     return result
 
 
-part = {1: 40, 2: 50}
-for k in part:
-    with open("input.txt", "r") as f:
+parts = {1: 40, 2: 50}
+for part, val in parts.items():
+    with open("input.txt", "r", encoding="utf-8") as f:
         line = f.read()
         line = line.strip()
 
-    for i in range(part[k]):
+    for i in range(val):
         line = look_and_say_fast(line)
 
-    print("Part {}: {}".format(k, len(line)))
+    print(f"Part {part}: {len(line)}")

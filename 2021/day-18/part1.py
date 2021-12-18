@@ -172,20 +172,21 @@ def reduce_line(number):
 
 
 def num_add(n1, n2):
-    return '[{},{}]'.format(n1, n2)
+    return f"[{n1},{n2}]"
 
 
 numbers = []
-with open("input.txt", "r") as f:
+with open("input.txt", "r", encoding="utf-8") as f:
     for line in f:
         if line.strip() == "":
             continue
         numbers.append(line.strip())
 
 answer = numbers[0]
-for i in numbers[1:]:
-    answer = reduce_line(num_add(answer, i))
-print("Part 1: {}".format(magnitude_line(answer)))
+for number in numbers[1:]:
+    answer = reduce_line(num_add(answer, number))
+answer = magnitude_line(answer)
+print(f"Part 1: {answer}")
 
 answer = []
 for i, number1 in enumerate(numbers):
@@ -194,12 +195,8 @@ for i, number1 in enumerate(numbers):
             continue
         answer.append(
             magnitude_line(
-                reduce_line(
-                    num_add(
-                        number1, number2
-                    )
-                )
+                reduce_line(num_add(number1, number2))
             )
         )
 
-print("Part 2: {}".format(max(answer)))
+print(f"Part 2: {max(answer)}")

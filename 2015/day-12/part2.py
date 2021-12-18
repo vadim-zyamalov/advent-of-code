@@ -68,20 +68,19 @@ def dive(data):
             if tmp:
                 ans += tmp
         return ans
-    elif isinstance(data, list):
+    if isinstance(data, list):
         for i in data:
             tmp = dive(i)
             if tmp:
                 ans += tmp
         return ans
-    elif isinstance(data, int):
+    if isinstance(data, int):
         return data
-    else:
-        return 0
+    return 0
 
 
-with open("input.txt", "r") as f:
+with open("input.txt", "r", encoding="utf-8") as f:
     data = f.read()
     data = parser(data.strip())
 
-print("Part 2: {}".format(dive(data)))
+print(f"Part 2: {dive(data)}")

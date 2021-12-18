@@ -86,7 +86,7 @@ def process_dijkstra(grid):
     cost[0, 0] = 0
 
     while len(points) > 0:
-        min_cost = min([cost[k] for k in cost if k in points])
+        min_cost = min([val for key, val in cost.items() if key in points])
         pi, pj = [p for p in points if cost[p] == min_cost][0]
 
         points.remove((pi, pj))

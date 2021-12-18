@@ -1,9 +1,9 @@
 grid = []
-steps = 100
+STEPS = 100
 
 
 def deepcopy(original):
-    return [[el for el in row] for row in original]
+    return [list(row) for row in original]
 
 
 def dump(grid):
@@ -21,8 +21,8 @@ def step(grid):
 
 
 def charge(i, j, grid, flashed):
-    if (i >= 0) and (i <= len(grid) - 1) and \
-            (j >= 0) and (j <= len(grid[i]) - 1):
+    if (0 <= i <= len(grid) - 1) and \
+            (0 <= j <= len(grid[i]) - 1):
         if flashed[i][j] == 0:
             grid[i][j] += 1
 
@@ -48,7 +48,7 @@ def flash(grid, flashed):
     return new_grid, new_flashed, new_flashed != flashed
 
 
-with open('input.txt', 'r') as f:
+with open('input.txt', 'r', encoding='utf-8') as f:
     for line in f:
         grid.append([int(i) for i in line.strip()])
 
@@ -66,4 +66,4 @@ while True:
     if result == total:
         break
 
-print("Part 2: {}".format(i))
+print(f"Part 2: {i}")

@@ -14,7 +14,7 @@ def filter(llist, pos, most):
 
 
 diag = []
-with open("input.txt", "r") as f:
+with open("input.txt", "r", encoding="utf-8") as f:
     for line in f:
         diag.append(line.strip())
 
@@ -34,4 +34,4 @@ for i in range(len(co2_diag[0])):
 
 co2 = int('0b' + co2_diag[0], 2)
 
-print("Part 1: {}".format(oxy * co2))
+print(f"Part 2: {oxy * co2}")

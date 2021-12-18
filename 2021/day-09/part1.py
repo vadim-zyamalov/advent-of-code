@@ -33,17 +33,17 @@ def basin(i, j, visited, levels=levels):
     return result
 
 
-with open("./input.txt", "r") as f:
+with open("./input.txt", "r", encoding="utf-8") as f:
     for line in f:
         levels.append([int(i) for i in line.strip()])
 
 result = 0
-for i in range(len(levels)):
-    for j in range(len(levels[i])):
+for i, _ in enumerate(levels):
+    for j, _ in enumerate(levels[i]):
         if check(i, j, levels):
             result += 1 + levels[i][j]
 
-print("Part 1: {}".format(result))
+print(f"Part 1: {result}")
 
 result = []
 visited = [[0 for _ in range(len(levels[i]))] for i in range(len(levels))]
@@ -52,4 +52,4 @@ for i in range(len(levels)):
         if check(i, j, levels):
             result.append(basin(i, j, visited, levels))
 result.sort()
-print("Part 2: {}".format(result[-1] * result[-2] * result[-3]))
+print(f"Part 2: {result[-1] * result[-2] * result[-3]}")
