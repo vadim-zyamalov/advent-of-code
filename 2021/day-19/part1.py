@@ -103,9 +103,9 @@ def merge_data(current, pairs_matrix, data, is_merged):
             is_merged.append(scanner)
             tmp = merge_data(scanner, pairs_matrix, data, is_merged)
             tmp = shift_scanner(tmp,
-                             pairs_matrix[current][scanner][1],
-                             pairs_matrix[current][scanner][2],
-                             pairs_matrix[current][scanner][3])
+                                pairs_matrix[current][scanner][1],
+                                pairs_matrix[current][scanner][2],
+                                pairs_matrix[current][scanner][3])
             for point in tmp:
                 result.add(point)
     return list(result)
