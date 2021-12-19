@@ -68,10 +68,14 @@ def rotate_scanner(sensor, rotation):
             for point in sensor]
 
 
-def normalize_scanner(sensor, ref_point, d=1):
-    return [(point[0] - d * ref_point[0],
+def normalize_point(point, ref_point, d=1):
+    return (point[0] - d * ref_point[0],
             point[1] - d * ref_point[1],
-            point[2] - d * ref_point[2]) for point in sensor]
+            point[2] - d * ref_point[2])
+
+
+def normalize_scanner(sensor, ref_point, d=1):
+    return [normalize_point(point, ref_point, d) for point in sensor]
 
 
 def shift_scanner(sensor, rotation, ref_point0, ref_point1):
@@ -121,15 +125,8 @@ def detect_scanners(current, rotations, pairs_matrix,
             if rotations != []:
                 for _, rot in enumerate(rotations):
                     tmp = rotate_point(tmp, reverse_rotate(rot))
-            tmp = (tmp[0] +
-                   pairs_matrix[current][scanner][2][0] -
-                   pairs_matrix[current][scanner][3][0],
-                   tmp[1] +
-                   pairs_matrix[current][scanner][2][1] -
-                   pairs_matrix[current][scanner][3][1],
-                   tmp[2] +
-                   pairs_matrix[current][scanner][2][2] -
-                   pairs_matrix[current][scanner][3][2])
+            tmp = normalize_point(tmp, pairs_matrix[current][scanner][2], -1)
+            tmp = normalize_point(tmp, pairs_matrix[current][scanner][3])
             if rotations != []:
                 for _, rot in enumerate(rotations[::-1]):
                     tmp = rotate_point(tmp, rot)
