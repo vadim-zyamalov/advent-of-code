@@ -14,7 +14,7 @@ def gen_empty(image):
 
 def increase_image(image, n=1):
     result = []
-    dimi, dimj = len(image), len(image[0])
+    dimi = len(image)
     for i in range(n):
         result.append(['.' for _ in range(dimi + 2 * n)])
     for i in range(dimi):
@@ -33,9 +33,9 @@ def shrink_image(image, n=1):
 
 def process_cell(i, j, image):
     result = '0b'
-    for ii in range(i - 1, i + 2):
+    for row in range(i - 1, i + 2):
         result += ''.join(['1' if letter == "#" else '0'
-                           for letter in image[ii][(j - 1):(j + 2)]])
+                           for letter in image[row][(j - 1):(j + 2)]])
     return int(result, 2)
 
 
