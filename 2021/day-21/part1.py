@@ -1,4 +1,4 @@
-from itertools import cycle, product
+from itertools import cycle
 import time
 
 DICE = list(range(1, 101))
@@ -63,7 +63,7 @@ def dirac_play_linear(current_player, positions, scores, limit, mult=1):
     return result
 
 
-def dirac_play(current_player, positions, scores, limit, mult=1):
+def dirac_play_recursive(current_player, positions, scores, limit, mult=1):
     if scores[0] >= limit:
         return [mult, 0]
     if scores[1] >= limit:
@@ -82,7 +82,7 @@ def dirac_play(current_player, positions, scores, limit, mult=1):
                               (loop_positions[1] + dsum - 1) % 10 + 1)
             loop_scores = (loop_scores[0],
                            loop_scores[1] + loop_positions[1])
-        tmp = dirac_play((current_player + 1) % 2,
+        tmp = dirac_play_recursive((current_player + 1) % 2,
                          loop_positions,
                          loop_scores,
                          limit,
@@ -90,7 +90,6 @@ def dirac_play(current_player, positions, scores, limit, mult=1):
         result[0] += tmp[0]
         result[1] += tmp[1]
     return result
-
 
 
 with open("input.txt", "r", encoding="utf-8") as f:
@@ -103,7 +102,7 @@ print(f"Part 1: {min(answer[1]) * answer[2]}")
 print(f"  elapsed in {time.time() - t_0:.2f} seconds")
 
 t_0 = time.time()
-answer = dirac_play(0, (pos_0, pos_1), (0, 0), 21)
+answer = dirac_play_recursive(0, (pos_0, pos_1), (0, 0), 21)
 print(f"Part 2: {max(answer)}")
 print(f"  elapsed in {time.time() - t_0:.2f} seconds")
 
