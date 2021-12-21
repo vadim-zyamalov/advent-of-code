@@ -138,61 +138,62 @@ def detect_scanners(current, rotations, pairs_matrix,
                             coordinates)
 
 
-SCANNERS_DATA = {}
+input_data = {}
 with open("input.txt", "r", encoding="utf-8") as f:
-    INDEX = -1
+    i = -1
     for line in f:
         if line.strip() == "":
             continue
         if line.startswith("---"):
             _, _, num, _ = line.strip().split()
-            INDEX = int(num)
-            if num not in SCANNERS_DATA:
-                SCANNERS_DATA[INDEX] = []
+            i = int(num)
+            if num not in input_data:
+                input_data[i] = []
                 continue
         x, y, z = line.strip().split(",")
-        SCANNERS_DATA[INDEX].append((int(x),
-                                     int(y),
-                                     int(z)))
+        input_data[i].append((int(x),
+                              int(y),
+                              int(z)))
 
 
-PAIRS = [[(False, None, None, None) for _ in SCANNERS_DATA]
-         for _ in SCANNERS_DATA]
-for i, scanner0 in SCANNERS_DATA.items():
+scanner_pairs = [[(False, None, None, None) for _ in input_data]
+                 for _ in input_data]
+for i, scanner0 in input_data.items():
     print(f"{i}, ", end="")
-    for j, scanner1 in SCANNERS_DATA.items():
+    for j, scanner1 in input_data.items():
         if i >= j:
             continue
         check_result = check_pair(scanner0, scanner1)
         if check_result[0] is True:
-            PAIRS[i][j] = check_result
-            PAIRS[j][i] = (True,
-                           reverse_rotate(check_result[1]),
-                           rotate_point(check_result[3],
-                                        reverse_rotate(check_result[1])),
-                           rotate_point(check_result[2],
-                                        reverse_rotate(check_result[1])))
+            scanner_pairs[i][j] = check_result
+            scanner_pairs[j][i] = (
+                True,
+                reverse_rotate(check_result[1]),
+                rotate_point(check_result[3],
+                             reverse_rotate(check_result[1])),
+                rotate_point(check_result[2],
+                             reverse_rotate(check_result[1])))
 print()
 
 
-MERGED = [0]
-answer = merge_data(0, PAIRS, SCANNERS_DATA, MERGED)
+merged_scanners = [0]
+answer = merge_data(0, scanner_pairs, input_data, merged_scanners)
 print(f"Part 1: {len(answer)}")
 
-SCANNERS = {}
-SCANNERS[0] = (0, 0, 0)
-detect_scanners(0, [], PAIRS, SCANNERS_DATA.keys(), SCANNERS)
+scanners_coords = {}
+scanners_coords[0] = (0, 0, 0)
+detect_scanners(0, [], scanner_pairs, input_data.keys(), scanners_coords)
 
-DISTANCES = [[0 for _ in SCANNERS]
-             for _ in SCANNERS]
-for i, scanner_i in SCANNERS.items():
-    for j, scanner_j in SCANNERS.items():
+distances = [[0 for _ in scanners_coords]
+             for _ in scanners_coords]
+for i, scanner_i in scanners_coords.items():
+    for j, scanner_j in scanners_coords.items():
         if i >= j:
             continue
-        DISTANCES[i][j] = abs(scanner_i[0] - scanner_j[0]) + \
+        distances[i][j] = abs(scanner_i[0] - scanner_j[0]) + \
             abs(scanner_i[1] - scanner_j[1]) + \
             abs(scanner_i[2] - scanner_j[2])
-        DISTANCES[j][i] = DISTANCES[i][j]
+        distances[j][i] = distances[i][j]
 
-DISTANCES = [el for row in DISTANCES for el in row]
-print(f"Part 2: {max(DISTANCES)}")
+distances = [el for row in distances for el in row]
+print(f"Part 2: {max(distances)}")
