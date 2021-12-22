@@ -3,62 +3,67 @@ from itertools import product
 RANGES = []
 
 
+def is_overlap(cube, cutter):
+    for dim in ['x', 'y', 'z']:
+        if (cutter[dim][1] < cube[dim][0]) or \
+           (cutter[dim][0] > cube[dim][1]):
+            return False
+    return True
+
+
+def dim_chunks(cube, cutter, dim):
+    chunks_0 = (cube[dim][0],
+                min(cutter[dim][0] - 1, cube[dim][1]))
+    chunks_1 = (max(cube[dim][0], cutter[dim][0]),
+                min(cube[dim][1], cutter[dim][1]))
+    chunks_2 = (max(cutter[dim][1] + 1, cube[dim][0]),
+                cube[dim][1])
+    return [chunks_0 if chunks_0[0] <= chunks_0[1] else None,
+            chunks_1 if chunks_1[0] <= chunks_1[1] else None,
+            chunks_2 if chunks_2[0] <= chunks_2[1] else None]
+
+
 # Limit cube
 def limit(cube, limits):
-    return {'x': (max(cube['x'][0], limits['x'][0]),
-                  min(cube['x'][1], limits['x'][1])),
-            'y': (max(cube['y'][0], limits['y'][0]),
-                  min(cube['y'][1], limits['y'][1])),
-            'z': (max(cube['z'][0], limits['z'][0]),
-                  min(cube['z'][1], limits['z'][1]))}
+    result = {}
+    for dim in ['x', 'y', 'z']:
+        result[dim] = (max(cube[dim][0], limits[dim][0]),
+                       min(cube[dim][1], limits[dim][1]))
+        if result[dim][0] > result[dim][1]:
+            return None
+    return result
 
 
 def cutoff(cube, cutter):
     # Are there any intersection between cube and another one?
-    if (cutter['x'][1] < cube['x'][0]) or \
-       (cutter['x'][0] > cube['x'][1]) or \
-       (cutter['y'][1] < cube['y'][0]) or \
-       (cutter['y'][0] > cube['y'][1]) or \
-       (cutter['z'][1] < cube['z'][0]) or \
-       (cutter['z'][0] > cube['z'][1]):
+    if not is_overlap(cube, cutter):
         return [cube]
     # Divide cube into layers
     result = []
-    chunks_x = [(cube['x'][0], cutter['x'][0] - 1),
-                (max(cube['x'][0], cutter['x'][0]),
-                 min(cube['x'][1], cutter['x'][1])),
-                (cutter['x'][1] + 1, cube['x'][1])]
-    chunks_y = [(cube['y'][0], cutter['y'][0] - 1),
-                (max(cube['y'][0], cutter['y'][0]),
-                 min(cube['y'][1], cutter['y'][1])),
-                (cutter['y'][1] + 1, cube['y'][1])]
-    chunks_z = [(cube['z'][0], cutter['z'][0] - 1),
-                (max(cube['z'][0], cutter['z'][0]),
-                 min(cube['z'][1], cutter['z'][1])),
-                (cutter['z'][1] + 1, cube['z'][1])]
+    chunks_x = dim_chunks(cube, cutter, 'x')
+    chunks_y = dim_chunks(cube, cutter, 'y')
+    chunks_z = dim_chunks(cube, cutter, 'z')
     # If there is a lower layer append it
-    if chunks_z[0][0] <= chunks_z[0][1]:
+    if chunks_z[0]:
         result.append({'x': cube['x'],
                        'y': cube['y'],
                        'z': chunks_z[0]})
     # If there is a top layer append it
-    if chunks_z[2][0] <= chunks_z[2][1]:
+    if chunks_z[2]:
         result.append({'x': cube['x'],
                        'y': cube['y'],
                        'z': chunks_z[2]})
     # Loop through the middle layer
-    for ix, iy in product([0, 1, 2], repeat=2):
+    for i, j in product([0, 1, 2], repeat=2):
         # this is a cut chunk
-        if ix * iy == 1:
+        if i * j == 1:
             continue
         # Ignore out of bounds chunks
-        if (chunks_x[ix][0] > chunks_x[ix][1]) or \
-           (chunks_y[iy][0] > chunks_y[iy][1]) or \
-           (chunks_z[1][0] > chunks_z[1][1]):
+        if not chunks_x[i] or not chunks_y[j]:
             continue
         # Append resulting sub cubes
-        result.append({'x': chunks_x[ix],
-                       'y': chunks_y[iy],
+        result.append({'x': chunks_x[i],
+                       'y': chunks_y[j],
                        'z': chunks_z[1]})
     return result
 
@@ -80,14 +85,12 @@ def process(rule, on_list, limits=None):
     if limits:
         current_cube = limit(current_cube, limits)
     # Check whether the cube is out of limits
-    if (current_cube['x'][0] > current_cube['x'][1]) or \
-       (current_cube['y'][0] > current_cube['y'][1]) or \
-       (current_cube['z'][0] > current_cube['z'][1]):
+    if not current_cube:
         return on_list
     # Cut the current cube from all the previous ones
-    for c in on_list:
-        tmp = cutoff(c, current_cube)
-        result.extend(tmp)
+    for list_cube in on_list:
+        tmp_cuts = cutoff(list_cube, current_cube)
+        result.extend(tmp_cuts)
     # If we are adding the add
     if rule['cmd'] == "on":
         result.append(current_cube)
@@ -112,8 +115,8 @@ with open("input.txt", "r", encoding="utf-8") as f:
 cubes_on = []
 for r in RANGES:
     cubes_on = process(r, cubes_on, {'x': (-50, 50),
-                                      'y': (-50, 50),
-                                      'z': (-50, 50)})
+                                     'y': (-50, 50),
+                                     'z': (-50, 50)})
 
 print(f"Part 1: {count(cubes_on)}")
 
