@@ -17,14 +17,14 @@ def move_east(grid):
                 continue
             if grid[i][j] == "v":
                 continue
-            if grid[i][(j+1)%dimj] != ".":
+            if grid[i][(j + 1) % dimj] != ".":
                 continue
             moves.append((i, j))
     if moves == []:
         return False
     for i, j in moves:
         grid[i][j] = "."
-        grid[i][(j+1)%dimj] = ">"
+        grid[i][(j + 1) % dimj] = ">"
     return True
 
 
@@ -37,14 +37,14 @@ def move_south(grid):
                 continue
             if grid[i][j] == ">":
                 continue
-            if grid[(i+1)%dimi][j] != ".":
+            if grid[(i + 1) % dimi][j] != ".":
                 continue
             moves.append((i, j))
     if moves == []:
         return False
     for i, j in moves:
         grid[i][j] = "."
-        grid[(i+1)%dimi][j] = "v"
+        grid[(i + 1) % dimi][j] = "v"
     return True
 
 
