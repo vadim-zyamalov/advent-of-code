@@ -12,6 +12,21 @@ class Node:
         self.right = right
         self.parent = parent
 
+    def split(self) -> None:
+        fst, snd = self.value // 2, (self.value + 1) // 2
+        self.value = None
+        self.left = Node(fst, None, None, self)
+        self.right = Node(snd, None, None, self)
+
+    def explode(self) -> tuple[int]:
+        assert self.left.value is not None
+        assert self.right.value is not None
+        fst, snd = self.left.value, self.right.value
+        self.value = 0
+        self.left = None
+        self.right = None
+        return (fst, snd)
+
 
 def dump(root: Node) -> None:
     assert root is not None
@@ -29,33 +44,33 @@ def dump(root: Node) -> None:
         print()
 
 
-def parse(number: str) -> Node:
-    if number[0] != '[':
-        return Node(int(number))
+def parse(string: str) -> Node:
+    if string[0] != '[':
+        return Node(int(string))
     result = Node()
-    tmp = ''
+    current = ''
     count = 0
-    for letter in number[1:-1]:
+    for letter in string[1:-1]:
         if letter == '[':
-            tmp += letter
+            current += letter
             count += 1
         elif letter == ']':
-            tmp += letter
+            current += letter
             count -= 1
         elif (letter == ',') and \
              (count == 0):
-            result.left = parse(tmp)
+            result.left = parse(current)
             result.left.parent = result
-            tmp = ''
+            current = ''
         else:
-            tmp += letter
-    if tmp != '':
-        result.right = parse(tmp)
+            current += letter
+    if current != '':
+        result.right = parse(current)
         result.right.parent = result
     return result
 
 
-def inc_left(val, node: Node) -> None:
+def add_to_left(val, node: Node) -> None:
     assert node is not None
     prev = node
     cur = node.parent
@@ -74,7 +89,7 @@ def inc_left(val, node: Node) -> None:
         cur.value += val
 
 
-def inc_right(val, node: Node) -> None:
+def add_to_right(val, node: Node) -> None:
     assert node is not None
     prev = node
     cur = node.parent
@@ -102,19 +117,11 @@ def explode(root: Node, depth=1) -> bool:
             root.right.value is not None:
         # Check whether we are deeper than the 4-th level
         if depth > 4:
-            a = root.left.value
-            b = root.right.value
-            # Turn the pair into the literal number
-            root.value = 0
-            root.left = None
-            root.right = None
-            # Increase the first literal on the left
-            inc_left(a, root)
-            # Increase the first literal on the right
-            inc_right(b, root)
+            fst, snd = root.explode()
+            add_to_left(fst, root)
+            add_to_right(snd, root)
             return True
-        else:
-            return False
+        return False
     result = False
     if root.left is not None:
         result = explode(root.left, depth + 1)
@@ -128,21 +135,15 @@ def split(root: Node) -> bool:
     assert root is not None
     if root.value is not None:
         if root.value > 9:
-            a, b = root.value // 2, (root.value + 1) // 2
-            # Turn the literal number to th pair of literal numbers
-            root.value = None
-            root.left = Node(a, None, None, root)
-            root.right = Node(b, None, None, root)
+            root.split()
             return True
-        else:
-            return False
-    else:
-        assert root.left is not None
-        result = split(root.left)
-        if result is False:
-            assert root.right is not None
-            result = split(root.right)
-        return result
+        return False
+    assert root.left is not None
+    result = split(root.left)
+    if result is False:
+        assert root.right is not None
+        result = split(root.right)
+    return result
 
 
 def reduce(root: Node) -> None:
@@ -192,7 +193,7 @@ print(f"Part 1: {answer}")
 print(f"Elapsed in {time.time() - t_0:.02f} seconds")
 
 t_0 = time.time()
-answer = -1
+answer: int = -1
 for i, number1 in enumerate(numbers):
     for j, number2 in enumerate(numbers):
         if i == j:
@@ -203,4 +204,3 @@ for i, number1 in enumerate(numbers):
 
 print(f"Part 2: {answer}")
 print(f"Elapsed in {time.time() - t_0:.2f} seconds")
-
