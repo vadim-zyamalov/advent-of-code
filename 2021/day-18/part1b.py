@@ -13,14 +13,19 @@ class Node:
         self.parent = parent
 
     def split(self) -> None:
+        assert self.value # is not None
         fst, snd = self.value // 2, (self.value + 1) // 2
         self.value = None
         self.left = Node(fst, None, None, self)
         self.right = Node(snd, None, None, self)
 
-    def explode(self) -> tuple[int]:
-        assert self.left.value is not None
-        assert self.right.value is not None
+    def explode(self) -> tuple[int, int]:
+        assert self.left is not None and \
+            self.left.value is not None
+        assert self.right is not None and \
+            self.right.value is not None
+        # assert self.left.value is not None
+        # assert self.right.value is not None
         fst, snd = self.left.value, self.right.value
         self.value = 0
         self.left = None
@@ -193,7 +198,7 @@ print(f"Part 1: {answer}")
 print(f"Elapsed in {time.time() - t_0:.02f} seconds")
 
 t_0 = time.time()
-answer: int = -1
+answer = -1
 for i, number1 in enumerate(numbers):
     for j, number2 in enumerate(numbers):
         if i == j:
