@@ -1,4 +1,5 @@
-from itertools import cycle
+from functools import cache
+from itertools import cycle, product
 import time
 
 DICE = list(range(1, 101))
@@ -92,6 +93,36 @@ def dirac_play_recursive(current_player, positions, scores, limit, mult=1):
     return result
 
 
+@cache
+def dirac_play_cached(current_player, positions, scores, limit):
+    if scores[0] >= limit:
+        return [1, 0]
+    if scores[1] >= limit:
+        return [0, 1]
+    result = [0, 0]
+    for d_0, d_1, d_2 in product([1, 2, 3], repeat=3):
+        dsum = d_0 + d_1 + d_2
+        loop_positions = positions
+        loop_scores = scores
+        if current_player == 0:
+            loop_positions = ((loop_positions[0] + dsum - 1) % 10 + 1,
+                              loop_positions[1])
+            loop_scores = (loop_scores[0] + loop_positions[0],
+                           loop_scores[1])
+        else:
+            loop_positions = (loop_positions[0],
+                              (loop_positions[1] + dsum - 1) % 10 + 1)
+            loop_scores = (loop_scores[0],
+                           loop_scores[1] + loop_positions[1])
+        tmp = dirac_play_cached((current_player + 1) % 2,
+                         loop_positions,
+                         loop_scores,
+                         limit)
+        result[0] += tmp[0]
+        result[1] += tmp[1]
+    return result
+
+
 with open("input.txt", "r", encoding="utf-8") as f:
     pos_0 = int(f.readline().strip().split(": ")[1])
     pos_1 = int(f.readline().strip().split(": ")[1])
@@ -99,6 +130,11 @@ with open("input.txt", "r", encoding="utf-8") as f:
 t_0 = time.time()
 answer = practice_play((pos_0, pos_1), (0, 0), 1000)
 print(f"Part 1: {min(answer[1]) * answer[2]}")
+print(f"  elapsed in {time.time() - t_0:.2f} seconds")
+
+t_0 = time.time()
+answer = dirac_play_cached(0, (pos_0, pos_1), (0, 0), 21)
+print(f"Part 2: {max(answer)}")
 print(f"  elapsed in {time.time() - t_0:.2f} seconds")
 
 t_0 = time.time()
