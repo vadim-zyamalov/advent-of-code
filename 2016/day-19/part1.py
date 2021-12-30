@@ -4,7 +4,7 @@ INPUT = 3001330
 # INPUT = 5
 
 
-def JF(n):
+def JF1(n):
     if n == 1:
         return 1
     if n % 2 == 0:
@@ -14,14 +14,13 @@ def JF(n):
 
 
 def JF2(n):
-    n -= 1
-    if n == 0:
+    if n == 1:
         return 1
-    lower = int(log(n) / log(3))
-    if 3 ** lower <= n < 2 * 3 ** lower:
-        return n - 3 ** lower + 1
+    lower = int(log(n - 1) / log(3))
+    if 3 ** lower < n <= 2 * 3 ** lower:
+        return n - 3 ** lower
     else:
-        return 2 * (n - 3 ** lower + 1) - 3 ** lower
+        return 2 * n - 3 * 3 ** lower
 
 
 def circle_steal(elf, length, circle):
@@ -34,6 +33,6 @@ def next_elf(elf, length, circle):
     return circle[(idx + 1) % length]
 
 
-print(f"Part 1: {JF(INPUT)}")
+print(f"Part 1: {JF1(INPUT)}")
 
 print(f"Part 2: {JF2(INPUT)}")
