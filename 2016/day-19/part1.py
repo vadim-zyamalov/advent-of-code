@@ -1,5 +1,8 @@
+from math import log
+
 INPUT = 3001330
 # INPUT = 5
+
 
 def JF(n):
     if n == 1:
@@ -8,6 +11,17 @@ def JF(n):
         return 2 * JF(n // 2) - 1
     if n % 2 == 1:
         return 2 * JF(n // 2) + 1
+
+
+def JF2(n):
+    n -= 1
+    if n == 0:
+        return 1
+    lower = int(log(n) / log(3))
+    if 3 ** lower <= n < 2 * 3 ** lower:
+        return n - 3 ** lower + 1
+    else:
+        return 2 * (n - 3 ** lower + 1) - 3 ** lower
 
 
 def circle_steal(elf, length, circle):
@@ -22,13 +36,4 @@ def next_elf(elf, length, circle):
 
 print(f"Part 1: {JF(INPUT)}")
 
-CIRCLE = [i for i in range(1, INPUT + 1)]
-circle_len = INPUT
-current = 1
-
-while circle_len > 1:
-    circle_steal(current, circle_len, CIRCLE)
-    circle_len -= 1
-    current = next_elf(current, circle_len, CIRCLE)
-
-print(f"Part 2: {CIRCLE[0]}")
+print(f"Part 2: {JF2(INPUT)}")
