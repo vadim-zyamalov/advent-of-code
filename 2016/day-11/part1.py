@@ -41,7 +41,7 @@ def check_end(state):
 def check_floor(data):
     # Empty is an eligible floor
     # as well as the floor with only chips
-    # and the floor with generatore only
+    # and the floor with generators only
     if not data or \
        ((data[0] < 0) and (data[-1] < 0)) or \
        ((data[0] > 0) and (data[-1] > 0)):

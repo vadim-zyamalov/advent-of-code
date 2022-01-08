@@ -8,7 +8,7 @@ if c != 0:
     d += 7
 for _ in range(d):
     a, b = a + b, a
-a += 14 * 14
+a += mult * 14
 
 print(f"Part 1: {a}")
 
