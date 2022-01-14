@@ -15,6 +15,7 @@ def next_row(data):
                 safe_tiles += 1
     return (result, safe_tiles)
 
+
 with open("./input.txt", "r", encoding="utf-8") as f:
     START = f.readline().strip()
 

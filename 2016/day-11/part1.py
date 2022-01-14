@@ -68,9 +68,12 @@ def possible_moves(state):
             tmp_next_floor = add_to_floor(move, state[next_floor])
             if not check_floor(tmp_next_floor):
                 continue
-            next_state = replace_in_state(0, next_floor, state)
-            next_state = replace_in_state(cur_floor, tmp_cur_floor, next_state)
-            next_state = replace_in_state(next_floor, tmp_next_floor, next_state)
+            next_state = replace_in_state(
+                0, next_floor, state)
+            next_state = replace_in_state(
+                cur_floor, tmp_cur_floor, next_state)
+            next_state = replace_in_state(
+                next_floor, tmp_next_floor, next_state)
             result.append(next_state)
     return result
 

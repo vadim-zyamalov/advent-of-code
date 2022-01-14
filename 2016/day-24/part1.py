@@ -23,14 +23,14 @@ def tsorted(data):
 
 def possible_moves(pos, grid):
     result = []
+    x, y = pos
     for dx, dy in [(-1, 0),
                    (1, 0),
                    (0, -1),
                    (0, 1)]:
-        variant_pos = (pos[0] + dx, pos[1] + dy)
-        if grid[variant_pos[0]][variant_pos[1]] == "#":
+        if grid[x + dx][y + dy] == "#":
             continue
-        result.append(variant_pos)
+        result.append((x + dx, y + dy))
     return result
 
 
@@ -57,20 +57,20 @@ while queue:
        visited[(cur_pos, cur_visit)] <= cur_steps:
         continue
     visited[(cur_pos, cur_visit)] = cur_steps
-    for next_pos in possible_moves(cur_pos, GRID):
-        if GRID[next_pos[0]][next_pos[1]] in VENTS and \
-           GRID[next_pos[0]][next_pos[1]] not in cur_visit:
+    for next_x, next_y in possible_moves(cur_pos, GRID):
+        if GRID[next_x][next_y] in VENTS and \
+           GRID[next_x][next_y] not in cur_visit:
             hp.heappush(
                 queue,
                 (cur_steps + 1,
-                 (next_pos,
+                 ((next_x, next_y),
                   tsorted(
-                      (GRID[next_pos[0]][next_pos[1]],) + cur_visit
+                      (GRID[next_x][next_y],) + cur_visit
                   ))))
         else:
             hp.heappush(
                 queue,
-                (cur_steps + 1, (next_pos, cur_visit))
+                (cur_steps + 1, ((next_x, next_y), cur_visit))
             )
 
 queue = [(0, (START, ()))]
@@ -88,18 +88,18 @@ while queue:
        visited[(cur_pos, cur_visit)] <= cur_steps:
         continue
     visited[(cur_pos, cur_visit)] = cur_steps
-    for next_pos in possible_moves(cur_pos, GRID):
-        if GRID[next_pos[0]][next_pos[1]] in VENTS and \
-           GRID[next_pos[0]][next_pos[1]] not in cur_visit:
+    for next_x, next_y in possible_moves(cur_pos, GRID):
+        if GRID[next_x][next_y] in VENTS and \
+           GRID[next_x][next_y] not in cur_visit:
             hp.heappush(
                 queue,
                 (cur_steps + 1,
-                 (next_pos,
+                 ((next_x, next_y),
                   tsorted(
-                      (GRID[next_pos[0]][next_pos[1]],) + cur_visit
+                      (GRID[next_x][next_y],) + cur_visit
                   ))))
         else:
             hp.heappush(
                 queue,
-                (cur_steps + 1, (next_pos, cur_visit))
+                (cur_steps + 1, ((next_x, next_y), cur_visit))
             )

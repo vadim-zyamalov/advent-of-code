@@ -60,10 +60,9 @@ def reverse_str(pos_0, pos_1, data):
         return data[:pos_0] + \
             data[pos_1:pos_0-1:-1] + \
             data[pos_1+1:]
-    else:
-        return data[:pos_0] + \
-            data[pos_1::-1] + \
-            data[pos_1+1:]
+    return data[:pos_0] + \
+        data[pos_1::-1] + \
+        data[pos_1+1:]
 
 
 def move_str(pos_0, pos_1, data):
