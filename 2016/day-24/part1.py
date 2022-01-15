@@ -43,7 +43,7 @@ with open("./input.txt", "r", encoding="utf-8") as f:
 
 START, VENTS = init(GRID)
 
-queue = [(0, (START, ()))]
+queue: list[tuple[int, tuple[tuple, tuple]]] = [(0, (START, ()))]
 visited = {}
 
 t_0 = time.time()
