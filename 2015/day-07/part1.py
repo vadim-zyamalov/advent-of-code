@@ -20,32 +20,33 @@ for part in [1, 2]:
             right = right.strip()
             left = left.strip().split()
 
-            if len(left) == 1:
-                signal[right] = uint16(left[0]) if \
-                    left[0].isnumeric() else None
-                matrix[right] = {'arg': [left[0]
-                                         if not left[0].isnumeric() else None],
-                                 'sig': [uint16(left[0])
-                                         if left[0].isnumeric() else None],
-                                 'fun': ''}
-            elif len(left) == 2:
-                signal[right] = None
-                matrix[right] = {'arg': [left[1]
-                                         if not left[1].isnumeric() else None],
-                                 'sig': [uint16(left[1])
-                                         if left[1].isnumeric() else None],
-                                 'fun': left[0]}
-            elif len(left) == 3:
-                signal[right] = None
-                matrix[right] = {'arg': [left[0]
-                                         if not left[0].isnumeric() else None,
-                                         left[2]
-                                         if not left[2].isnumeric() else None],
-                                 'sig': [uint16(left[0])
-                                         if left[0].isnumeric() else None,
-                                         uint16(left[2])
-                                         if left[2].isnumeric() else None],
-                                 'fun': left[1]}
+            match left:
+                case arg_0, :
+                    signal[right] = uint16(arg_0) if \
+                        arg_0.isnumeric() else None
+                    matrix[right] = {'arg': [arg_0
+                                             if not arg_0.isnumeric() else None],
+                                     'sig': [uint16(arg_0)
+                                             if arg_0.isnumeric() else None],
+                                     'fun': ''}
+                case arg_0, arg_1:
+                    signal[right] = None
+                    matrix[right] = {'arg': [arg_1
+                                             if not arg_1.isnumeric() else None],
+                                     'sig': [uint16(arg_1)
+                                             if arg_1.isnumeric() else None],
+                                     'fun': arg_0}
+                case arg_0, arg_1, arg_2:
+                    signal[right] = None
+                    matrix[right] = {'arg': [arg_0
+                                             if not arg_0.isnumeric() else None,
+                                             arg_2
+                                             if not arg_2.isnumeric() else None],
+                                     'sig': [uint16(arg_0)
+                                             if arg_0.isnumeric() else None,
+                                             uint16(arg_2)
+                                             if arg_2.isnumeric() else None],
+                                     'fun': arg_1}
 
     if part == 2:
         signal['b'] = uint16(956)
@@ -60,19 +61,23 @@ for part in [1, 2]:
     while signal['a'] is None:
         for k in matrix:
             entry = matrix[k]
-            if signal[k] is None and all(v is not None for v in entry['sig']):
-                if entry['fun'] == 'NOT':
+            if signal[k] is not None:
+                continue
+            if not all(v is not None for v in entry['sig']):
+                continue
+            match entry['fun']:
+                case 'NOT':
                     signal[k] = ~ entry['sig'][0]
-                elif entry['fun'] == 'AND':
+                case 'AND':
                     signal[k] = entry['sig'][0] & entry['sig'][1]
-                elif entry['fun'] == 'OR':
+                case 'OR':
                     signal[k] = entry['sig'][0] | entry['sig'][1]
-                elif entry['fun'] == 'LSHIFT':
+                case 'LSHIFT':
                     signal[k] = entry['sig'][0] << entry['sig'][1]
-                elif entry['fun'] == 'RSHIFT':
+                case 'RSHIFT':
                     signal[k] = entry['sig'][0] >> entry['sig'][1]
-                else:
+                case _:
                     signal[k] = entry['sig'][0]
-                matrix = update_matrix(k, signal[k])
+            matrix = update_matrix(k, signal[k])
 
     print(f"Part {part}: {signal['a']}")

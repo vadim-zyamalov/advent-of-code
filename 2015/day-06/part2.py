@@ -15,11 +15,12 @@ with open("input.txt", "r", encoding="utf-8") as f:
 
         for i in range(start[0], finish[0] + 1):
             for j in range(start[1], finish[1] + 1):
-                if action == 'toggle':
-                    matrix[i][j] += 2
-                elif action == 'on':
-                    matrix[i][j] += 1
-                else:
-                    matrix[i][j] = max(matrix[i][j] - 1, 0)
+                match action:
+                    case 'toggle':
+                        matrix[i][j] += 2
+                    case 'on':
+                        matrix[i][j] += 1
+                    case _:
+                        matrix[i][j] = max(matrix[i][j] - 1, 0)
 
 print(f"Part 2: {sum([sum(i) for i in matrix])}")

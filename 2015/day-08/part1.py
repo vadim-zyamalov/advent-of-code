@@ -8,24 +8,26 @@ with open("input.txt", "r", encoding="utf-8") as f:
             string.append(letter)
         i = 0
         while i < len(string):
-            if string[i] == '"':
-                codes += 1
-            elif string[i] == '\\':
-                codes += 1
-                if string[i+1] == '"':
+            match string[i]:
+                case '"':
+                    codes += 1
+                case '\\':
+                    codes += 1
+                    match string[i+1]:
+                        case '"':
+                            codes += 1
+                            chars += 1
+                            i += 1
+                        case '\\':
+                            codes += 1
+                            chars += 1
+                            i += 1
+                        case 'x':
+                            codes += 3
+                            chars += 1
+                            i += 3
+                case _:
                     codes += 1
                     chars += 1
-                    i += 1
-                elif string[i+1] == "\\":
-                    codes += 1
-                    chars += 1
-                    i += 1
-                elif string[i+1] == 'x':
-                    codes += 3
-                    chars += 1
-                    i += 3
-            else:
-                codes += 1
-                chars += 1
             i += 1
 print(f"Part 1: {codes - chars}")

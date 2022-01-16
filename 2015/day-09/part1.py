@@ -42,7 +42,7 @@ def distance(candidate, matrix):
     result = 0
     for i in range(1, len(candidate)):
         if matrix[candidate[i-1]][candidate[i]] is None:
-            return None
+            return -1
         result += matrix[candidate[i-1]][candidate[i]]
     return result
 

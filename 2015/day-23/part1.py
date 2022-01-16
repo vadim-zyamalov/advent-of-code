@@ -6,27 +6,28 @@ def execute(program, init={'a': 0, 'b': 0}):
         current = program[i]
         if current['c'] not in allowed:
             break
-        if current['c'] == 'hlf':
-            registers[current['r']] //= 2
-            i += 1
-        elif current['c'] == 'tpl':
-            registers[current['r']] *= 3
-            i += 1
-        elif current['c'] == 'inc':
-            registers[current['r']] += 1
-            i += 1
-        elif current['c'] == 'jmp':
-            i += current['o']
-        elif current['c'] == 'jie':
-            if registers[current['r']] % 2 == 0:
-                i += current['o']
-            else:
+        match current['c']:
+            case 'hlf':
+                registers[current['r']] //= 2
                 i += 1
-        elif current['c'] == 'jio':
-            if registers[current['r']] == 1:
-                i += current['o']
-            else:
+            case 'tpl':
+                registers[current['r']] *= 3
                 i += 1
+            case 'inc':
+                registers[current['r']] += 1
+                i += 1
+            case 'jmp':
+                i += current['o']
+            case 'jie':
+                if registers[current['r']] % 2 == 0:
+                    i += current['o']
+                else:
+                    i += 1
+            case 'jio':
+                if registers[current['r']] == 1:
+                    i += current['o']
+                else:
+                    i += 1
     return registers
 
 

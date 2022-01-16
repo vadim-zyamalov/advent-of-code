@@ -6,25 +6,26 @@ def splitx(input):
     tmp = ''
     counter = 0
     for letter in input:
-        if letter in opener:
-            if counter > 0:
+        match letter:
+            case l if l in opener:
+                if counter > 0:
+                    tmp += letter
+                counter += 1
+            case l if l in closer:
+                counter -= 1
+                if counter > 0:
+                    tmp += letter
+                else:
+                    result.append(tmp)
+                    tmp = ''
+            case ',':
+                if counter > 1:
+                    tmp += letter
+                else:
+                    result.append(tmp)
+                    tmp = ''
+            case _:
                 tmp += letter
-            counter += 1
-        elif letter in closer:
-            counter -= 1
-            if counter > 0:
-                tmp += letter
-            else:
-                result.append(tmp)
-                tmp = ''
-        elif letter == ',':
-            if counter > 1:
-                tmp += letter
-            else:
-                result.append(tmp)
-                tmp = ''
-        else:
-            tmp += letter
     return result
 
 
@@ -36,25 +37,27 @@ def elparser(input):
 def parser(input):
     if len(input) == 0:
         return None
-    if input[0] == '[':
-        result = []
-        elements = splitx(input)
-        for i in elements:
-            tmp = parser(i.strip())
-            result.append(tmp)
-        return result
-    elif input[0] == '{':
-        result = {}
-        elements = splitx(input)
-        for i in elements:
-            key, val = elparser(i.strip())
-            tmp = parser(val)
-            result[key] = tmp
-        return result
-    elif input.strip().lstrip('-').isnumeric():
-        return int(input.strip())
-    else:
-        return input.strip().strip('"')
+    match input[0]:
+        case '[':
+            result = []
+            elements = splitx(input)
+            for i in elements:
+                tmp = parser(i.strip())
+                result.append(tmp)
+            return result
+        case '{':
+            result = {}
+            elements = splitx(input)
+            for i in elements:
+                key, val = elparser(i.strip())
+                tmp = parser(val)
+                result[key] = tmp
+            return result
+        case _:
+            if input.strip().lstrip('-').isnumeric():
+                return int(input.strip())
+            else:
+                return input.strip().strip('"')
 
 
 def dive(data):
