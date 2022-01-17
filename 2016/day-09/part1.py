@@ -13,8 +13,6 @@ def parse(data):
             inner = data[i:i+num]
             result += inner * times
             i += num
-        elif data[i] == " ":
-            i += 1
         else:
             result += data[i]
             i += 1

@@ -78,63 +78,66 @@ with open("./input.txt", "r", encoding="utf-8") as f:
         if line.strip() == "":
             continue
         tmp = line.strip().split()
-        if tmp[0] == "swap":
-            if tmp[1] == "position":
-                fst, snd = int(tmp[2]), int(tmp[5])
+        match tmp[0]:
+            case "swap":
+                if tmp[1] == "position":
+                    fst, snd = int(tmp[2]), int(tmp[5])
+                    fst, snd = min(fst, snd), max(fst, snd)
+                    COMMANDS.append(("pswap", fst, snd))
+                else:
+                    COMMANDS.append(("lswap", tmp[2], tmp[5]))
+            case "rotate":
+                if tmp[1] == "right":
+                    COMMANDS.append(("rrotate", int(tmp[2])))
+                elif tmp[1] == "left":
+                    COMMANDS.append(("lrotate", int(tmp[2])))
+                else:
+                    COMMANDS.append(("brotate", tmp[6]))
+            case "reverse":
+                fst, snd = int(tmp[2]), int(tmp[4])
                 fst, snd = min(fst, snd), max(fst, snd)
-                COMMANDS.append(("pswap", fst, snd))
-            else:
-                COMMANDS.append(("lswap", tmp[2], tmp[5]))
-        elif tmp[0] == "rotate":
-            if tmp[1] == "right":
-                COMMANDS.append(("rrotate", int(tmp[2])))
-            elif tmp[1] == "left":
-                COMMANDS.append(("lrotate", int(tmp[2])))
-            else:
-                COMMANDS.append(("brotate", tmp[6]))
-        elif tmp[0] == "reverse":
-            fst, snd = int(tmp[2]), int(tmp[4])
-            fst, snd = min(fst, snd), max(fst, snd)
-            COMMANDS.append(("reverse", fst, snd))
-        else:
-            COMMANDS.append(("move", int(tmp[2]), int(tmp[5])))
+                COMMANDS.append(("reverse", fst, snd))
+            case "move":
+                COMMANDS.append(("move", int(tmp[2]), int(tmp[5])))
 
 answer = INPUT
 for cmd in COMMANDS:
-    if cmd[0] == "pswap":
-        answer = pswap_str(cmd[1], cmd[2], answer)
-    elif cmd[0] == "lswap":
-        answer = lswap_str(cmd[1], cmd[2], answer)
-    elif cmd[0] == "rrotate":
-        answer = rrotate_str(cmd[1], answer)
-    elif cmd[0] == "lrotate":
-        answer = lrotate_str(cmd[1], answer)
-    elif cmd[0] == "brotate":
-        answer = brotate_str(cmd[1], answer)
-    elif cmd[0] == "reverse":
-        answer = reverse_str(cmd[1], cmd[2], answer)
-    elif cmd[0] == "move":
-        answer = move_str(cmd[1], cmd[2], answer)
+    match cmd[0]:
+        case "pswap":
+            answer = pswap_str(cmd[1], cmd[2], answer)
+        case "lswap":
+            answer = lswap_str(cmd[1], cmd[2], answer)
+        case "rrotate":
+            answer = rrotate_str(cmd[1], answer)
+        case "lrotate":
+            answer = lrotate_str(cmd[1], answer)
+        case "brotate":
+            answer = brotate_str(cmd[1], answer)
+        case "reverse":
+            answer = reverse_str(cmd[1], cmd[2], answer)
+        case "move":
+            answer = move_str(cmd[1], cmd[2], answer)
     # print(cmd, "=>", answer)
 
 print(f"Part 1: {answer}")
 
 answer = INPUT2
 for cmd in reversed(COMMANDS):
-    if cmd[0] == "pswap":
-        answer = pswap_str(cmd[1], cmd[2], answer)
-    elif cmd[0] == "lswap":
-        answer = lswap_str(cmd[1], cmd[2], answer)
-    elif cmd[0] == "rrotate":
-        answer = lrotate_str(cmd[1], answer)
-    elif cmd[0] == "lrotate":
-        answer = rrotate_str(cmd[1], answer)
-    elif cmd[0] == "brotate":
-        answer = rev_brotate_str(cmd[1], answer)
-    elif cmd[0] == "reverse":
-        answer = reverse_str(cmd[1], cmd[2], answer)
-    elif cmd[0] == "move":
-        answer = move_str(cmd[2], cmd[1], answer)
+    match cmd[0]:
+        case "pswap":
+            answer = pswap_str(cmd[1], cmd[2], answer)
+        case "lswap":
+            answer = lswap_str(cmd[1], cmd[2], answer)
+        case "rrotate":
+            answer = lrotate_str(cmd[1], answer)
+        case "lrotate":
+            answer = rrotate_str(cmd[1], answer)
+        case "brotate":
+            answer = rev_brotate_str(cmd[1], answer)
+        case "reverse":
+            answer = reverse_str(cmd[1], cmd[2], answer)
+        case "move":
+            answer = move_str(cmd[2], cmd[1], answer)
     # print(cmd, "=>", answer)
 
 print(f"Part 1: {answer}")

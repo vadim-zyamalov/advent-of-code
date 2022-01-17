@@ -24,14 +24,15 @@ def rotate_column(x, by):
 
 def process():
     for com, fst, snd in COMMANDS:
-        if com == "rect":
-            for i in range(snd):
-                for j in range(fst):
-                    SCREEN[i][j] = 1
-        elif com == "column":
-            rotate_column(fst, snd)
-        elif com == "row":
-            rotate_row(fst, snd)
+        match com:
+            case "rect":
+                for i in range(snd):
+                    for j in range(fst):
+                        SCREEN[i][j] = 1
+            case "column":
+                rotate_column(fst, snd)
+            case "row":
+                rotate_row(fst, snd)
 
 
 with open("./input.txt", "r", encoding="utf-8") as f:

@@ -9,29 +9,30 @@ def process():
     i = 0
     while i < len(COMMANDS):
         cur_command = COMMANDS[i]
-        if cur_command[0] == "cpy":
-            if isinstance(cur_command[1], int):
-                REGISTERS[cur_command[2]] = cur_command[1]
-            else:
-                REGISTERS[cur_command[2]] = REGISTERS[cur_command[1]]
-            i += 1
-        elif cur_command[0] == "inc":
-            REGISTERS[cur_command[1]] += 1
-            i += 1
-        elif cur_command[0] == "dec":
-            REGISTERS[cur_command[1]] -= 1
-            i += 1
-        elif cur_command[0] == "jnz":
-            if isinstance(cur_command[1], int):
-                if cur_command[1] != 0:
-                    i += cur_command[2]
+        match cur_command[0]:
+            case "cpy":
+                if isinstance(cur_command[1], int):
+                    REGISTERS[cur_command[2]] = cur_command[1]
                 else:
-                    i += 1
-            else:
-                if REGISTERS[cur_command[1]] != 0:
-                    i += cur_command[2]
+                    REGISTERS[cur_command[2]] = REGISTERS[cur_command[1]]
+                i += 1
+            case "inc":
+                REGISTERS[cur_command[1]] += 1
+                i += 1
+            case "dec":
+                REGISTERS[cur_command[1]] -= 1
+                i += 1
+            case "jnz":
+                if isinstance(cur_command[1], int):
+                    if cur_command[1] != 0:
+                        i += cur_command[2]
+                    else:
+                        i += 1
                 else:
-                    i += 1
+                    if REGISTERS[cur_command[1]] != 0:
+                        i += cur_command[2]
+                    else:
+                        i += 1
 
 
 with open("./input.txt", "r", encoding="utf-8") as f:
