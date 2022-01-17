@@ -91,20 +91,21 @@ def execute(packet):
         tmp.append(execute(sub_packet))
 
     answer = None
-    if typeid == 0:
-        answer = sum(tmp)
-    elif typeid == 1:
-        answer = prod(tmp)
-    elif typeid == 2:
-        answer = min(tmp)
-    elif typeid == 3:
-        answer = max(tmp)
-    elif typeid == 5:
-        answer = 1 if tmp[0] > tmp[1] else 0
-    elif typeid == 6:
-        answer = 1 if tmp[0] < tmp[1] else 0
-    elif typeid == 7:
-        answer = 1 if tmp[0] == tmp[1] else 0
+    match typeid:
+        case 0:
+            answer = sum(tmp)
+        case 1:
+            answer = prod(tmp)
+        case 2:
+            answer = min(tmp)
+        case 3:
+            answer = max(tmp)
+        case 5:
+            answer = 1 if tmp[0] > tmp[1] else 0
+        case 6:
+            answer = 1 if tmp[0] < tmp[1] else 0
+        case 7:
+            answer = 1 if tmp[0] == tmp[1] else 0
     return answer
 
 

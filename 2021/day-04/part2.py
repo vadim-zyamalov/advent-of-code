@@ -60,6 +60,7 @@ with open("input.txt", "r", encoding="utf-8") as f:
             ])
     boards[count] = board
 
+res = -1
 winners = []
 for i in numbers:
     boards = fill(i, boards)

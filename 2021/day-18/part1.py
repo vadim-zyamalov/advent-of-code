@@ -1,40 +1,6 @@
 from math import floor, ceil
 
 
-def parse(number):
-    if number[0] != '[':
-        return int(number)
-    result = []
-    tmp = ''
-    count = 0
-    for letter in number[1:-1]:
-        if letter == '[':
-            tmp += letter
-            count += 1
-        elif letter == ']':
-            tmp += letter
-            count -= 1
-        elif (letter == ',') and \
-             (count == 0):
-            result.append(parse(tmp))
-            tmp = ''
-        else:
-            tmp += letter
-    if tmp != '':
-        result.append(parse(tmp))
-    return result
-
-
-def magnitude(number):
-    if isinstance(number, int):
-        return number
-    if isinstance(number[0], int) and \
-       isinstance(number[1], int):
-        return 3 * number[0] + 2 * number[1]
-    return (3 * magnitude(number[0]) +
-            2 * magnitude(number[1]))
-
-
 def magnitude_line(number):
     result = number
     while True:

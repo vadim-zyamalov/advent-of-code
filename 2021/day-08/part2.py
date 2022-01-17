@@ -12,16 +12,17 @@ def split_patterns(patterns):
     plural = []
     for p in patterns:
         n = bin(p).count('1')
-        if n == 2:
-            unique[1] = p
-        elif n == 4:
-            unique[4] = p
-        elif n == 3:
-            unique[7] = p
-        elif n == 7:
-            unique[8] = p
-        else:
-            plural.append(p)
+        match n:
+            case 2:
+                unique[1] = p
+            case 4:
+                unique[4] = p
+            case 3:
+                unique[7] = p
+            case 7:
+                unique[8] = p
+            case _:
+                plural.append(p)
     return unique, plural
 
 
@@ -55,7 +56,7 @@ def decoder(number, codelist):
     return result
 
 
-def get_a(numbers, segments, patterns):
+def get_a(numbers, *_):
     return diff(numbers[7], numbers[1])
 
 
@@ -84,7 +85,7 @@ def get_f(numbers, segments, patterns):
     return diff(numbers[1], tmp_c)
 
 
-def get_g(numbers, segments, patterns):
+def get_g(numbers, _, patterns):
     for p in patterns:
         tmp = diff(diff(p, numbers[7]), numbers[4])
         if bin(tmp).count('1') == 1:
@@ -92,7 +93,7 @@ def get_g(numbers, segments, patterns):
     exit(1)
 
 
-def get_0(numbers, segments, patterns):
+def get_0(numbers, _, patterns):
     for p in patterns:
         tmp = diff(numbers[8], p)
         if single(tmp) and \
@@ -101,7 +102,7 @@ def get_0(numbers, segments, patterns):
     exit(1)
 
 
-def get_6(numbers, segments, patterns):
+def get_6(numbers, _, patterns):
     for p in patterns:
         tmp = diff(numbers[8], p)
         if single(tmp) and single(tmp & numbers[1]):
@@ -109,7 +110,7 @@ def get_6(numbers, segments, patterns):
     exit(1)
 
 
-def get_9(numbers, segments, patterns):
+def get_9(numbers, _, patterns):
     for p in patterns:
         tmp = diff(numbers[8], p)
         if single(tmp) and not (tmp & numbers[4]):

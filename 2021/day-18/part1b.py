@@ -56,19 +56,19 @@ def parse(string: str) -> Node:
     current = ''
     count = 0
     for letter in string[1:-1]:
-        if letter == '[':
-            current += letter
-            count += 1
-        elif letter == ']':
-            current += letter
-            count -= 1
-        elif (letter == ',') and \
-             (count == 0):
-            result.left = parse(current)
-            result.left.parent = result
-            current = ''
-        else:
-            current += letter
+        match letter:
+            case '[':
+                current += letter
+                count += 1
+            case ']':
+                current += letter
+                count -= 1
+            case ',' if count == 0:
+                result.left = parse(current)
+                result.left.parent = result
+                current = ''
+            case _:
+                current += letter
     if current != '':
         result.right = parse(current)
         result.right.parent = result
