@@ -1,6 +1,7 @@
 import time
 import heapq as hp
 
+
 def init(grid):
     start = (-1, -1)
     points = []
