@@ -1,16 +1,16 @@
 def restore_tree(node, progs_d):
     res = []
-    tmp_weight = progs_d[node]["weight"]
-    node_weight = tmp_weight
+    total_weight = progs_d[node]["weight"]
+    node_weight = total_weight
     tmp_sub = []
     for k in progs_d[node]["upper"]:
         tmp_sub.append(restore_tree(k, progs_d))
     if tmp_sub:
         for i in tmp_sub:
-            tmp_weight += i[2]
+            total_weight += i[2]
     res.append(node)
     res.append(node_weight)
-    res.append(tmp_weight)
+    res.append(total_weight)
     res.append(tmp_sub)
     return(res)
 
@@ -21,7 +21,7 @@ def search_wrong(tree, diff):
         weights.append(k[2])
     tmp_weights = weights.copy()
     weights.sort()
-    if weights[0] != weights[len(weights) - 1]:
+    if weights and (weights[0] != weights[len(weights) - 1]):
         if weights[0] != weights[len(weights) // 2]:
             wrong_weight = weights[0]
         else:
