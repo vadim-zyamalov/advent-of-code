@@ -22,7 +22,7 @@ def count_dist(pos):
 
 
 def process_path(path):
-    pos = [0, 0]
+    pos : list[float] = [0, 0]
     max_dist = 0
     for step in path:
         match step:
@@ -44,7 +44,6 @@ def process_path(path):
                 pos[1] -= 0.5
         max_dist = max(max_dist, count_dist(pos.copy()))
     return pos, int(max_dist)
-
 
 
 with open("./input.txt", "r", encoding="utf-8") as f:
