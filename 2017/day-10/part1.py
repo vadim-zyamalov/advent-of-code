@@ -1,15 +1,13 @@
 from functools import reduce
 
 
-def process_list(length):
-    global POS
-    global SKIP
-    end_pos = (POS + length - 1) % LEN
+def process_list(length, list_seq, pos, skip):
+    LEN = len(list_seq)
+    end_pos = (pos + length - 1) % LEN
     for i in range(length // 2):
-        LIST[(POS + i) % LEN], LIST[(end_pos - i) % LEN] = \
-            LIST[(end_pos - i) % LEN], LIST[(POS + i) % LEN]
-    POS += length + SKIP
-    SKIP += 1
+        list_seq[(pos + i) % LEN], list_seq[(end_pos - i) % LEN] = \
+            list_seq[(end_pos - i) % LEN], list_seq[(pos + i) % LEN]
+    return list_seq, pos + length + skip, skip + 1
 
 
 with open("./input.txt", "r", encoding="utf-8") as f:
@@ -19,23 +17,21 @@ with open("./input.txt", "r", encoding="utf-8") as f:
     PROG2.extend([17, 31, 73, 47, 23])
 
 LIST = [i for i in range(256)]
-LEN = len(LIST)
 POS = 0
 SKIP = 0
 
 for l in PROG1:
-    process_list(l)
+    LIST, POS, SKIP = process_list(l, LIST, POS, SKIP)
 
 print(f"Part 1: {LIST[0] * LIST[1]}")
 
 LIST = [i for i in range(256)]
-LEN = len(LIST)
 POS = 0
 SKIP = 0
 
 for i in range(64):
     for l in PROG2:
-        process_list(l)
+        LIST, POS, SKIP = process_list(l, LIST, POS, SKIP)
 
 res = []
 
