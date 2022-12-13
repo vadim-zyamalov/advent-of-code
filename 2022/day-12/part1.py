@@ -1,4 +1,5 @@
 import time
+import heapq as heap
 
 def get_start_finish(grid):
     start, finish = None, None
@@ -48,21 +49,19 @@ def possible_moves_rev(r, c, grid):
 
 
 def dijkstra(start, finish, grid):
-    queue : list[tuple[tuple, int]] = [(start, 0)]
+    queue : list[tuple[tuple, int]] = [(0, start)]
     visited = {}
-    path = float("inf")
 
     while len(queue) > 0:
-        q_state, q_path = queue.pop()
+        q_path, q_state = heap.heappop(queue)
         if q_state == finish:
-            path = min(path, q_path)
+            return q_path
         if (q_state in visited) and (visited[q_state] <= q_path):
             continue
         visited[q_state] = q_path
         for dr, dc in possible_moves(q_state[0], q_state[1], grid):
-            queue.append(((q_state[0] + dr, q_state[1] + dc), q_path + 1))
-
-    return path
+            heap.heappush(queue, (q_path + 1, (q_state[0] + dr, q_state[1] + dc)))
+    return float("inf")
 
 
 def dijkstra_rev(finish, grid):
@@ -111,10 +110,15 @@ print(f"  Elapsed in {t1 - t0:3.2f} sec.")
 
 path = float("inf")
 t0 = time.time()
-# for r in range(len(MAP)):
-#     for c in range(len(MAP[0])):
-#         if MAP[r][c] == "a":
-#             path = min(path, dijkstra((r, c), f, MAP))
+for r in range(len(MAP)):
+    for c in range(len(MAP[0])):
+        if MAP[r][c] == "a":
+            path = min(path, dijkstra((r, c), f, MAP))
+t1 = time.time()
+print(f"Part 2: {path}")
+print(f"  Elapsed in {t1 - t0:3.2f} sec.")
+
+t0 = time.time()
 dist, path = dijkstra_rev(f, MAP)
 t1 = time.time()
 print(f"Part 1: {dist[s[0]][s[1]]}")
