@@ -9,10 +9,6 @@ MOVES = [(-1, 0),
          (0, 1)]
 
 
-def check_still(elves, nx_elves):
-    return all(elf in nx_elves for elf in elves)
-
-
 def check_move(pos, dir, elves):
     match dir:
         case "N":
@@ -48,14 +44,14 @@ def cycle(elves, i):
         else:
             dx, dy = 0, 0
             for c in range(4):
-                if check_move(elf, CHECKS[(i % 4 + c) % 4], elves):
-                    dx, dy = MOVES[(i % 4 + c) % 4]
+                if check_move(elf, CHECKS[(i + c) % 4], elves):
+                    dx, dy = MOVES[(i + c) % 4]
                     break
             nx_elf = (elf[0] + dx, elf[1] + dy)
             nx_pos[elf] = nx_elf
-    
+
     filter_pos = Counter(nx_pos.values())
-    
+
     moved = 0
     for elf, nx_elf in nx_pos.items():
         if (filter_pos[nx_elf] == 1):
