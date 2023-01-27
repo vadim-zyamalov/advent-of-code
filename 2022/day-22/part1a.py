@@ -225,7 +225,7 @@ def process(prog, cube):
     return (x, y), dir, score
 
 
-terr, prog = read_data("./input.txt")
+terr, prog = read_data("../../_inputs/2022/day-22/input.txt")
 C1 = Cube(terr)
 res_pos, res_dir, res_score = process(prog, C1)
 print(f"Part 2: {res_score}")
