@@ -5,7 +5,7 @@ def move(stacks, start, finish, n):
     stacks[finish] = stacks[finish] + tmp
 
 
-with open("./input.txt", "r", encoding="utf8") as f:
+with open("../../_inputs/2022/day-05/input.txt", "r", encoding="utf8") as f:
     tmp = []
     for line in f:
         if line.strip() == "":

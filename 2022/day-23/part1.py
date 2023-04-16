@@ -93,7 +93,7 @@ def count_empty(elves):
 
 ELVES = []
 
-with open("./input.txt", "r", encoding="utf8") as f:
+with open("../../_inputs/2022/day-23/input.txt", "r", encoding="utf8") as f:
     row = -1
     for line in f:
         row += 1

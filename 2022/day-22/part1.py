@@ -170,7 +170,7 @@ FACES = [(0, 1),
          (0, -1),
          (-1, 0)]
 
-with open("./input.txt", "r", encoding="utf8") as f:
+with open("../../_inputs/2022/day-22/input.txt", "r", encoding="utf8") as f:
     row = -1
     for line in f:
         row += 1

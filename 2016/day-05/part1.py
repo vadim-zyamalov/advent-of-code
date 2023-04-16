@@ -1,6 +1,6 @@
 import hashlib
 
-with open("./input.txt", "r", encoding="utf-8") as f:
+with open("../../_inputs/2016/day-05/input.txt", "r", encoding="utf-8") as f:
     puzzle = f.readline().strip()
 
 nonce = 0

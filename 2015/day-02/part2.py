@@ -1,6 +1,6 @@
 answer = 0
 
-with open("input.txt", "r", encoding="utf-8") as f:
+with open("../../_inputs/2015/day-02/input.txt", "r", encoding="utf-8") as f:
     for present in f:
         dims = [int(i) for i in present.strip().split("x")]
         dims.sort()

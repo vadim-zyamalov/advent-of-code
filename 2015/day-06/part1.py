@@ -2,7 +2,7 @@ matrix = []
 for i in range(1000):
     matrix.append([0] * 1000)
 
-with open("input.txt", "r", encoding="utf-8") as f:
+with open("../../_inputs/2015/day-06/input.txt", "r", encoding="utf-8") as f:
     for line in f:
         command = line.strip().split(' ')
 

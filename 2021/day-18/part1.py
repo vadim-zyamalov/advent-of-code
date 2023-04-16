@@ -142,7 +142,7 @@ def num_add(n1, n2):
 
 
 numbers = []
-with open("input.txt", "r", encoding="utf-8") as f:
+with open("../../_inputs/2021/day-18/input.txt", "r", encoding="utf-8") as f:
     for line in f:
         if line.strip() == "":
             continue

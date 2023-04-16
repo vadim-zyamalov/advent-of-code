@@ -25,7 +25,7 @@ rules = {}
 pairs = {}
 molecule = ''
 
-with open("input.txt", "r", encoding="utf-8") as f:
+with open("../../_inputs/2021/day-14/input.txt", "r", encoding="utf-8") as f:
     molecule = f.readline().strip()
     for line in f:
         if line.strip() == '':

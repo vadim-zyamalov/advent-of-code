@@ -99,7 +99,7 @@ def solve_p2(yelled, counting, start):
 myelled = {}
 mmath = {}
 
-with open("./input.txt", "r", encoding="utf8") as f:
+with open("../../_inputs/2022/day-21/input.txt", "r", encoding="utf8") as f:
     for line in f:
         fst, snd = line.strip().split(": ")
         snd = snd.split()

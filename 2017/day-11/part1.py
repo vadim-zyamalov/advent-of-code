@@ -46,7 +46,7 @@ def process_path(path):
     return pos, int(max_dist)
 
 
-with open("./input.txt", "r", encoding="utf-8") as f:
+with open("../../_inputs/2017/day-11/input.txt", "r", encoding="utf-8") as f:
     PATH = f.read().strip().split(",")
 
 POS, max_dist = process_path(PATH)

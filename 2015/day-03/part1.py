@@ -2,7 +2,7 @@ x, y = 0, 0
 houses = set()
 houses.add((x, y))
 
-with open("input.txt", "r", encoding="utf-8") as f:
+with open("../../_inputs/2015/day-03/input.txt", "r", encoding="utf-8") as f:
     while True:
         step = f.read(1)
         match step:

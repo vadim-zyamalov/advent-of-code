@@ -16,7 +16,7 @@ def next_row(data):
     return (result, safe_tiles)
 
 
-with open("./input.txt", "r", encoding="utf-8") as f:
+with open("../../_inputs/2016/day-18/input.txt", "r", encoding="utf-8") as f:
     START = f.readline().strip()
 
 answer = sum(1 for el in START if el == ".")

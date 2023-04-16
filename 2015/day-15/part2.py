@@ -41,7 +41,7 @@ def score(recipe, ingredients):
 
 
 t0 = time.time()
-with open("input.txt", "r", encoding="utf-8") as f:
+with open("../../_inputs/2015/day-15/input.txt", "r", encoding="utf-8") as f:
     index = 0
     for line in f:
         _, _, other = line.strip().partition(':')

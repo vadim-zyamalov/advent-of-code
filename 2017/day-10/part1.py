@@ -10,7 +10,7 @@ def process_list(length, list_seq, pos, skip):
     return list_seq, pos + length + skip, skip + 1
 
 
-with open("./input.txt", "r", encoding="utf-8") as f:
+with open("../../_inputs/2017/day-10/input.txt", "r", encoding="utf-8") as f:
     line = f.read().strip()
     PROG1 = [int(i) for i in line.split(",")]
     PROG2 = [ord(c) for c in line]

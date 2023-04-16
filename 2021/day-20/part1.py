@@ -54,7 +54,7 @@ def count_lights(image):
 
 PATTERN = ''
 
-with open("input.txt", "r", encoding="utf-8") as f:
+with open("../../_inputs/2021/day-20/input.txt", "r", encoding="utf-8") as f:
     line = f.readline().strip()
     while line != "":
         PATTERN += line

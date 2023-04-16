@@ -1,7 +1,7 @@
 ITEMS = [chr(i) for i in range(ord('a'), ord('z') + 1)] + \
     [chr(i) for i in range(ord("A"), ord("Z") + 1)]
 
-with open("./input.txt", "r", encoding="utf8") as f:
+with open("../../_inputs/2022/day-03/input.txt", "r", encoding="utf8") as f:
     res = 0
     for line in f:
         line = line.strip()
@@ -14,7 +14,7 @@ with open("./input.txt", "r", encoding="utf8") as f:
 
 print(f"Part 1: {res}")
 
-with open("./input.txt", "r", encoding="utf8") as f:
+with open("../../_inputs/2022/day-03/input.txt", "r", encoding="utf8") as f:
     res = 0
     for line1, line2, line3 in zip(f, f, f):
         line1 = line1.strip()

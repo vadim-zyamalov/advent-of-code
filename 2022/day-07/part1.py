@@ -55,7 +55,7 @@ def count(tree,
 
 COMMS = []
 limit = 30000000
-with open("./input.txt", "r", encoding="utf8") as f:
+with open("../../_inputs/2022/day-07/input.txt", "r", encoding="utf8") as f:
     for line in f:
         COMMS.append(line.strip())
 

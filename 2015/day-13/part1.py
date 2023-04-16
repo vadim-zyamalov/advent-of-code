@@ -37,7 +37,7 @@ def calc(variant, preferences):
 
 preferences = {}
 
-with open("input.txt", "r", encoding="utf-8") as f:
+with open("../../_inputs/2015/day-13/input.txt", "r", encoding="utf-8") as f:
     for line in f:
         string = line.strip().strip('.').split()
         if string[0] not in preferences:

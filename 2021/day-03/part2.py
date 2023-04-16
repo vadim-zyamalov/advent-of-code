@@ -14,7 +14,7 @@ def filter(llist, pos, most):
 
 
 diag = []
-with open("input.txt", "r", encoding="utf-8") as f:
+with open("../../_inputs/2021/day-03/input.txt", "r", encoding="utf-8") as f:
     for line in f:
         diag.append(line.strip())
 

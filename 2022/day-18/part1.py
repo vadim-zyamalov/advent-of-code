@@ -42,7 +42,7 @@ minx, maxx = float("inf"), float("-inf")
 miny, maxy = float("inf"), float("-inf")
 minz, maxz = float("inf"), float("-inf")
 
-with open("./input.txt", "r", encoding="utf8") as f:
+with open("../../_inputs/2022/day-18/input.txt", "r", encoding="utf8") as f:
     for line in f:
         cur_block = tuple(int(x) for x in line.strip().split(","))
         blocks.append(cur_block)

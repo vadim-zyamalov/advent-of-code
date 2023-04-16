@@ -1,6 +1,6 @@
 elves = []
 
-with open("./input.txt", "r", encoding="utf8") as f:
+with open("../../_inputs/2022/day-01/input.txt", "r", encoding="utf8") as f:
     cur_elf = []
     for line in f:
         if line.strip() == "":

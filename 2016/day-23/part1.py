@@ -55,7 +55,7 @@ REGISTERS = {'a': 7,
              'c': 0,
              'd': 0}
 
-with open("./input.txt", "r", encoding="utf-8") as f:
+with open("../../_inputs/2016/day-23/input.txt", "r", encoding="utf-8") as f:
     for line in f:
         if line.strip() == "":
             continue
@@ -72,7 +72,7 @@ REGISTERS = {'a': 12,
              'c': 0,
              'd': 0}
 
-with open("./input.txt", "r", encoding="utf-8") as f:
+with open("../../_inputs/2016/day-23/input.txt", "r", encoding="utf-8") as f:
     for line in f:
         if line.strip() == "":
             continue

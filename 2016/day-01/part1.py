@@ -1,4 +1,4 @@
-with open("input.txt", "r", encoding="utf-8") as f:
+with open("../../_inputs/2016/day-01/input.txt", "r", encoding="utf-8") as f:
     PATH = f.readline().strip().split(", ")
 
 DIR = [(1, 0), (0, 1), (-1, 0), (0, -1)]

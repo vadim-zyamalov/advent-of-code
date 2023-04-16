@@ -1,4 +1,4 @@
-with open("./input.txt", "r", encoding="utf-8") as f:
+with open("../../_inputs/2017/day-04/input.txt", "r", encoding="utf-8") as f:
     res = 0
     for line in f:
         words_l = line.strip().split()
@@ -8,7 +8,7 @@ with open("./input.txt", "r", encoding="utf-8") as f:
 
 print(f"Part 1: {res}")
 
-with open("./input.txt", "r", encoding="utf-8") as f:
+with open("../../_inputs/2017/day-04/input.txt", "r", encoding="utf-8") as f:
     res = 0
     for line in f:
         words_l = line.strip().split()

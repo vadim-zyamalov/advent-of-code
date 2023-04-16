@@ -1,4 +1,4 @@
-with open("./input.txt", "r", encoding="utf8") as f:
+with open("../../_inputs/2022/day-02/input.txt", "r", encoding="utf8") as f:
     score = 0
     for line in f:
         draw = line.strip().split()
@@ -13,7 +13,7 @@ with open("./input.txt", "r", encoding="utf8") as f:
 
 print(f"Part 1: {score}")
 
-with open("./input.txt", "r", encoding="utf8") as f:
+with open("../../_inputs/2022/day-02/input.txt", "r", encoding="utf8") as f:
     score = 0
     for line in f:
         draw = line.strip().split()

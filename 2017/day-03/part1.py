@@ -14,7 +14,7 @@ def expand(grid):
     return result
 
 
-with open("./input.txt", "r", encoding="utf-8") as f:
+with open("../../_inputs/2017/day-03/input.txt", "r", encoding="utf-8") as f:
     number = int(f.readline().strip())
 
 base = 1

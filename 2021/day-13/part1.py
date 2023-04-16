@@ -36,7 +36,7 @@ def fold(rule, dots):
     return list(set(new_dots))
 
 
-with open("input.txt", "r", encoding="utf-8") as f:
+with open("../../_inputs/2021/day-13/input.txt", "r", encoding="utf-8") as f:
     for line in f:
         if line.strip() == '':
             continue

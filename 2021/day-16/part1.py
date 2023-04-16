@@ -109,7 +109,7 @@ def execute(packet):
     return answer
 
 
-with open("input.txt", "r", encoding="utf-8") as f:
+with open("../../_inputs/2021/day-16/input.txt", "r", encoding="utf-8") as f:
     message = f.readline().strip()
 
 bmessage = hex_to_bin(message)

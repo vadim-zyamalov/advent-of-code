@@ -97,7 +97,7 @@ def dijkstra_rev(finish, grid):
 
 MAP = []
 
-with open("./input.txt", "r", encoding="utf8") as f:
+with open("../../_inputs/2022/day-12/input.txt", "r", encoding="utf8") as f:
     for line in f:
         MAP.append(list(line.strip()))
 

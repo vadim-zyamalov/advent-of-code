@@ -1,6 +1,6 @@
 target = {}
 
-with open("input.txt", "r", encoding="utf-8") as f:
+with open("../../_inputs/2021/day-17/input.txt", "r", encoding="utf-8") as f:
     tmp = f.readline().strip().split(": ")
     tmp = tmp[1].split(", ")
     tmp_x = tmp[0][2:].split("..")

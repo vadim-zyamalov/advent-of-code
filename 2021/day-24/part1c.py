@@ -6,7 +6,7 @@ PAIRS = []
 
 digit = 0
 i = 0
-with open("./input.txt", "r", encoding="utf-8") as f:
+with open("../../_inputs/2021/day-24/input.txt", "r", encoding="utf-8") as f:
     tmp_a = -1
     tmp_b = -1
     tmp_c = -1

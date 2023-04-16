@@ -7,7 +7,7 @@ BUTTONS2 = [[None, None, "1", None, None],
             [None, "A", "B", "C", None],
             [None, None, "D", None, None]]
 
-with open("input.txt", "r", encoding="utf-8") as f:
+with open("../../_inputs/2016/day-02/input.txt", "r", encoding="utf-8") as f:
     instructions = []
     for line in f:
         if line.strip() == "":

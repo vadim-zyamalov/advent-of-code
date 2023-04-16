@@ -1,7 +1,7 @@
 prev = None
 answer = 0
 
-with open("input.txt", "r", encoding="utf-8") as f:
+with open("../../_inputs/2021/day-01/input.txt", "r", encoding="utf-8") as f:
     for i in f:
         if prev and (prev < int(i)):
             answer += 1

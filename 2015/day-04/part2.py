@@ -1,6 +1,6 @@
 import hashlib
 
-with open("input.txt", "r", encoding="utf-8") as f:
+with open("../../_inputs/2015/day-04/input.txt", "r", encoding="utf-8") as f:
     puzzle = f.read()
 
 puzzle = puzzle.strip()

@@ -1,6 +1,6 @@
 deers = {}
 
-with open("input.txt", "r", encoding="utf-8") as f:
+with open("../../_inputs/2015/day-14/input.txt", "r", encoding="utf-8") as f:
     for line in f:
         string = line.strip().strip('.').split()
         deers[string[0]] = {'speed': int(string[3]),

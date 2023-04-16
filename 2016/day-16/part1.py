@@ -13,7 +13,7 @@ def checksum(data):
     return cur
 
 
-with open("./input.txt", "r", encoding="utf-8") as f:
+with open("../../_inputs/2016/day-16/input.txt", "r", encoding="utf-8") as f:
     START = f.readline().strip()
 
 # Part 1

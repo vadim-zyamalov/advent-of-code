@@ -35,7 +35,7 @@ def search_wrong(tree, diff):
 
 PROGS = {}
 
-with open("./input.txt", "r", encoding="utf-8") as f:
+with open("../../_inputs/2017/day-07/input.txt", "r", encoding="utf-8") as f:
     for line in f:
         tmp = line.strip().split()
         tmp[1] = tmp[1].strip("()")

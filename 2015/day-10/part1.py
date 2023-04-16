@@ -19,7 +19,7 @@ def look_and_say_fast(string):
 
 parts = {1: 40, 2: 50}
 for part, val in parts.items():
-    with open("input.txt", "r", encoding="utf-8") as f:
+    with open("../../_inputs/2015/day-10/input.txt", "r", encoding="utf-8") as f:
         line = f.read()
         line = line.strip()
 

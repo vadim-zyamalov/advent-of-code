@@ -54,7 +54,7 @@ def check(l, r):
 
 packets = []
 
-with open("./input.txt", "r", encoding="utf8") as f:
+with open("../../_inputs/2022/day-13/input.txt", "r", encoding="utf8") as f:
     res = 0
     num = 0
     for line1, line2 in zip(f, f):

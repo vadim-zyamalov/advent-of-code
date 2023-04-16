@@ -3,7 +3,7 @@ import sys
 x = 0
 y = 0
 
-with open("input.txt", "r") as f:
+with open("../../_inputs/2021/day-02/input.txt", "r") as f:
     for i in f:
         com, _, val = i.strip().partition(' ')
         match com:
