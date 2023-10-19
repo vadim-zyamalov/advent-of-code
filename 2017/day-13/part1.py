@@ -28,6 +28,10 @@ def solve_p1(map):
     return result, caught
 
 
+def solve_p1a(map):
+    return sum(k * i[1] for k, i in map.items() if k % (2 * (i[1] - 1)) == 0)
+
+
 def solve_p2(map):
     result = 0
     cmap = copy.deepcopy(map)
@@ -46,5 +50,5 @@ if __name__ == "__main__":
             layer, width = line.strip().split(":")
             scans[int(layer)] = [0, int(width), 1]
 
-    print(f"Part 1: {solve_p1(scans)[0]}")
+    print(f"Part 1: {solve_p1a(scans)}")
     print(f"Part 2: {solve_p2(scans)}")
