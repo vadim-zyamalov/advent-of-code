@@ -54,7 +54,7 @@ def qe(presents):
 
 with open("../../_inputs/2015/day-24/input.txt", "r", encoding="utf-8") as f:
     for line in f:
-        if line.strip() == '':
+        if line.strip() == "":
             continue
         presents.append(int(line.strip()))
         presents.sort(reverse=True)

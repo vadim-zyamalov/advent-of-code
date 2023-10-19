@@ -4,21 +4,21 @@ for i in range(1000):
 
 with open("../../_inputs/2015/day-06/input.txt", "r", encoding="utf-8") as f:
     for line in f:
-        command = line.strip().split(' ')
+        command = line.strip().split(" ")
 
         if len(command) > 4:
             command = command[1:]
 
-        start = [int(i) for i in command[1].split(',')]
-        finish = [int(i) for i in command[3].split(',')]
+        start = [int(i) for i in command[1].split(",")]
+        finish = [int(i) for i in command[3].split(",")]
         action = command[0]
 
         for i in range(start[0], finish[0] + 1):
             for j in range(start[1], finish[1] + 1):
                 match action:
-                    case 'toggle':
+                    case "toggle":
                         matrix[i][j] += 2
-                    case 'on':
+                    case "on":
                         matrix[i][j] += 1
                     case _:
                         matrix[i][j] = max(matrix[i][j] - 1, 0)

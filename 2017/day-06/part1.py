@@ -10,7 +10,7 @@ print(CELLS)
 
 res = 0
 
-while (CELLS not in STATES):
+while CELLS not in STATES:
     res += 1
     # print(CELLS)
     STATES.append(CELLS.copy())

@@ -17,10 +17,10 @@ def JF2(n) -> int:
     if n == 1:
         return 1
     lower = int(log(n - 1) / log(3))
-    if 3 ** lower < n <= 2 * 3 ** lower:
-        return n - 3 ** lower
+    if 3**lower < n <= 2 * 3**lower:
+        return n - 3**lower
     else:
-        return 2 * n - 3 * 3 ** lower
+        return 2 * n - 3 * 3**lower
 
 
 def circle_steal(elf, length, circle):

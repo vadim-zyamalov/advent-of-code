@@ -3,10 +3,7 @@ from itertools import product
 from collections import Counter
 
 CHECKS = ["N", "S", "W", "E"]
-MOVES = [(-1, 0),
-         (1, 0),
-         (0, -1),
-         (0, 1)]
+MOVES = [(-1, 0), (1, 0), (0, -1), (0, 1)]
 
 
 def check_move(pos, dir, elves):
@@ -23,16 +20,17 @@ def check_move(pos, dir, elves):
         case _:
             dx = [-1, 0, 1]
             dy = [1]
-    return all((pos[0] + x, pos[1] + y) not in elves
-               for x, y in product(dx, dy))
+    return all((pos[0] + x, pos[1] + y) not in elves for x, y in product(dx, dy))
 
 
 def check_lone(pos, elves):
     dx = [-1, 0, 1]
     dy = [-1, 0, 1]
-    return all((pos[0] + x, pos[1] + y) not in elves
-               for x, y in product(dx, dy)
-               if (x, y) != (0, 0))
+    return all(
+        (pos[0] + x, pos[1] + y) not in elves
+        for x, y in product(dx, dy)
+        if (x, y) != (0, 0)
+    )
 
 
 def cycle(elves, i):
@@ -54,7 +52,7 @@ def cycle(elves, i):
 
     moved = 0
     for elf, nx_elf in nx_pos.items():
-        if (filter_pos[nx_elf] == 1):
+        if filter_pos[nx_elf] == 1:
             elves.remove(elf)
             elves.add(nx_elf)
             moved += 1
@@ -83,7 +81,7 @@ def count_empty(elves):
     max_x = max(elf[0] for elf in elves)
     max_y = max(elf[1] for elf in elves)
 
-    return ((max_x - min_x + 1) * (max_y - min_y + 1) - len(elves))
+    return (max_x - min_x + 1) * (max_y - min_y + 1) - len(elves)
 
 
 ELVES = set()

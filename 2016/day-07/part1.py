@@ -1,25 +1,25 @@
 def check_chunk_tls(chunk):
     for i in range(len(chunk) - 3):
-        if (chunk[i] == chunk[i+3]) and \
-           (chunk[i+1] == chunk[i+2]) and \
-           (chunk[i] != chunk[i+1]):
+        if (
+            (chunk[i] == chunk[i + 3])
+            and (chunk[i + 1] == chunk[i + 2])
+            and (chunk[i] != chunk[i + 1])
+        ):
             return True
     return False
 
 
 def check_address_tls(allowed, prohibited):
-    return any(check_chunk_tls(el) for el in allowed) and \
-        all(not check_chunk_tls(el) for el in prohibited)
+    return any(check_chunk_tls(el) for el in allowed) and all(
+        not check_chunk_tls(el) for el in prohibited
+    )
 
 
 def check_address_ssl(allowed, prohibited):
     for chunk_a in allowed:
         for i in range(len(chunk_a) - 2):
-            if (chunk_a[i] == chunk_a[i+2]) and \
-               (chunk_a[i] != chunk_a[i+1]):
-                test = str(chunk_a[i+1] +
-                           chunk_a[i] +
-                           chunk_a[i+1])
+            if (chunk_a[i] == chunk_a[i + 2]) and (chunk_a[i] != chunk_a[i + 1]):
+                test = str(chunk_a[i + 1] + chunk_a[i] + chunk_a[i + 1])
                 for chunk_b in prohibited:
                     if test in chunk_b:
                         return True

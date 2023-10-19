@@ -1,16 +1,15 @@
 def mincoord(tiles, dim, rc):
-    return min(d[dim] for d in tiles if d[1-dim] == rc)
+    return min(d[dim] for d in tiles if d[1 - dim] == rc)
 
 
 def maxcoord(tiles, dim, rc):
-    return max(d[dim] for d in tiles if d[1-dim] == rc)
+    return max(d[dim] for d in tiles if d[1 - dim] == rc)
 
 
 def step_p1(pos, face, tiles, walls, faces):
-    nx_pos = (pos[0] + faces[face][0],
-              pos[1] + faces[face][1])
-    if (nx_pos in tiles):
-        if (nx_pos not in walls):
+    nx_pos = (pos[0] + faces[face][0], pos[1] + faces[face][1])
+    if nx_pos in tiles:
+        if nx_pos not in walls:
             return nx_pos
         return pos
     else:
@@ -109,10 +108,9 @@ def wrap_cube(face, pos, m):
 
 
 def step_p2(pos, face, tiles, walls, faces, m):
-    nx_pos = (pos[0] + faces[face][0],
-              pos[1] + faces[face][1])
-    if (nx_pos in tiles):
-        if (nx_pos not in walls):
+    nx_pos = (pos[0] + faces[face][0], pos[1] + faces[face][1])
+    if nx_pos in tiles:
+        if nx_pos not in walls:
             return nx_pos, face
         return pos, face
     else:
@@ -165,10 +163,7 @@ TILES = set()
 WALLS = set()
 SCRIPT = []
 
-FACES = [(0, 1),
-         (1, 0),
-         (0, -1),
-         (-1, 0)]
+FACES = [(0, 1), (1, 0), (0, -1), (-1, 0)]
 
 with open("../../_inputs/2022/day-22/input.txt", "r", encoding="utf8") as f:
     row = -1

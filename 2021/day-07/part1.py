@@ -1,5 +1,5 @@
 with open("../../_inputs/2021/day-07/input.txt", "r", encoding="utf-8") as f:
-    crabs = [int(i) for i in f.readline().strip().split(',')]
+    crabs = [int(i) for i in f.readline().strip().split(",")]
 
 answer = None
 for i in range(min(crabs), max(crabs) + 1):

@@ -44,8 +44,8 @@ t0 = time.time()
 with open("../../_inputs/2015/day-15/input.txt", "r", encoding="utf-8") as f:
     index = 0
     for line in f:
-        _, _, other = line.strip().partition(':')
-        entries = [int(i.strip().split()[1]) for i in other.strip().split(',')]
+        _, _, other = line.strip().partition(":")
+        entries = [int(i.strip().split()[1]) for i in other.strip().split(",")]
         ingredients.append(entries)
 
 answer = 0
@@ -54,4 +54,4 @@ for s in spoons_correct(len(ingredients), 100):
     answer = tmp if answer < tmp else answer
 
 print(f"Part 2: {answer}".format(answer))
-print(f'elapsed: {time.time() - t0}')
+print(f"elapsed: {time.time() - t0}")

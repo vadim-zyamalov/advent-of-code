@@ -1,5 +1,6 @@
 import time
 
+
 def top_unit(grid):
     res = 0
     for x, _ in grid:
@@ -22,9 +23,11 @@ def move_block(block, dir, grid):
         case _:
             dx, dy = -1, 0
     tmp_block = [(x + dx, y + dy) for x, y in block]
-    if any((x, y) in grid for x, y in tmp_block) or \
-       any((y < 0) or (y >= 7) for _, y in tmp_block) or \
-       any(x < 1 for x, _ in tmp_block):
+    if (
+        any((x, y) in grid for x, y in tmp_block)
+        or any((y < 0) or (y >= 7) for _, y in tmp_block)
+        or any(x < 1 for x, _ in tmp_block)
+    ):
         return False
     for i in range(len(block)):
         block[i] = tmp_block[i]
@@ -39,11 +42,11 @@ def cycle(flow, block, grid):
 
 
 BLOCKS = [
-    [(0,0), (0,1), (0,2), (0,3)],
-    [(0,1), (1,0), (1,1), (1,2), (2,1)],
-    [(0,0), (0,1), (0,2), (1,2), (2,2)],
-    [(0,0), (1,0), (2,0), (3,0)],
-    [(0,0), (0,1), (1,0), (1,1)]
+    [(0, 0), (0, 1), (0, 2), (0, 3)],
+    [(0, 1), (1, 0), (1, 1), (1, 2), (2, 1)],
+    [(0, 0), (0, 1), (0, 2), (1, 2), (2, 2)],
+    [(0, 0), (1, 0), (2, 0), (3, 0)],
+    [(0, 0), (0, 1), (1, 0), (1, 1)],
 ]
 
 with open("../../_inputs/2022/day-17/input.txt", "r", encoding="utf8") as f:

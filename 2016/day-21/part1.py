@@ -6,22 +6,17 @@ INPUT2 = "fbgdceah"
 
 COMMANDS = []
 
-BREVERSE = {0: 1,
-            1: 1,
-            2: 6,
-            3: 2,
-            4: 7,
-            5: 3,
-            6: 0,
-            7: 4}
+BREVERSE = {0: 1, 1: 1, 2: 6, 3: 2, 4: 7, 5: 3, 6: 0, 7: 4}
 
 
 def pswap_str(pos_0, pos_1, data):
-    return data[:pos_0] + \
-        data[pos_1] + \
-        data[pos_0+1:pos_1] + \
-        data[pos_0] + \
-        data[pos_1+1:]
+    return (
+        data[:pos_0]
+        + data[pos_1]
+        + data[pos_0 + 1 : pos_1]
+        + data[pos_0]
+        + data[pos_1 + 1 :]
+    )
 
 
 def lswap_str(letter_0, letter_1, data):
@@ -57,20 +52,14 @@ def rev_brotate_str(letter, data):
 
 def reverse_str(pos_0, pos_1, data):
     if pos_0 != 0:
-        return data[:pos_0] + \
-            data[pos_1:pos_0-1:-1] + \
-            data[pos_1+1:]
-    return data[:pos_0] + \
-        data[pos_1::-1] + \
-        data[pos_1+1:]
+        return data[:pos_0] + data[pos_1 : pos_0 - 1 : -1] + data[pos_1 + 1 :]
+    return data[:pos_0] + data[pos_1::-1] + data[pos_1 + 1 :]
 
 
 def move_str(pos_0, pos_1, data):
     letter = data[pos_0]
-    tmp_data = data[:pos_0] + data[pos_0+1:]
-    return tmp_data[:pos_1] + \
-        letter + \
-        tmp_data[pos_1:]
+    tmp_data = data[:pos_0] + data[pos_0 + 1 :]
+    return tmp_data[:pos_1] + letter + tmp_data[pos_1:]
 
 
 with open("../../_inputs/2016/day-21/input.txt", "r", encoding="utf-8") as f:

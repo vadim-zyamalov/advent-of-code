@@ -1,9 +1,6 @@
 import time
 
-REGISTERS = {"w": 0,
-             "x": 0,
-             "y": 0,
-             "z": 0}
+REGISTERS = {"w": 0, "x": 0, "y": 0, "z": 0}
 
 PROGRAM = []
 
@@ -34,9 +31,11 @@ def process(data, program, sequentially=False):
     for command in program:
         com = command[0]
         arg_0 = command[1]
-        arg_1 = command[2] \
-            if not command[2] or isinstance(command[2], int) \
+        arg_1 = (
+            command[2]
+            if not command[2] or isinstance(command[2], int)
             else REGISTERS[command[2]]
+        )
         if com == "inp":
             REGISTERS[arg_0] = next(data_gen)
         elif com == "add":
@@ -67,12 +66,12 @@ with open("../../_inputs/2021/day-24/input.txt", "r", encoding="utf-8") as f:
                 PROGRAM.append((tmp[0], tmp[1], tmp[2]))
 
 t_0 = time.time()
-START = int('9' * 14)
-FINISH = int('1' * 14)
+START = int("9" * 14)
+FINISH = int("1" * 14)
 for i in range(START, FINISH - 1, -1):
     if i % 10000 == 1:
-        print(i, end='\r')
-    if '0' in str(i):
+        print(i, end="\r")
+    if "0" in str(i):
         continue
     process(i, PROGRAM, True)
     if REGISTERS["z"] == 0:

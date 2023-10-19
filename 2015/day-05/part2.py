@@ -7,7 +7,7 @@ with open("../../_inputs/2015/day-05/input.txt", "r", encoding="utf-8") as f:
         if len(tertia) == 0:
             continue
         for i in range(len(secunda) - 2):
-            if secunda[i] in secunda[(i + 2):]:
+            if secunda[i] in secunda[(i + 2) :]:
                 answer += 1
                 break
 

@@ -10,8 +10,7 @@ for step in PATH:
         FACE = (FACE + 1) % 4
     else:
         FACE = (FACE - 1) % 4
-    pos = (pos[0] + DIR[FACE][0] * int(step[1:]),
-           pos[1] + DIR[FACE][1] * int(step[1:]))
+    pos = (pos[0] + DIR[FACE][0] * int(step[1:]), pos[1] + DIR[FACE][1] * int(step[1:]))
 
 print(f"Part 1: {abs(pos[0]) + abs(pos[1])}")
 
@@ -25,8 +24,7 @@ for step in PATH:
     else:
         FACE = (FACE - 1) % 4
     for i in range(1, int(step[1:]) + 1):
-        pos = (pos[0] + DIR[FACE][0],
-               pos[1] + DIR[FACE][1])
+        pos = (pos[0] + DIR[FACE][0], pos[1] + DIR[FACE][1])
         if pos in visited:
             STOP = True
             break

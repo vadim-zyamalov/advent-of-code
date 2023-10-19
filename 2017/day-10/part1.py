@@ -5,8 +5,10 @@ def process_list(length, list_seq, pos, skip):
     LEN = len(list_seq)
     end_pos = (pos + length - 1) % LEN
     for i in range(length // 2):
-        list_seq[(pos + i) % LEN], list_seq[(end_pos - i) % LEN] = \
-            list_seq[(end_pos - i) % LEN], list_seq[(pos + i) % LEN]
+        list_seq[(pos + i) % LEN], list_seq[(end_pos - i) % LEN] = (
+            list_seq[(end_pos - i) % LEN],
+            list_seq[(pos + i) % LEN],
+        )
     return list_seq, pos + length + skip, skip + 1
 
 
@@ -36,7 +38,7 @@ for i in range(64):
 res = []
 
 for i in range(16):
-    res.append(reduce(lambda x, y: x ^ y, LIST[(16 * i):(16 * (i + 1))]))
+    res.append(reduce(lambda x, y: x ^ y, LIST[(16 * i) : (16 * (i + 1))]))
 
-res_str = ''.join(f"{i:02x}" for i in res)
+res_str = "".join(f"{i:02x}" for i in res)
 print(f"Part 2: {res_str}")

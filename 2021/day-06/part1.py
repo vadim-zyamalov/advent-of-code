@@ -8,7 +8,7 @@ def step(fishes):
 
 
 with open("../../_inputs/2021/day-06/input.txt", "r", encoding="utf-8") as f:
-    tmp = [int(i) for i in f.readline().strip().split(',')]
+    tmp = [int(i) for i in f.readline().strip().split(",")]
 
 steps = {1: 80, 2: 256}
 

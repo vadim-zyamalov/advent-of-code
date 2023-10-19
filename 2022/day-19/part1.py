@@ -7,23 +7,14 @@ def next_pos(status, bp):
 
     for r in bp:
         if all(ores[i] >= bp[r][i] for i in range(len(ores))):
-            nx_robots = robots[:r] + \
-                (robots[r] + 1,) + \
-                robots[(r+1):]
+            nx_robots = robots[:r] + (robots[r] + 1,) + robots[(r + 1) :]
             nx_ores = tuple(ores[i] - bp[r][i] + robots[i] for i in range(len(ores)))
-            nx_pos.append(
-                (nx_robots,
-                 nx_ores)
-            )
+            nx_pos.append((nx_robots, nx_ores))
 
     nx_ores = tuple(ores[i] + robots[i] for i in range(len(ores)))
-    nx_pos.append(
-        (robots,
-         nx_ores)
-    )
+    nx_pos.append((robots, nx_ores))
 
     return nx_pos
-
 
 
 def dijkstra(bp, limit):
@@ -79,7 +70,7 @@ for bp in BLUEPRNT:
 print(f"Part 1: {res}")
 
 res = 1
-for bp in [1,2,3]:
+for bp in [1, 2, 3]:
     res *= dijkstra(BLUEPRNT[bp], 32)
 
 print(f"Part 2: {res}")

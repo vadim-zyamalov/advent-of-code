@@ -26,9 +26,11 @@ with open("./sample.txt", "r", encoding="utf8") as f:
 POS = list(range(len(NUMBERS)))
 
 MIXED = get_seq(NUMBERS, mix_seq(NUMBERS, POS))
-res = find_after_zero(MIXED, 1000) + \
-    find_after_zero(MIXED, 2000) + \
-    find_after_zero(MIXED, 3000)
+res = (
+    find_after_zero(MIXED, 1000)
+    + find_after_zero(MIXED, 2000)
+    + find_after_zero(MIXED, 3000)
+)
 print(f"Part 1: {res}")
 
 NUMBERS = [el * MAGIC for el in NUMBERS]
@@ -38,8 +40,9 @@ for i in range(10):
 
 MIXED = get_seq(NUMBERS, POS)
 
-res = find_after_zero(MIXED, 1000) + \
-    find_after_zero(MIXED, 2000) + \
-    find_after_zero(MIXED, 3000)
+res = (
+    find_after_zero(MIXED, 1000)
+    + find_after_zero(MIXED, 2000)
+    + find_after_zero(MIXED, 3000)
+)
 print(f"Part 2: {res}")
-

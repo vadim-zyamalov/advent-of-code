@@ -1,8 +1,7 @@
 def visible(r, c, forest):
     dimr, dimc = len(forest), len(forest[0])
 
-    if (r == 0) or (r == dimr - 1) or \
-       (c == 0) or (c == dimc - 1):
+    if (r == 0) or (r == dimr - 1) or (c == 0) or (c == dimc - 1):
         return 1
 
     res = 4
@@ -65,15 +64,14 @@ with open("../../_inputs/2022/day-08/input.txt", "r", encoding="utf8") as f:
         forest.append([int(i) for i in line.strip()])
 
 res = sum(
-    sum(
-        visible(j, i, forest) for i in range(len(forest[0]))
-    ) for j in range(len(forest)))
+    sum(visible(j, i, forest) for i in range(len(forest[0])))
+    for j in range(len(forest))
+)
 
 print(f"Part 1: {res}")
 
 res = max(
-    max(
-        score(j, i, forest) for i in range(len(forest[0]))
-    ) for j in range(len(forest)))
+    max(score(j, i, forest) for i in range(len(forest[0]))) for j in range(len(forest))
+)
 
 print(f"Part 1: {res}")

@@ -1,10 +1,10 @@
 replacements = []
-molecule = ''
+molecule = ""
 processed = set()
 
 
 def process(molecule, replacements, echo):
-    if molecule == 'e':
+    if molecule == "e":
         return 0
     length = len(molecule)
     pool = []
@@ -15,7 +15,7 @@ def process(molecule, replacements, echo):
             print("{}/{}".format(i, length))
         for fst, snd in replacements:
             if molecule[i:].startswith(snd):
-                r = molecule[:i] + fst + molecule[(i+len(snd)):]
+                r = molecule[:i] + fst + molecule[(i + len(snd)) :]
                 if r not in processed:
                     processed.add(r)
                     tmp = process(r, replacements, False)

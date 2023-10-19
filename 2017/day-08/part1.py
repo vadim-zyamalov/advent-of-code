@@ -1,5 +1,6 @@
 REGISTERS = {}
 
+
 def check_reg(reg, op, val):
     if reg not in REGISTERS:
         REGISTERS[reg] = 0
@@ -26,6 +27,7 @@ def apply_reg(reg, op, val):
             REGISTERS[reg] += val
         case "dec":
             REGISTERS[reg] -= val
+
 
 max_val = 0
 

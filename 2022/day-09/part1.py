@@ -1,6 +1,7 @@
 def sign(x):
     return 1 if x > 0 else -1 if x < 0 else 0
 
+
 def far(h, t):
     return (abs(h[0] - t[0]) > 1) or (abs(h[1] - t[1]) > 1)
 
@@ -39,7 +40,7 @@ with open("../../_inputs/2022/day-09/input.txt", "r", encoding="utf8") as f:
             tail = (tail[0] + dx, tail[1] + dy)
             visited.add(tail)
             for i in range(1, 10):
-                dx, dy = step(knots[i-1], knots[i])
+                dx, dy = step(knots[i - 1], knots[i])
                 knots[i] = (knots[i][0] + dx, knots[i][1] + dy)
             visited2.add(knots[9])
 

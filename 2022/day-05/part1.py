@@ -17,10 +17,10 @@ with open("../../_inputs/2022/day-05/input.txt", "r", encoding="utf8") as f:
     for k in lstacks:
         stacks[k] = []
     for i in range(len(tmp) - 2, -1, -1):
-        boxes = [tmp[i][j:j+4][1] for j in range(0, len(tmp[i]), 4)]
+        boxes = [tmp[i][j : j + 4][1] for j in range(0, len(tmp[i]), 4)]
         for j in range(len(boxes)):
             if boxes[j] != " ":
-                stacks[j+1].append(boxes[j])
+                stacks[j + 1].append(boxes[j])
     commands = []
     for line in f:
         tmp = line.strip().split()

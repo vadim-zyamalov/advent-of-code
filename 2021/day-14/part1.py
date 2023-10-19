@@ -27,15 +27,15 @@ def borders(molecule):
     return amax, amin
 
 
-molecule = ''
+molecule = ""
 rules = {}
 
 with open("sample.txt", "r", encoding="utf-8") as f:
     molecule = f.readline().strip()
     for line in f:
-        if line.strip() == '':
+        if line.strip() == "":
             continue
-        key, _, val = line.strip().partition(' -> ')
+        key, _, val = line.strip().partition(" -> ")
         rules[key] = val
 
 result = molecule

@@ -21,42 +21,41 @@ with open("../../_inputs/2022/day-11/input.txt", "r", encoding="utf8") as f:
                         "test": -1,
                         "true": -1,
                         "false": -1,
-                        "N": 0
+                        "N": 0,
                     }
             case "Starting":
-                monkeys[cur_monkey]["items"] = \
-                    [int(i) for i in snd.strip().split(",")]
+                monkeys[cur_monkey]["items"] = [int(i) for i in snd.strip().split(",")]
             case "Operation":
                 snd = snd.split()
                 match snd[3]:
                     case "+":
                         if snd[4] == "old":
-                            monkeys[cur_monkey]["oper"] = \
-                                lambda x: x + x
+                            monkeys[cur_monkey]["oper"] = lambda x: x + x
                         else:
-                            monkeys[cur_monkey]["oper"] = \
-                                (lambda p: lambda x: x + p)(int(snd[4]))
+                            monkeys[cur_monkey]["oper"] = (lambda p: lambda x: x + p)(
+                                int(snd[4])
+                            )
                     case "-":
                         if snd[4] == "old":
-                            monkeys[cur_monkey]["oper"] = \
-                                lambda x: x - x
+                            monkeys[cur_monkey]["oper"] = lambda x: x - x
                         else:
-                            monkeys[cur_monkey]["oper"] = \
-                                (lambda p: lambda x: x - p)(int(snd[4]))
+                            monkeys[cur_monkey]["oper"] = (lambda p: lambda x: x - p)(
+                                int(snd[4])
+                            )
                     case "*":
                         if snd[4] == "old":
-                            monkeys[cur_monkey]["oper"] = \
-                                lambda x: x * x
+                            monkeys[cur_monkey]["oper"] = lambda x: x * x
                         else:
-                            monkeys[cur_monkey]["oper"] = \
-                                (lambda p: lambda x: x * p)(int(snd[4]))
+                            monkeys[cur_monkey]["oper"] = (lambda p: lambda x: x * p)(
+                                int(snd[4])
+                            )
                     case "/":
                         if snd[4] == "old":
-                            monkeys[cur_monkey]["oper"] = \
-                                lambda x: x / x
+                            monkeys[cur_monkey]["oper"] = lambda x: x / x
                         else:
-                            monkeys[cur_monkey]["oper"] = \
-                                (lambda p: lambda x: x / p)(int(snd[4]))
+                            monkeys[cur_monkey]["oper"] = (lambda p: lambda x: x / p)(
+                                int(snd[4])
+                            )
             case "Test":
                 snd = snd.split()
                 monkeys[cur_monkey]["test"] = int(snd[2])

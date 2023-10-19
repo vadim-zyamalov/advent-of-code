@@ -2,10 +2,7 @@ import time
 from itertools import product
 
 CHECKS = ["N", "S", "W", "E"]
-MOVES = [(-1, 0),
-         (1, 0),
-         (0, -1),
-         (0, 1)]
+MOVES = [(-1, 0), (1, 0), (0, -1), (0, 1)]
 
 
 def check_still(elves, nx_elves):
@@ -26,16 +23,17 @@ def check_move(pos, dir, elves):
         case _:
             dx = [-1, 0, 1]
             dy = [1]
-    return all((pos[0] + x, pos[1] + y) not in elves
-               for x, y in product(dx, dy))
+    return all((pos[0] + x, pos[1] + y) not in elves for x, y in product(dx, dy))
 
 
 def check_lone(pos, elves):
     dx = [-1, 0, 1]
     dy = [-1, 0, 1]
-    return all((pos[0] + x, pos[1] + y) not in elves
-               for x, y in product(dx, dy)
-               if (x, y) != (0, 0))
+    return all(
+        (pos[0] + x, pos[1] + y) not in elves
+        for x, y in product(dx, dy)
+        if (x, y) != (0, 0)
+    )
 
 
 def cycle(elves, i):
@@ -60,8 +58,7 @@ def cycle(elves, i):
             filter_pos[nx_elf] += 1
 
     for elf, nx_elf in nx_pos.items():
-        if (nx_elf in filter_pos) and \
-                filter_pos[nx_elf] > 1:
+        if (nx_elf in filter_pos) and filter_pos[nx_elf] > 1:
             nx_pos[elf] = elf
 
     return tuple(sorted(nx_pos.values()))
@@ -88,7 +85,7 @@ def count_empty(elves):
     max_x = max(elf[0] for elf in elves)
     max_y = max(elf[1] for elf in elves)
 
-    return ((max_x - min_x + 1) * (max_y - min_y + 1) - len(elves))
+    return (max_x - min_x + 1) * (max_y - min_y + 1) - len(elves)
 
 
 ELVES = []

@@ -11,10 +11,10 @@ def permute(elements):
 def add_self(preferences):
     result = preferences.copy()
     guests = list(result.keys())
-    result['_self_'] = {}
+    result["_self_"] = {}
     for k in guests:
-        result[k]['_self_'] = 0
-        result['_self_'][k] = 0
+        result[k]["_self_"] = 0
+        result["_self_"][k] = 0
     return result
 
 
@@ -24,14 +24,16 @@ def calc(variant, preferences):
     for i in range(number):
         name1 = variant[i]
         name2 = variant[(i + 1) % number]
-        answer += preferences[name1][name2] if \
-            name1 in preferences and \
-            name2 in preferences[name1] \
+        answer += (
+            preferences[name1][name2]
+            if name1 in preferences and name2 in preferences[name1]
             else 0
-        answer += preferences[name2][name1] if \
-            name2 in preferences and \
-            name1 in preferences[name2] \
+        )
+        answer += (
+            preferences[name2][name1]
+            if name2 in preferences and name1 in preferences[name2]
             else 0
+        )
     return answer
 
 
@@ -39,11 +41,12 @@ preferences = {}
 
 with open("../../_inputs/2015/day-13/input.txt", "r", encoding="utf-8") as f:
     for line in f:
-        string = line.strip().strip('.').split()
+        string = line.strip().strip(".").split()
         if string[0] not in preferences:
             preferences[string[0]] = {}
-        preferences[string[0]][string[-1]] = int(string[3]) \
-            if string[2] == 'gain' else -int(string[3])
+        preferences[string[0]][string[-1]] = (
+            int(string[3]) if string[2] == "gain" else -int(string[3])
+        )
 
 for part in [1, 2]:
     if part == 2:

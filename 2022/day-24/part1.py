@@ -6,8 +6,7 @@ import math
 def move_blizzards(blizzards, time, dimx, dimy):
     res = set()
     for x, y, dx, dy in blizzards:
-        res.add(((x + dx * time) % dimx,
-                 (y + dy * time) % dimy))
+        res.add(((x + dx * time) % dimx, (y + dy * time) % dimy))
     return res
 
 
@@ -28,11 +27,9 @@ def bfs(start, finish, start_time, blizzards, walls, dimx, dimy):
     while queue:
         t, pos = queue.pop(0)
         t += 1
-        for nx_pos in move_pos(pos,
-                               move_blizzards(blizzards,
-                                              t % math.lcm(dimx, dimy),
-                                              dimx, dimy),
-                               walls):
+        for nx_pos in move_pos(
+            pos, move_blizzards(blizzards, t % math.lcm(dimx, dimy), dimx, dimy), walls
+        ):
             if (t, nx_pos) not in visited:
                 if nx_pos == finish:
                     return t
@@ -59,7 +56,7 @@ with open("../../_inputs/2022/day-24/input.txt", "r", encoding="utf8") as f:
                 case ">":
                     BLIZZARDS += ((row - 1, col - 1, 0, 1),)
                 case "#":
-                    WALLS += ((row - 1, col - 1), )
+                    WALLS += ((row - 1, col - 1),)
                 case _:
                     pass
     dimx, dimy = max(el for el in WALLS)
@@ -71,8 +68,13 @@ WALLS += ((dimx + 1, dimy - 1),)
 res = bfs((-1, 0), (dimx, dimy - 1), 0, BLIZZARDS, WALLS, dimx, dimy)
 print(f"Part 1: {res}")
 
-res = bfs((-1, 0), (dimx, dimy - 1),
-          bfs((dimx, dimy - 1), (-1, 0), res, BLIZZARDS, WALLS, dimx, dimy)
-          , BLIZZARDS, WALLS, dimx, dimy)
+res = bfs(
+    (-1, 0),
+    (dimx, dimy - 1),
+    bfs((dimx, dimy - 1), (-1, 0), res, BLIZZARDS, WALLS, dimx, dimy),
+    BLIZZARDS,
+    WALLS,
+    dimx,
+    dimy,
+)
 print(f"Part 2: {res}")
-

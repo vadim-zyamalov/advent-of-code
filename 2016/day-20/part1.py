@@ -28,9 +28,7 @@ for fst, snd in RANGES:
     for idx in range(fst_idx, snd_idx):
         status[idx] = 0
 
-answer = min(coords[idx]
-             for idx in range(len(coords))
-             if status[idx] == 1)
+answer = min(coords[idx] for idx in range(len(coords)) if status[idx] == 1)
 print(f"Part 1: {answer}")
 
 answer: int = 0

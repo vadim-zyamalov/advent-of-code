@@ -9,20 +9,18 @@ def magnitude_line(number):
         length = len(result)
 
         for i in range(length):
-            if result[i] == '[':
+            if result[i] == "[":
                 ex_start = i
                 ex_finish = i
-            elif result[i] == ']':
+            elif result[i] == "]":
                 ex_finish = i
                 break
         if ex_start == -1:
             break
         left_chunk = result[:ex_start]
-        right_chunk = result[(ex_finish+1):]
-        tmp = result[(ex_start+1):ex_finish].split(",")
-        result = left_chunk + \
-            str(3 * int(tmp[0]) + 2 * int(tmp[1])) + \
-            right_chunk
+        right_chunk = result[(ex_finish + 1) :]
+        tmp = result[(ex_start + 1) : ex_finish].split(",")
+        result = left_chunk + str(3 * int(tmp[0]) + 2 * int(tmp[1])) + right_chunk
     return int(result)
 
 
@@ -33,11 +31,11 @@ def find_explodable_line(number):
 
     count = 0
     for i in range(length):
-        if number[i] == '[':
+        if number[i] == "[":
             count += 1
             ex_start = i
             ex_finish = i
-        elif number[i] == ']':
+        elif number[i] == "]":
             if count > 4:
                 ex_finish = i
                 break
@@ -62,8 +60,7 @@ def find_splittable_line(number):
             else:
                 r_finish = i
         else:
-            if (r_start > -1) and \
-               (r_finish - r_start > 0):
+            if (r_start > -1) and (r_finish - r_start > 0):
                 return (r_start, r_finish)
             r_start = -1
             r_finish = -1
@@ -86,39 +83,41 @@ def find_regular_line(chunk, ltr=True):
                 r_finish = i
         else:
             if r_start != -1:
-                r_start, r_finish = \
-                    min(r_start, r_finish), max(r_start, r_finish)
+                r_start, r_finish = min(r_start, r_finish), max(r_start, r_finish)
                 return (r_start, r_finish)
     return (r_start, r_finish)
 
 
 def explode_line(number, explodable):
-    left_chunk = number[:explodable[0]]
-    right_chunk = number[(explodable[1]+1):]
-    target = [int(el)
-              for el in number[(explodable[0]+1):explodable[1]].split(',')]
+    left_chunk = number[: explodable[0]]
+    right_chunk = number[(explodable[1] + 1) :]
+    target = [int(el) for el in number[(explodable[0] + 1) : explodable[1]].split(",")]
 
     tmp = find_regular_line(left_chunk, False)
     if tmp[0] != -1:
-        left_chunk = left_chunk[:tmp[0]] + \
-            str(int(left_chunk[tmp[0]:(tmp[1]+1)]) + target[0]) + \
-            left_chunk[(tmp[1]+1):]
+        left_chunk = (
+            left_chunk[: tmp[0]]
+            + str(int(left_chunk[tmp[0] : (tmp[1] + 1)]) + target[0])
+            + left_chunk[(tmp[1] + 1) :]
+        )
 
     tmp = find_regular_line(right_chunk, True)
     if tmp[0] != -1:
-        right_chunk = right_chunk[:tmp[0]] + \
-            str(int(right_chunk[tmp[0]:(tmp[1]+1)]) + target[1]) + \
-            right_chunk[(tmp[1]+1):]
+        right_chunk = (
+            right_chunk[: tmp[0]]
+            + str(int(right_chunk[tmp[0] : (tmp[1] + 1)]) + target[1])
+            + right_chunk[(tmp[1] + 1) :]
+        )
 
-    return left_chunk + '0' + right_chunk
+    return left_chunk + "0" + right_chunk
 
 
 def split_line(number, splittable):
-    left_chunk = number[:splittable[0]]
-    right_chunk = number[(splittable[1]+1):]
-    tmp = int(number[splittable[0]:(splittable[1]+1)])
+    left_chunk = number[: splittable[0]]
+    right_chunk = number[(splittable[1] + 1) :]
+    tmp = int(number[splittable[0] : (splittable[1] + 1)])
     fst, snd = floor(tmp / 2), ceil(tmp / 2)
-    return left_chunk + '[{},{}]'.format(fst, snd) + right_chunk
+    return left_chunk + "[{},{}]".format(fst, snd) + right_chunk
 
 
 def reduce_line(number):
@@ -159,10 +158,6 @@ for i, number1 in enumerate(numbers):
     for j, number2 in enumerate(numbers):
         if i == j:
             continue
-        answer.append(
-            magnitude_line(
-                reduce_line(num_add(number1, number2))
-            )
-        )
+        answer.append(magnitude_line(reduce_line(num_add(number1, number2))))
 
 print(f"Part 2: {max(answer)}")

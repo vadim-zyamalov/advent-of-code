@@ -5,11 +5,7 @@ RANGES = []
 
 
 class Cube:
-    def __init__(self,
-                 on=0,
-                 xs=(0, 0),
-                 ys=(0, 0),
-                 zs=(0, 0)) -> None:
+    def __init__(self, on=0, xs=(0, 0), ys=(0, 0), zs=(0, 0)) -> None:
         self.on = on
         self.x_0 = xs[0]
         self.x_0 = xs[1]
@@ -22,13 +18,13 @@ class Cube:
         self.on = on
 
     def set_coords(self, cs, coord):
-        if coord == 'x':
+        if coord == "x":
             self.x_0 = cs[0]
             self.x_1 = cs[1]
-        if coord == 'y':
+        if coord == "y":
             self.y_0 = cs[0]
             self.y_1 = cs[1]
-        if coord == 'z':
+        if coord == "z":
             self.z_0 = cs[0]
             self.z_1 = cs[1]
 
@@ -46,13 +42,13 @@ with open("../../_inputs/2021/day-22/input.txt", "r", encoding="utf-8") as f:
             r_low, r_high = (int(i) for i in rest.split(".."))
             r_high += 1
             range_current.set_coords((r_low, r_high), coord)
-            if coord == 'x':
+            if coord == "x":
                 X.append(r_low)
                 X.append(r_high)
-            if coord == 'y':
+            if coord == "y":
                 Y.append(r_low)
                 Y.append(r_high)
-            if coord == 'z':
+            if coord == "z":
                 Z.append(r_low)
                 Z.append(r_high)
         RANGES.append(range_current)
@@ -77,8 +73,6 @@ for x in range(len(X) - 1):
     for y in range(len(Y) - 1):
         for z in range(len(Z) - 1):
             if grid[x][y][z] > 0:
-                answer += (X[x + 1] - X[x]) * \
-                    (Y[y + 1] - Y[y]) * \
-                    (Z[z + 1] - Z[z])
+                answer += (X[x + 1] - X[x]) * (Y[y + 1] - Y[y]) * (Z[z + 1] - Z[z])
 
 print(f"Part 2: {answer}")

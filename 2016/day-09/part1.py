@@ -10,7 +10,7 @@ def parse(data):
                 i += 1
             num, times = (int(el) for el in inner.split("x"))
             i += 1
-            inner = data[i:i+num]
+            inner = data[i : i + num]
             result += inner * times
             i += num
         else:
@@ -31,7 +31,7 @@ def decompress(data):
                 i += 1
             num, times = (int(el) for el in inner.split("x"))
             i += 1
-            inner = data[i:i+num]
+            inner = data[i : i + num]
             result += decompress(inner) * times
             i += num
         elif data[i] == " ":

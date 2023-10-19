@@ -52,16 +52,14 @@ with open("../../_inputs/2022/day-16/input.txt", "r", encoding="utf8") as f:
     for line in f:
         fst, snd = line.strip().split(";")
         fst = fst.split()
-        snd=snd.split()
+        snd = snd.split()
 
         tmp_valve = fst[1]
         tmp_rate = int(fst[4].split("=")[1])
         if tmp_rate > 0:
             rates[tmp_valve] = tmp_rate
 
-        raw_dists[tmp_valve] = {
-            "tunnels": [l.strip(",") for l in snd[4:]]
-        }
+        raw_dists[tmp_valve] = {"tunnels": [l.strip(",") for l in snd[4:]]}
 
 dists["AA"] = {}
 for i in rates:
@@ -90,7 +88,7 @@ limit = j
 
 res = ps[i] + ps[j]
 for i in range(limit):
-    for j in range(i+1, limit + 1):
+    for j in range(i + 1, limit + 1):
         if any(x in paths[i] for x in paths[j]):
             continue
         res = max(res, ps[i] + ps[j])

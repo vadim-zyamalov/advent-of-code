@@ -1,8 +1,8 @@
 def hex_to_bin(data):
-    answer = ''
+    answer = ""
     for letter in data:
         tmp = bin(int(letter, 16))[2:]
-        tmp = '0' * (4 - len(tmp)) + tmp
+        tmp = "0" * (4 - len(tmp)) + tmp
         answer += tmp
     return answer
 
@@ -15,14 +15,14 @@ def prod(elements):
 
 
 def parse_literal(data, start):
-    value = ''
+    value = ""
     i = start
     finish = False
     while True:
-        if data[i] == '0':
+        if data[i] == "0":
             finish = True
         i += 1
-        value += data[i:(i+4)]
+        value += data[i : (i + 4)]
         i += 4
         if finish:
             break
@@ -34,13 +34,13 @@ def parse_operator(data, start):
     length = None
     number = None
     i = start
-    if data[i] == '0':
+    if data[i] == "0":
         i += 1
-        length = int(data[i:(i+15)], 2)
+        length = int(data[i : (i + 15)], 2)
         i += 15
     else:
         i += 1
-        number = int(data[i:(i+11)], 2)
+        number = int(data[i : (i + 11)], 2)
         i += 11
     if length:
         chunk_start = i
@@ -58,10 +58,10 @@ def parse(data, start=0):
     i = start
     assert i < len(data)
 
-    version = int(data[i:(i+3)], 2)
+    version = int(data[i : (i + 3)], 2)
     i += 3
 
-    typeid = int(data[i:(i+3)], 2)
+    typeid = int(data[i : (i + 3)], 2)
     i += 3
 
     if typeid == 4:
@@ -69,25 +69,23 @@ def parse(data, start=0):
     else:
         value, i = parse_operator(data, i)
 
-    return ({'Version': version,
-             'TypeID': typeid,
-             'Value': value}, i)
+    return ({"Version": version, "TypeID": typeid, "Value": value}, i)
 
 
 def vsum(packet):
-    answer = packet['Version']
-    if isinstance(packet['Value'], list):
-        for sub_packet in packet['Value']:
+    answer = packet["Version"]
+    if isinstance(packet["Value"], list):
+        for sub_packet in packet["Value"]:
             answer += vsum(sub_packet)
     return answer
 
 
 def execute(packet):
-    typeid = packet['TypeID']
+    typeid = packet["TypeID"]
     if typeid == 4:
-        return packet['Value']
+        return packet["Value"]
     tmp = []
-    for sub_packet in packet['Value']:
+    for sub_packet in packet["Value"]:
         tmp.append(execute(sub_packet))
 
     answer = None

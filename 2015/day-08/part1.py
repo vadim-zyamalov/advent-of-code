@@ -11,18 +11,18 @@ with open("../../_inputs/2015/day-08/input.txt", "r", encoding="utf-8") as f:
             match string[i]:
                 case '"':
                     codes += 1
-                case '\\':
+                case "\\":
                     codes += 1
-                    match string[i+1]:
+                    match string[i + 1]:
                         case '"':
                             codes += 1
                             chars += 1
                             i += 1
-                        case '\\':
+                        case "\\":
                             codes += 1
                             chars += 1
                             i += 1
-                        case 'x':
+                        case "x":
                             codes += 3
                             chars += 1
                             i += 3

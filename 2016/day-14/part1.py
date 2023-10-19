@@ -4,8 +4,7 @@ import hashlib
 
 def check_hash3(data):
     for idx in range(len(data) - 2):
-        if (data[idx] == data[idx + 1]) and \
-                (data[idx] == data[idx + 2]):
+        if (data[idx] == data[idx + 1]) and (data[idx] == data[idx + 2]):
             return data[idx]
     return None
 

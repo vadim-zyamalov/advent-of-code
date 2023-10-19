@@ -1,22 +1,23 @@
 import functools
 
+
 def parse(chunk):
-    if chunk[0] != '[':
+    if chunk[0] != "[":
         return int(chunk)
     nestlv = 0
     res = []
-    tmp = ''
+    tmp = ""
     for c in chunk[1:-1]:
         match c:
-            case '[':
+            case "[":
                 tmp += c
                 nestlv += 1
-            case ']':
+            case "]":
                 tmp += c
                 nestlv -= 1
-            case ',' if nestlv == 0:
+            case "," if nestlv == 0:
                 res.append(parse(tmp))
-                tmp = ''
+                tmp = ""
             case _:
                 tmp += c
     if tmp != "":

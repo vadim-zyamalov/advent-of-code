@@ -3,6 +3,7 @@ COMMANDS = []
 bots = {}
 outputs = {}
 
+
 def parse(commands):
     for line in commands:
         tmp = line.strip().split()
@@ -10,9 +11,7 @@ def parse(commands):
             if tmp[4] == "bot":
                 idx = int(tmp[5])
                 if idx not in bots:
-                    bots[idx] = {"val": [],
-                                "low": (),
-                                "high": ()}
+                    bots[idx] = {"val": [], "low": (), "high": ()}
                 bots[idx]["val"].append(int(tmp[1]))
         elif tmp[0] == "bot":
             idx_0 = int(tmp[1])
@@ -21,15 +20,11 @@ def parse(commands):
             tgt_2 = tmp[10]
             idx_2 = int(tmp[11])
             if idx_0 not in bots:
-                bots[idx_0] = {"val": [],
-                            "low": (),
-                            "high": ()}
+                bots[idx_0] = {"val": [], "low": (), "high": ()}
             if tgt_1 == "bot":
                 bots[idx_0]["low"] = ("bot", idx_1)
                 if idx_1 not in bots:
-                    bots[idx_1] = {"val": [],
-                                "low": (),
-                                "high": ()}
+                    bots[idx_1] = {"val": [], "low": (), "high": ()}
             else:
                 bots[idx_0]["low"] = ("out", idx_1)
                 if idx_1 not in outputs:
@@ -37,9 +32,7 @@ def parse(commands):
             if tgt_2 == "bot":
                 bots[idx_0]["high"] = ("bot", idx_2)
                 if idx_2 not in bots:
-                    bots[idx_2] = {"val": [],
-                                "low": (),
-                                "high": ()}
+                    bots[idx_2] = {"val": [], "low": (), "high": ()}
             else:
                 bots[idx_0]["high"] = ("out", idx_2)
                 if idx_2 not in outputs:
@@ -77,8 +70,8 @@ with open("../../_inputs/2016/day-10/input.txt", "r", encoding="utf-8") as f:
 
 parse(COMMANDS)
 
-bots = {k:v for k, v in sorted(bots.items(), key=lambda x: x[0])}
-outputs = {k:v for k, v in sorted(outputs.items(), key=lambda x: x[0])}
+bots = {k: v for k, v in sorted(bots.items(), key=lambda x: x[0])}
+outputs = {k: v for k, v in sorted(outputs.items(), key=lambda x: x[0])}
 
 process(17, 61)
 

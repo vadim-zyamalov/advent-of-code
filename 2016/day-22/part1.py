@@ -16,17 +16,15 @@ with open("../../_inputs/2016/day-22/input.txt", "r", encoding="utf-8") as f:
         tmp_y = int(tmp_node[2][1:])
         if tmp_x not in NODES:
             NODES[tmp_x] = {}
-        NODES[tmp_x][tmp_y] = (int(tmp[1][:-1]),
-                               int(tmp[2][:-1]),
-                               int(tmp[3][:-1]))
+        NODES[tmp_x][tmp_y] = (int(tmp[1][:-1]), int(tmp[2][:-1]), int(tmp[3][:-1]))
         max_x = max(max_x, tmp_x)
         max_y = max(max_y, tmp_y)
 
 GRID = tuple(tuple(el for _, el in row.items()) for _, row in NODES.items())
 
 answer = 0
-for x_0, y_0 in product(range(max_x+1), range(max_y+1)):
-    for x_1, y_1 in product(range(max_x+1), range(max_y+1)):
+for x_0, y_0 in product(range(max_x + 1), range(max_y + 1)):
+    for x_1, y_1 in product(range(max_x + 1), range(max_y + 1)):
         if (x_0 == x_1) and (y_0 == y_1):
             continue
         if GRID[x_0][y_0][1] == 0:

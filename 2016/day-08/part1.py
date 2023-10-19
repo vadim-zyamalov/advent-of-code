@@ -1,6 +1,7 @@
 COMMANDS = []
 SCREEN = [[0 for _ in range(50)] for _ in range(6)]
 
+
 def dump():
     for row in SCREEN:
         print("".join(("#" if el == 1 else " ") for el in row))

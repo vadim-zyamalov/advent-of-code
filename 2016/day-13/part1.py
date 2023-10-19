@@ -15,8 +15,7 @@ def is_wall(pos, favourite=FAV_NUM):
 
 def moves(pos):
     x, y = pos
-    result = [(x + 1, y),
-              (x, y + 1)]
+    result = [(x + 1, y), (x, y + 1)]
     if x > 0:
         result.append((x - 1, y))
     if y > 0:
@@ -36,8 +35,7 @@ while queue:
         print(f"Part 1: {cur_steps}")
         print(f"  elapsed in {time.time() - t_0:.2f} seconds")
         break
-    if cur_pos in visited and \
-            visited[cur_pos] <= cur_steps:
+    if cur_pos in visited and visited[cur_pos] <= cur_steps:
         continue
     visited[cur_pos] = cur_steps
     for variant in moves(cur_pos):

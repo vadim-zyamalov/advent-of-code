@@ -5,8 +5,7 @@ def check(cycle, reg, storage):
 
 def draw(cycle, reg, screen):
     rpos = (cycle - 1) % 40
-    if ((reg - 1 == rpos) or (reg == rpos) or (reg + 1 == rpos)) and \
-       (cycle < 240):
+    if ((reg - 1 == rpos) or (reg == rpos) or (reg + 1 == rpos)) and (cycle < 240):
         screen[cycle - 1] = "#"
 
 

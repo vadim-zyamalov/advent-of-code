@@ -5,13 +5,13 @@ y = 0
 
 with open("../../_inputs/2021/day-02/input.txt", "r") as f:
     for i in f:
-        com, _, val = i.strip().partition(' ')
+        com, _, val = i.strip().partition(" ")
         match com:
-            case 'forward':
+            case "forward":
                 x += int(val)
-            case 'down':
+            case "down":
                 y += int(val)
-            case 'up':
+            case "up":
                 y -= int(val)
             case _:
                 sys.exit(1)

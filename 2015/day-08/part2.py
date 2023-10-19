@@ -14,19 +14,19 @@ with open("../../_inputs/2015/day-08/input.txt", "r", encoding="utf-8") as f:
                 case '"':
                     chars_old += 1
                     chars_new += 2
-                case '\\':
+                case "\\":
                     chars_old += 1
                     chars_new += 2
-                    match string[i+1]:
+                    match string[i + 1]:
                         case '"':
                             chars_old += 1
                             chars_new += 2
                             i += 1
-                        case '\\':
+                        case "\\":
                             chars_old += 1
                             chars_new += 2
                             i += 1
-                        case 'x':
+                        case "x":
                             chars_old += 3
                             chars_new += 3
                             i += 3

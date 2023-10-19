@@ -1,17 +1,19 @@
-powers = {'a': 1 << 6,
-          'b': 1 << 5,
-          'c': 1 << 4,
-          'd': 1 << 3,
-          'e': 1 << 2,
-          'f': 1 << 1,
-          'g': 1 << 0}
+powers = {
+    "a": 1 << 6,
+    "b": 1 << 5,
+    "c": 1 << 4,
+    "d": 1 << 3,
+    "e": 1 << 2,
+    "f": 1 << 1,
+    "g": 1 << 0,
+}
 
 
 def split_patterns(patterns):
     unique = {}
     plural = []
     for p in patterns:
-        n = bin(p).count('1')
+        n = bin(p).count("1")
         match n:
             case 2:
                 unique[1] = p
@@ -51,7 +53,7 @@ def create_codelist(corrupted, original):
 def decoder(number, codelist):
     result = 0
     for i in codelist:
-        if (number & i):
+        if number & i:
             result |= codelist[i]
     return result
 
@@ -88,7 +90,7 @@ def get_f(numbers, segments, patterns):
 def get_g(numbers, _, patterns):
     for p in patterns:
         tmp = diff(diff(p, numbers[7]), numbers[4])
-        if bin(tmp).count('1') == 1:
+        if bin(tmp).count("1") == 1:
             return tmp
     exit(1)
 
@@ -96,8 +98,7 @@ def get_g(numbers, _, patterns):
 def get_0(numbers, _, patterns):
     for p in patterns:
         tmp = diff(numbers[8], p)
-        if single(tmp) and \
-                single(tmp & diff(numbers[4], numbers[1])):
+        if single(tmp) and single(tmp & diff(numbers[4], numbers[1])):
             return p
     exit(1)
 
@@ -118,40 +119,44 @@ def get_9(numbers, _, patterns):
     exit(1)
 
 
-digits = [pattern_to_num('abcefg'),
-          pattern_to_num('cf'),
-          pattern_to_num('acdeg'),
-          pattern_to_num('acdfg'),
-          pattern_to_num('bcdf'),
-          pattern_to_num('abdfg'),
-          pattern_to_num('abdefg'),
-          pattern_to_num('acf'),
-          pattern_to_num('abcdefg'),
-          pattern_to_num('abcdfg')]
+digits = [
+    pattern_to_num("abcefg"),
+    pattern_to_num("cf"),
+    pattern_to_num("acdeg"),
+    pattern_to_num("acdfg"),
+    pattern_to_num("bcdf"),
+    pattern_to_num("abdfg"),
+    pattern_to_num("abdefg"),
+    pattern_to_num("acf"),
+    pattern_to_num("abcdefg"),
+    pattern_to_num("abcdfg"),
+]
 
 answer = 0
 with open("../../_inputs/2021/day-08/input.txt", "r", encoding="utf-8") as f:
     for line in f:
-        segments = {'a': None,
-                    'b': None,
-                    'c': None,
-                    'd': None,
-                    'e': None,
-                    'f': None,
-                    'g': None}
+        segments = {
+            "a": None,
+            "b": None,
+            "c": None,
+            "d": None,
+            "e": None,
+            "f": None,
+            "g": None,
+        }
 
-        patterns, _, output = line.strip().partition(' | ')
+        patterns, _, output = line.strip().partition(" | ")
         patterns = [pattern_to_num(d) for d in patterns.split()]
         output = [pattern_to_num(d) for d in output.split()]
         numbers, patterns = split_patterns(patterns)
 
-        segments['a'] = get_a(numbers, segments, patterns)
-        segments['b'] = get_b(numbers, segments, patterns)
-        segments['d'] = get_d(numbers, segments, patterns)
-        segments['c'] = get_c(numbers, segments, patterns)
-        segments['e'] = get_e(numbers, segments, patterns)
-        segments['f'] = get_f(numbers, segments, patterns)
-        segments['g'] = get_g(numbers, segments, patterns)
+        segments["a"] = get_a(numbers, segments, patterns)
+        segments["b"] = get_b(numbers, segments, patterns)
+        segments["d"] = get_d(numbers, segments, patterns)
+        segments["c"] = get_c(numbers, segments, patterns)
+        segments["e"] = get_e(numbers, segments, patterns)
+        segments["f"] = get_f(numbers, segments, patterns)
+        segments["g"] = get_g(numbers, segments, patterns)
 
         codelist = create_codelist(segments, powers)
         result = 0

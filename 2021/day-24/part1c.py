@@ -49,16 +49,24 @@ for digit_in, digit_out in PAIRS:
         if 0 < snd < 10:
             DIGITS[digit_in].append(fst)
             DIGITS[digit_out].append(snd)
-    res_in  = max(DIGITS[digit_in])
+    res_in = max(DIGITS[digit_in])
     res_out = DIGITS[digit_out][DIGITS[digit_in].index(res_in)]
-    MAX = MAX[:digit_in] + str(res_in) + \
-        MAX[digit_in+1:digit_out] + \
-        str(res_out) + MAX[digit_out+1:]
-    res_in  = min(DIGITS[digit_in])
+    MAX = (
+        MAX[:digit_in]
+        + str(res_in)
+        + MAX[digit_in + 1 : digit_out]
+        + str(res_out)
+        + MAX[digit_out + 1 :]
+    )
+    res_in = min(DIGITS[digit_in])
     res_out = DIGITS[digit_out][DIGITS[digit_in].index(res_in)]
-    MIN = MIN[:digit_in] + str(res_in) + \
-        MIN[digit_in+1:digit_out] + \
-        str(res_out) + MIN[digit_out+1:]
+    MIN = (
+        MIN[:digit_in]
+        + str(res_in)
+        + MIN[digit_in + 1 : digit_out]
+        + str(res_out)
+        + MIN[digit_out + 1 :]
+    )
 
 print(f"Part 1: {MAX}")
 print(f"Part 2: {MIN}")

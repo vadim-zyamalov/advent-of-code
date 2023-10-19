@@ -5,7 +5,7 @@ with open("../../_inputs/2022/day-01/input.txt", "r", encoding="utf8") as f:
     for line in f:
         if line.strip() == "":
             elves.append(cur_elf)
-            cur_elf= []
+            cur_elf = []
         else:
             cur_elf.append(int(line.strip()))
 

@@ -1,17 +1,15 @@
 def fill(line, grid: set):
-    nodes = [
-        (int(i), int(j))
-        for l in line.split(" -> ")
-        for (i, j) in [l.split(",")]
-    ]
+    nodes = [(int(i), int(j)) for l in line.split(" -> ") for (i, j) in [l.split(",")]]
     for i in range(1, len(nodes)):
-        if nodes[i][0] == nodes[i-1][0]:
-            for j in range(min(nodes[i-1][1], nodes[i][1]),
-                           max(nodes[i-1][1], nodes[i][1]) + 1):
+        if nodes[i][0] == nodes[i - 1][0]:
+            for j in range(
+                min(nodes[i - 1][1], nodes[i][1]), max(nodes[i - 1][1], nodes[i][1]) + 1
+            ):
                 grid.add((nodes[i][0], j))
         else:
-            for j in range(min(nodes[i-1][0], nodes[i][0]),
-                           max(nodes[i-1][0], nodes[i][0]) + 1):
+            for j in range(
+                min(nodes[i - 1][0], nodes[i][0]), max(nodes[i - 1][0], nodes[i][0]) + 1
+            ):
                 grid.add((j, nodes[i][1]))
 
 

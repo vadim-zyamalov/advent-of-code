@@ -22,7 +22,7 @@ def count_dist(pos):
 
 
 def process_path(path):
-    pos : list[float] = [0, 0]
+    pos: list[float] = [0, 0]
     max_dist = 0
     for step in path:
         match step:

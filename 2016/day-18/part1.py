@@ -8,7 +8,7 @@ def next_row(data):
         if (idx == 0) or (idx == len(data) - 1):
             result += "."
         else:
-            if data[idx-1:idx+2] in TRAPS:
+            if data[idx - 1 : idx + 2] in TRAPS:
                 result += "^"
             else:
                 result += "."

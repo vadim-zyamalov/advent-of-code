@@ -1,9 +1,9 @@
 def splitx(input):
-    opener = '[{'
-    closer = ']}'
+    opener = "[{"
+    closer = "]}"
 
     result = []
-    tmp = ''
+    tmp = ""
     counter = 0
     for letter in input:
         match letter:
@@ -17,20 +17,20 @@ def splitx(input):
                     tmp += letter
                 else:
                     result.append(tmp)
-                    tmp = ''
-            case ',':
+                    tmp = ""
+            case ",":
                 if counter > 1:
                     tmp += letter
                 else:
                     result.append(tmp)
-                    tmp = ''
+                    tmp = ""
             case _:
                 tmp += letter
     return result
 
 
 def elparser(input):
-    key, _, val = input.partition(':')
+    key, _, val = input.partition(":")
     return key.strip('"'), val.strip('"')
 
 
@@ -38,14 +38,14 @@ def parser(input):
     if len(input) == 0:
         return None
     match input[0]:
-        case '[':
+        case "[":
             result = []
             elements = splitx(input)
             for i in elements:
                 tmp = parser(i.strip())
                 result.append(tmp)
             return result
-        case '{':
+        case "{":
             result = {}
             elements = splitx(input)
             for i in elements:
@@ -54,7 +54,7 @@ def parser(input):
                 result[key] = tmp
             return result
         case _:
-            if input.strip().lstrip('-').isnumeric():
+            if input.strip().lstrip("-").isnumeric():
                 return int(input.strip())
             else:
                 return input.strip().strip('"')
@@ -64,7 +64,7 @@ def dive(data):
     ans = 0
     if isinstance(data, dict):
         for i in data:
-            if isinstance(data[i], str) and (data[i] == 'red'):
+            if isinstance(data[i], str) and (data[i] == "red"):
                 return 0
         for i in data:
             tmp = dive(data[i])

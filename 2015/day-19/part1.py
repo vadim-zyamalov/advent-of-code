@@ -1,15 +1,15 @@
 replacements = {}
-molecule = ''
+molecule = ""
 result = set()
 
 
 def splitx(molecule):
     result = []
-    tmp = ''
+    tmp = ""
     for letter in molecule:
         if str.isupper(letter) and tmp:
             result.append(tmp)
-            tmp = ''
+            tmp = ""
         tmp += letter
     if tmp:
         result.append(tmp)
@@ -32,8 +32,6 @@ length = len(molecule)
 for atom in range(length):
     if molecule[atom] in replacements:
         for action in replacements[molecule[atom]]:
-            result.add(
-                ''.join(molecule[:atom] + [action] + molecule[(atom+1):])
-            )
+            result.add("".join(molecule[:atom] + [action] + molecule[(atom + 1) :]))
 
 print(f"Part 1: {len(result)}")

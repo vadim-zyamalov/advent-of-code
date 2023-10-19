@@ -1,6 +1,7 @@
 import time
 import heapq as heap
 
+
 def get_start_finish(grid):
     start, finish = None, None
     stop = False
@@ -23,13 +24,13 @@ def get_start_finish(grid):
 def possible_moves(r, c, grid):
     dimr, dimc = len(grid), len(grid[0])
     res = []
-    if (r > 0) and (ord(grid[r][c]) >= ord(grid[r-1][c]) - 1):
+    if (r > 0) and (ord(grid[r][c]) >= ord(grid[r - 1][c]) - 1):
         res.append((-1, 0))
-    if (r < dimr - 1) and (ord(grid[r][c]) >= ord(grid[r+1][c]) - 1):
+    if (r < dimr - 1) and (ord(grid[r][c]) >= ord(grid[r + 1][c]) - 1):
         res.append((1, 0))
-    if (c > 0) and (ord(grid[r][c]) >= ord(grid[r][c-1]) - 1):
+    if (c > 0) and (ord(grid[r][c]) >= ord(grid[r][c - 1]) - 1):
         res.append((0, -1))
-    if (c < dimc - 1) and (ord(grid[r][c]) >= ord(grid[r][c+1]) - 1):
+    if (c < dimc - 1) and (ord(grid[r][c]) >= ord(grid[r][c + 1]) - 1):
         res.append((0, 1))
     return res
 
@@ -37,19 +38,19 @@ def possible_moves(r, c, grid):
 def possible_moves_rev(r, c, grid):
     dimr, dimc = len(grid), len(grid[0])
     res = []
-    if (r > 0) and (ord(grid[r][c]) <= ord(grid[r-1][c]) + 1):
+    if (r > 0) and (ord(grid[r][c]) <= ord(grid[r - 1][c]) + 1):
         res.append((-1, 0))
-    if (r < dimr - 1) and (ord(grid[r][c]) <= ord(grid[r+1][c]) + 1):
+    if (r < dimr - 1) and (ord(grid[r][c]) <= ord(grid[r + 1][c]) + 1):
         res.append((1, 0))
-    if (c > 0) and (ord(grid[r][c]) <= ord(grid[r][c-1]) + 1):
+    if (c > 0) and (ord(grid[r][c]) <= ord(grid[r][c - 1]) + 1):
         res.append((0, -1))
-    if (c < dimc - 1) and (ord(grid[r][c]) <= ord(grid[r][c+1]) + 1):
+    if (c < dimc - 1) and (ord(grid[r][c]) <= ord(grid[r][c + 1]) + 1):
         res.append((0, 1))
     return res
 
 
 def dijkstra(start, finish, grid):
-    queue : list[tuple[tuple, int]] = [(0, start)]
+    queue: list[tuple[tuple, int]] = [(0, start)]
     visited = {}
 
     while len(queue) > 0:
@@ -65,10 +66,7 @@ def dijkstra(start, finish, grid):
 
 
 def dijkstra_rev(finish, grid):
-    dist = [
-        [float("inf") for _ in range(len(grid[0]))]
-        for _ in range(len(grid))
-    ]
+    dist = [[float("inf") for _ in range(len(grid[0]))] for _ in range(len(grid))]
     queue = {}
     for r in range(len(MAP)):
         for c in range(len(MAP[0])):
@@ -79,7 +77,7 @@ def dijkstra_rev(finish, grid):
         min_value = min(queue.values())
         min_k = [k for k in queue if queue[k] == min_value][0]
         q_state, q_path = min_k, queue[min_k]
-        del(queue[min_k])
+        del queue[min_k]
         for dr, dc in possible_moves_rev(q_state[0], q_state[1], grid):
             if (q_state[0] + dr, q_state[1] + dc) in queue:
                 tmp = q_path + 1

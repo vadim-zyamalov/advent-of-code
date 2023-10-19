@@ -1,12 +1,13 @@
-ITEMS = [chr(i) for i in range(ord('a'), ord('z') + 1)] + \
-    [chr(i) for i in range(ord("A"), ord("Z") + 1)]
+ITEMS = [chr(i) for i in range(ord("a"), ord("z") + 1)] + [
+    chr(i) for i in range(ord("A"), ord("Z") + 1)
+]
 
 with open("../../_inputs/2022/day-03/input.txt", "r", encoding="utf8") as f:
     res = 0
     for line in f:
         line = line.strip()
-        fst = line[:len(line) // 2]
-        snd = line[len(line) // 2:]
+        fst = line[: len(line) // 2]
+        snd = line[len(line) // 2 :]
         for c in fst:
             if c in snd:
                 res += ITEMS.index(c) + 1

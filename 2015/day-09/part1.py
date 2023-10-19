@@ -30,10 +30,7 @@ def collect_map(rdict):
         for c2, city2 in enumerate(cities):
             if c1 == c2:
                 continue
-            matrix[c1][c2] = collect_pair(
-                city1, city2,
-                rdict
-            )
+            matrix[c1][c2] = collect_pair(city1, city2, rdict)
             matrix[c2][c1] = matrix[c1][c2]
     return matrix
 
@@ -41,9 +38,9 @@ def collect_map(rdict):
 def distance(candidate, matrix):
     result = 0
     for i in range(1, len(candidate)):
-        if matrix[candidate[i-1]][candidate[i]] is None:
+        if matrix[candidate[i - 1]][candidate[i]] is None:
             return -1
-        result += matrix[candidate[i-1]][candidate[i]]
+        result += matrix[candidate[i - 1]][candidate[i]]
     return result
 
 

@@ -5,7 +5,7 @@ bad = ["ab", "cd", "pq", "xy"]
 
 with open("../../_inputs/2015/day-05/input.txt", "r", encoding="utf-8") as f:
     for line in f:
-        prev = ''
+        prev = ""
         nvowel = 0
         double = False
         nopair = True

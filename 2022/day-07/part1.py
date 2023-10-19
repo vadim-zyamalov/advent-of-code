@@ -16,8 +16,7 @@ def init_tree(commands):
                         path.append(lcom[2])
                         cur_dir = "/" + "/".join(path)
                     if cur_dir not in res:
-                        res[cur_dir] = {"files": {},
-                                        "dirs": set()}
+                        res[cur_dir] = {"files": {}, "dirs": set()}
         else:
             if lcom[0] == "dir":
                 res[cur_dir]["dirs"].add(lcom[1])
@@ -27,9 +26,7 @@ def init_tree(commands):
 
 
 def restore_tree(node, raw_tree):
-    res = {node:
-           {"files": raw_tree[node]["files"],
-            "dirs": {}}}
+    res = {node: {"files": raw_tree[node]["files"], "dirs": {}}}
     for d in raw_tree[node]["dirs"]:
         if node == "/":
             new_node = "/" + d
@@ -39,9 +36,7 @@ def restore_tree(node, raw_tree):
     return res
 
 
-def count(tree,
-          res_min: list[int], res_all: list[int],
-          limit=100000):
+def count(tree, res_min: list[int], res_all: list[int], limit=100000):
     res = 0
     for v in tree["files"].values():
         res += v
@@ -64,6 +59,4 @@ res2 = []
 
 total_size = count(restore_tree("/", init_tree(COMMS))["/"], res, res2)
 print(f"Part 1: {sum(res)}")
-print(
-    f"Part 2: {min([i for i in res2 if i >= (limit - (70000000 - total_size))])}"
-)
+print(f"Part 2: {min([i for i in res2 if i >= (limit - (70000000 - total_size))])}")

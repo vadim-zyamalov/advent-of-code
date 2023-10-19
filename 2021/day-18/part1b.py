@@ -2,28 +2,28 @@ import time
 
 
 class Node:
-    def __init__(self,
-                 value: int = None,
-                 left: "Node" = None,
-                 right: "Node" = None,
-                 parent: "Node" = None) -> None:
+    def __init__(
+        self,
+        value: int = None,
+        left: "Node" = None,
+        right: "Node" = None,
+        parent: "Node" = None,
+    ) -> None:
         self.value = value
         self.left = left
         self.right = right
         self.parent = parent
 
     def split(self) -> None:
-        assert self.value # is not None
+        assert self.value  # is not None
         fst, snd = self.value // 2, (self.value + 1) // 2
         self.value = None
         self.left = Node(fst, None, None, self)
         self.right = Node(snd, None, None, self)
 
     def explode(self) -> tuple[int, int]:
-        assert self.left is not None and \
-            self.left.value is not None
-        assert self.right is not None and \
-            self.right.value is not None
+        assert self.left is not None and self.left.value is not None
+        assert self.right is not None and self.right.value is not None
         # assert self.left.value is not None
         # assert self.right.value is not None
         fst, snd = self.left.value, self.right.value
@@ -50,26 +50,26 @@ def dump(root: Node) -> None:
 
 
 def parse(string: str) -> Node:
-    if string[0] != '[':
+    if string[0] != "[":
         return Node(int(string))
     result = Node()
-    current = ''
+    current = ""
     count = 0
     for letter in string[1:-1]:
         match letter:
-            case '[':
+            case "[":
                 current += letter
                 count += 1
-            case ']':
+            case "]":
                 current += letter
                 count -= 1
-            case ',' if count == 0:
+            case "," if count == 0:
                 result.left = parse(current)
                 result.left.parent = result
-                current = ''
+                current = ""
             case _:
                 current += letter
-    if current != '':
+    if current != "":
         result.right = parse(current)
         result.right.parent = result
     return result
@@ -116,10 +116,12 @@ def add_to_right(val, node: Node) -> None:
 def explode(root: Node, depth=1) -> bool:
     assert root is not None
     # Check whether we found a pair of literal numbers
-    if root.left is not None and \
-            root.right is not None and \
-            root.left.value is not None and \
-            root.right.value is not None:
+    if (
+        root.left is not None
+        and root.right is not None
+        and root.left.value is not None
+        and root.right.value is not None
+    ):
         # Check whether we are deeper than the 4-th level
         if depth > 4:
             fst, snd = root.explode()

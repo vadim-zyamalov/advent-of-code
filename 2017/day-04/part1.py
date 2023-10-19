@@ -15,7 +15,7 @@ with open("../../_inputs/2017/day-04/input.txt", "r", encoding="utf-8") as f:
         for i in range(len(words_l)):
             tmp = list(words_l[i])
             tmp.sort()
-            words_l[i] = ''.join(tmp)
+            words_l[i] = "".join(tmp)
         words_s = set(words_l)
         if len(words_l) == len(words_s):
             res += 1

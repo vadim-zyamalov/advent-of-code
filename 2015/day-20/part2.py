@@ -4,7 +4,6 @@ with open("../../_inputs/2015/day-20/input.txt", "r", encoding="utf-8") as f:
     goal = int(f.readline().strip())
 
 
-
 def factor(x):
     j = 2
     while x > 1:

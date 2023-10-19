@@ -7,18 +7,21 @@ def small(cave):
 
 def walk(cave, visited, allowed):
     visited_c = visited.copy()
-    if cave == 'end':
+    if cave == "end":
         return [[cave]]
     if small(cave):
         visited_c[cave] += 1
     variants = []
     for next_cave in scheme[cave]:
-        if (small(next_cave) and
-            (visited_c[next_cave] == 0)) or \
-           (small(next_cave) and
-            (next_cave == allowed) and
-            (visited_c[next_cave] <= 1)) or \
-           not small(next_cave):
+        if (
+            (small(next_cave) and (visited_c[next_cave] == 0))
+            or (
+                small(next_cave)
+                and (next_cave == allowed)
+                and (visited_c[next_cave] <= 1)
+            )
+            or not small(next_cave)
+        ):
             result = walk(next_cave, visited_c, allowed)
             if result:
                 variants.extend(result)
@@ -29,8 +32,8 @@ def walk(cave, visited, allowed):
 
 with open("../../_inputs/2021/day-12/input.txt", "r") as f:
     for line in f:
-        if line.strip() != '':
-            cave1, cave2 = line.strip().split('-')
+        if line.strip() != "":
+            cave1, cave2 = line.strip().split("-")
             if cave1 not in scheme:
                 scheme[cave1] = []
             if cave2 not in scheme:
@@ -45,7 +48,7 @@ for k in scheme:
     if small(k):
         visited[k] = 0
 
-result = walk('start', visited, '')
+result = walk("start", visited, "")
 if result:
     print(f"Part 1: {len(result)}")
 
@@ -57,10 +60,10 @@ for k in scheme:
         visited[k] = 0
 
 
-allowed_list = [k for k in visited if (k != 'start') and (k != 'end')]
+allowed_list = [k for k in visited if (k != "start") and (k != "end")]
 
 for a in allowed_list:
-    tmp = walk('start', visited, a)
+    tmp = walk("start", visited, a)
     if tmp:
         for path in tmp:
             if path not in result:

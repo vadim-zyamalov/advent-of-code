@@ -8,7 +8,7 @@ with open("../../_inputs/2021/day-03/input.txt", "r", encoding="utf-8") as f:
         total += 1
         tmp = []
         for digit in line.strip():
-            if digit == '0':
+            if digit == "0":
                 tmp.append(0)
             else:
                 tmp.append(1)
@@ -17,11 +17,7 @@ with open("../../_inputs/2021/day-03/input.txt", "r", encoding="utf-8") as f:
         else:
             count = list(map(add, count, tmp))
 
-gamma = int(
-    '0b' + ''.join(['1' if i >= total / 2 else '0' for i in count]),
-    2)
-epsilon = int(
-    '0b' + ''.join(['1' if i < total / 2 else '0' for i in count]),
-    2)
+gamma = int("0b" + "".join(["1" if i >= total / 2 else "0" for i in count]), 2)
+epsilon = int("0b" + "".join(["1" if i < total / 2 else "0" for i in count]), 2)
 
 print(f"Part 1: {gamma * epsilon}")

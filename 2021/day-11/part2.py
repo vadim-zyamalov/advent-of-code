@@ -9,20 +9,17 @@ def deepcopy(original):
 def dump(grid):
     for i in grid:
         for j in i:
-            print(f"{j} ", end='')
+            print(f"{j} ", end="")
         print()
     print()
 
 
 def step(grid):
-    return [[
-        grid[i][j] + 1 for j in range(len(grid[i]))
-    ] for i in range(len(grid))]
+    return [[grid[i][j] + 1 for j in range(len(grid[i]))] for i in range(len(grid))]
 
 
 def charge(i, j, grid, flashed):
-    if (0 <= i <= len(grid) - 1) and \
-            (0 <= j <= len(grid[i]) - 1):
+    if (0 <= i <= len(grid) - 1) and (0 <= j <= len(grid[i]) - 1):
         if flashed[i][j] == 0:
             grid[i][j] += 1
 
@@ -48,7 +45,7 @@ def flash(grid, flashed):
     return new_grid, new_flashed, new_flashed != flashed
 
 
-with open('input.txt', 'r', encoding='utf-8') as f:
+with open("input.txt", "r", encoding="utf-8") as f:
     for line in f:
         grid.append([int(i) for i in line.strip()])
 

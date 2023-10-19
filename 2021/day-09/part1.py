@@ -4,13 +4,13 @@ levels = []
 def check(i, j, levels=levels):
     dimi, dimj = len(levels), len(levels[i])
     result = levels[i][j]
-    if (i > 0) and (result >= levels[i-1][j]):
+    if (i > 0) and (result >= levels[i - 1][j]):
         return False
-    if (i < dimi - 1) and (result >= levels[i+1][j]):
+    if (i < dimi - 1) and (result >= levels[i + 1][j]):
         return False
-    if (j > 0) and (result >= levels[i][j-1]):
+    if (j > 0) and (result >= levels[i][j - 1]):
         return False
-    if (j < dimj - 1) and (result >= levels[i][j+1]):
+    if (j < dimj - 1) and (result >= levels[i][j + 1]):
         return False
     return True
 
@@ -22,13 +22,13 @@ def basin(i, j, visited, levels=levels):
     dimi, dimj = len(levels), len(levels[i])
     result = 1
     visited[i][j] = 1
-    if (i > 0) and (visited[i-1][j] == 0):
+    if (i > 0) and (visited[i - 1][j] == 0):
         result += basin(i - 1, j, visited, levels)
-    if (i < dimi - 1) and (visited[i+1][j] == 0):
+    if (i < dimi - 1) and (visited[i + 1][j] == 0):
         result += basin(i + 1, j, visited, levels)
-    if (j > 0) and (visited[i][j-1] == 0):
+    if (j > 0) and (visited[i][j - 1] == 0):
         result += basin(i, j - 1, visited, levels)
-    if (j < dimj - 1) and (visited[i][j+1] == 0):
+    if (j < dimj - 1) and (visited[i][j + 1] == 0):
         result += basin(i, j + 1, visited, levels)
     return result
 

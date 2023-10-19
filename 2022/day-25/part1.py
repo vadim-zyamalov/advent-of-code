@@ -1,5 +1,6 @@
 neg = {-2: "=", -1: "-"}
 
+
 def dec_to_five(number):
     res = ""
     while number:

@@ -12,7 +12,7 @@ def restore_tree(node, progs_d):
     res.append(node_weight)
     res.append(total_weight)
     res.append(tmp_sub)
-    return(res)
+    return res
 
 
 def search_wrong(tree, diff):
@@ -28,9 +28,9 @@ def search_wrong(tree, diff):
             wrong_weight = weights[len(weights) - 1]
         cur_diff = wrong_weight - weights[len(weights) // 2]
         cur_index = tmp_weights.index(wrong_weight)
-        return(search_wrong(tree[3][cur_index], cur_diff))
+        return search_wrong(tree[3][cur_index], cur_diff)
     else:
-        return(tree[1] - diff)
+        return tree[1] - diff
 
 
 PROGS = {}
@@ -43,10 +43,7 @@ with open("../../_inputs/2017/day-07/input.txt", "r", encoding="utf-8") as f:
         if len(tmp) > 2:
             for i in range(3, len(tmp)):
                 tmp_l.append(tmp[i].strip(","))
-        PROGS[tmp[0]] = {
-            "weight": int(tmp[1]),
-            "upper": tmp_l
-        }
+        PROGS[tmp[0]] = {"weight": int(tmp[1]), "upper": tmp_l}
 
 
 ROOT = ""

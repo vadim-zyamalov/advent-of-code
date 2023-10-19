@@ -1,7 +1,7 @@
 def dump(image):
     print()
     for row in image:
-        print(''.join(row))
+        print("".join(row))
 
 
 def deepcopy(image):
@@ -9,33 +9,33 @@ def deepcopy(image):
 
 
 def gen_empty(image):
-    return [['.' for _ in row] for row in image]
+    return [["." for _ in row] for row in image]
 
 
 def increase_image(image, n=1):
     result = []
     dimi = len(image)
     for i in range(n):
-        result.append(['.' for _ in range(dimi + 2 * n)])
+        result.append(["." for _ in range(dimi + 2 * n)])
     for i in range(dimi):
-        result.append(['.' for _ in range(n)] +
-                      list(image[i]) +
-                      ['.' for _ in range(n)])
+        result.append(
+            ["." for _ in range(n)] + list(image[i]) + ["." for _ in range(n)]
+        )
     for i in range(n):
-        result.append(['.' for _ in range(dimi + 2 * n)])
+        result.append(["." for _ in range(dimi + 2 * n)])
     return result
 
 
 def shrink_image(image, n=1):
-    return [list(row[n:(len(row) - n)])
-            for row in image[n:(len(image) - n)]]
+    return [list(row[n : (len(row) - n)]) for row in image[n : (len(image) - n)]]
 
 
 def process_cell(i, j, image):
-    result = '0b'
+    result = "0b"
     for row in range(i - 1, i + 2):
-        result += ''.join(['1' if letter == "#" else '0'
-                           for letter in image[row][(j - 1):(j + 2)]])
+        result += "".join(
+            ["1" if letter == "#" else "0" for letter in image[row][(j - 1) : (j + 2)]]
+        )
     return int(result, 2)
 
 
@@ -52,7 +52,7 @@ def count_lights(image):
     return sum(1 for row in image for letter in row if letter == "#")
 
 
-PATTERN = ''
+PATTERN = ""
 
 with open("../../_inputs/2021/day-20/input.txt", "r", encoding="utf-8") as f:
     line = f.readline().strip()

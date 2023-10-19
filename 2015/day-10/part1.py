@@ -1,5 +1,5 @@
 def look_and_say_fast(string):
-    result = ''
+    result = ""
     count = 0
     prev = None
     for letter in string:

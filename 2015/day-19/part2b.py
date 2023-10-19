@@ -1,5 +1,5 @@
 replacements = []
-molecule = ''
+molecule = ""
 
 filter = set()
 
@@ -13,14 +13,14 @@ def process(molecule, replacements):
     while stack != []:
         _, steps, state = stack.pop()
 
-        if state == 'e':
+        if state == "e":
             return steps
 
         length = len(state)
         for i in range(length):
             for fst, snd in replacements:
                 if state[i:].startswith(snd):
-                    tmp = state[:i] + fst + state[(i + len(snd)):]
+                    tmp = state[:i] + fst + state[(i + len(snd)) :]
                     if tmp not in filter:
                         filter.add(tmp)
                         stack.append((len(tmp), steps + 1, tmp))

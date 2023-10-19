@@ -3,13 +3,8 @@ from itertools import cycle, product
 import time
 
 DICE = list(range(1, 101))
-SUMS = {3: 1,
-        4: 3,
-        5: 6,
-        6: 7,
-        7: 6,
-        8: 3,
-        9: 1}
+SUMS = {3: 1, 4: 3, 5: 6, 6: 7, 7: 6, 8: 3, 9: 1}
+
 
 def practice_play(positions, scores, limit):
     dice_throwing = cycle(DICE)
@@ -21,46 +16,45 @@ def practice_play(positions, scores, limit):
         d_2 = next(dice_throwing)
         throws += 3
         if player == 0:
-            positions = ((positions[0] + d_0 + d_1 + d_2 - 1) % 10 + 1,
-                         positions[1])
-            scores = (scores[0] + positions[0],
-                      scores[1])
+            positions = ((positions[0] + d_0 + d_1 + d_2 - 1) % 10 + 1, positions[1])
+            scores = (scores[0] + positions[0], scores[1])
         else:
-            positions = (positions[0],
-                         (positions[1] + d_0 + d_1 + d_2 - 1) % 10 + 1)
-            scores = (scores[0],
-                      scores[1] + positions[1])
+            positions = (positions[0], (positions[1] + d_0 + d_1 + d_2 - 1) % 10 + 1)
+            scores = (scores[0], scores[1] + positions[1])
         player = (player + 1) % 2
     return (positions, scores, throws)
 
 
 def dirac_play_linear(current_player, positions, scores, limit, mult=1):
     result = [0, 0]
-    queue = [(current_player,
-              positions,
-              scores,
-              mult)]
+    queue = [(current_player, positions, scores, mult)]
     while len(queue) > 0:
         tmp = queue.pop()
         for dsum, num in SUMS.items():
             loop_player, loop_positions, loop_scores, loop_mult = tmp
             if loop_player == 0:
-                loop_positions = ((loop_positions[0] + dsum - 1) % 10 + 1,
-                                  loop_positions[1])
-                loop_scores = (loop_scores[0] + loop_positions[0],
-                               loop_scores[1])
+                loop_positions = (
+                    (loop_positions[0] + dsum - 1) % 10 + 1,
+                    loop_positions[1],
+                )
+                loop_scores = (loop_scores[0] + loop_positions[0], loop_scores[1])
             else:
-                loop_positions = (loop_positions[0],
-                                  (loop_positions[1] + dsum - 1) % 10 + 1)
-                loop_scores = (loop_scores[0],
-                               loop_scores[1] + loop_positions[1])
+                loop_positions = (
+                    loop_positions[0],
+                    (loop_positions[1] + dsum - 1) % 10 + 1,
+                )
+                loop_scores = (loop_scores[0], loop_scores[1] + loop_positions[1])
             if loop_scores[loop_player] >= limit:
                 result[loop_player] += loop_mult * num
             else:
-                queue.append(((loop_player + 1) % 2,
-                              loop_positions,
-                              loop_scores,
-                              loop_mult * num))
+                queue.append(
+                    (
+                        (loop_player + 1) % 2,
+                        loop_positions,
+                        loop_scores,
+                        loop_mult * num,
+                    )
+                )
     return result
 
 
@@ -74,20 +68,20 @@ def dirac_play_recursive(current_player, positions, scores, limit, mult=1):
         loop_positions = positions
         loop_scores = scores
         if current_player == 0:
-            loop_positions = ((loop_positions[0] + dsum - 1) % 10 + 1,
-                              loop_positions[1])
-            loop_scores = (loop_scores[0] + loop_positions[0],
-                           loop_scores[1])
+            loop_positions = (
+                (loop_positions[0] + dsum - 1) % 10 + 1,
+                loop_positions[1],
+            )
+            loop_scores = (loop_scores[0] + loop_positions[0], loop_scores[1])
         else:
-            loop_positions = (loop_positions[0],
-                              (loop_positions[1] + dsum - 1) % 10 + 1)
-            loop_scores = (loop_scores[0],
-                           loop_scores[1] + loop_positions[1])
-        tmp = dirac_play_recursive((current_player + 1) % 2,
-                         loop_positions,
-                         loop_scores,
-                         limit,
-                         mult * num)
+            loop_positions = (
+                loop_positions[0],
+                (loop_positions[1] + dsum - 1) % 10 + 1,
+            )
+            loop_scores = (loop_scores[0], loop_scores[1] + loop_positions[1])
+        tmp = dirac_play_recursive(
+            (current_player + 1) % 2, loop_positions, loop_scores, limit, mult * num
+        )
         result[0] += tmp[0]
         result[1] += tmp[1]
     return result
@@ -105,19 +99,20 @@ def dirac_play_cached(current_player, positions, scores, limit):
         loop_positions = positions
         loop_scores = scores
         if current_player == 0:
-            loop_positions = ((loop_positions[0] + dsum - 1) % 10 + 1,
-                              loop_positions[1])
-            loop_scores = (loop_scores[0] + loop_positions[0],
-                           loop_scores[1])
+            loop_positions = (
+                (loop_positions[0] + dsum - 1) % 10 + 1,
+                loop_positions[1],
+            )
+            loop_scores = (loop_scores[0] + loop_positions[0], loop_scores[1])
         else:
-            loop_positions = (loop_positions[0],
-                              (loop_positions[1] + dsum - 1) % 10 + 1)
-            loop_scores = (loop_scores[0],
-                           loop_scores[1] + loop_positions[1])
-        tmp = dirac_play_cached((current_player + 1) % 2,
-                         loop_positions,
-                         loop_scores,
-                         limit)
+            loop_positions = (
+                loop_positions[0],
+                (loop_positions[1] + dsum - 1) % 10 + 1,
+            )
+            loop_scores = (loop_scores[0], loop_scores[1] + loop_positions[1])
+        tmp = dirac_play_cached(
+            (current_player + 1) % 2, loop_positions, loop_scores, limit
+        )
         result[0] += tmp[0]
         result[1] += tmp[1]
     return result

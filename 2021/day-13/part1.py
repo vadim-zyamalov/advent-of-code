@@ -9,12 +9,12 @@ def dump(dots):
     for dot in dots:
         max_x = max(max_x, dot[0])
         max_y = max(max_y, dot[1])
-    result = [[' ' for _ in range(max_x + 1)] for _ in range(max_y + 1)]
+    result = [[" " for _ in range(max_x + 1)] for _ in range(max_y + 1)]
     for dot in dots:
-        result[dot[1]][dot[0]] = '#'
+        result[dot[1]][dot[0]] = "#"
     for row in result:
         for el in row:
-            print(el, end='')
+            print(el, end="")
         print()
     print()
 
@@ -29,8 +29,7 @@ def fold(rule, dots):
         if delta == (0, 0):
             continue
         if (delta[0] > 0) or (delta[1] > 0):
-            new_dots.append((dot[0] - 2 * delta[0],
-                             dot[1] - 2 * delta[1]))
+            new_dots.append((dot[0] - 2 * delta[0], dot[1] - 2 * delta[1]))
         else:
             new_dots.append(dot)
     return list(set(new_dots))
@@ -38,15 +37,19 @@ def fold(rule, dots):
 
 with open("../../_inputs/2021/day-13/input.txt", "r", encoding="utf-8") as f:
     for line in f:
-        if line.strip() == '':
+        if line.strip() == "":
             continue
-        tmp = line.strip().split(',')
+        tmp = line.strip().split(",")
         if len(tmp) > 1:
             dots.append((int(tmp[0]), int(tmp[1])))
         else:
-            tmp = line.strip().split('=')
-            folds.append((int(tmp[1]) if tmp[0].endswith('x') else 0,
-                          int(tmp[1]) if tmp[0].endswith('y') else 0))
+            tmp = line.strip().split("=")
+            folds.append(
+                (
+                    int(tmp[1]) if tmp[0].endswith("x") else 0,
+                    int(tmp[1]) if tmp[0].endswith("y") else 0,
+                )
+            )
 
 res = fold(folds[0], dots)
 print(f"Part 1: {len(res)}")

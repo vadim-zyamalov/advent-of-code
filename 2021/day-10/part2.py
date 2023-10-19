@@ -4,17 +4,17 @@ with open("../../_inputs/2021/day-10/input.txt", "r", encoding="utf-8") as f:
         stack = []
         lineOk = True
         for char in line.strip():
-            if char in '([{<':
+            if char in "([{<":
                 stack.append(char)
             else:
                 tmp = stack.pop()
-                if (char == ')') and (tmp != '('):
+                if (char == ")") and (tmp != "("):
                     lineOk = False
-                if (char == ']') and (tmp != '['):
+                if (char == "]") and (tmp != "["):
                     lineOk = False
-                if (char == '}') and (tmp != '{'):
+                if (char == "}") and (tmp != "{"):
                     lineOk = False
-                if (char == '>') and (tmp != '<'):
+                if (char == ">") and (tmp != "<"):
                     lineOk = False
         if not lineOk:
             continue
@@ -22,13 +22,13 @@ with open("../../_inputs/2021/day-10/input.txt", "r", encoding="utf-8") as f:
         while len(stack) > 0:
             tmp = stack.pop()
             result *= 5
-            if tmp == '(':
+            if tmp == "(":
                 result += 1
-            if tmp == '[':
+            if tmp == "[":
                 result += 2
-            if tmp == '{':
+            if tmp == "{":
                 result += 3
-            if tmp == '<':
+            if tmp == "<":
                 result += 4
         answer.append(result)
 

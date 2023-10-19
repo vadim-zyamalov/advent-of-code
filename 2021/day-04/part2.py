@@ -6,8 +6,7 @@ def fill(number, boards=boards):
     for k in boards:
         for i in range(5):
             for j in range(5):
-                if boards[k][i][j] is not None and \
-                   boards[k][i][j] == number:
+                if boards[k][i][j] is not None and boards[k][i][j] == number:
                     boards[k][i][j] = None
     return boards
 
@@ -43,21 +42,19 @@ def score(board):
 
 with open("../../_inputs/2021/day-04/input.txt", "r", encoding="utf-8") as f:
     line = f.readline()
-    numbers = [int(i) for i in line.strip().split(',')]
+    numbers = [int(i) for i in line.strip().split(",")]
 
     _ = f.readline()
 
     count = 0
     board = []
     for line in f:
-        if line.strip() == '':
+        if line.strip() == "":
             boards[count] = board
             board = []
             count += 1
         else:
-            board.append([
-                int(i) for i in line.strip().split()
-            ])
+            board.append([int(i) for i in line.strip().split()])
     boards[count] = board
 
 res = -1
