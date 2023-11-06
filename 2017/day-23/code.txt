@@ -1,0 +1,33 @@
+h = 0
+
+b = 79
+c = b
+
+b = 107900
+c = 124900
+
+while True:
+	f, d = 1, 2
+	
+	while True:
+		e = 2
+	
+		while True:
+			if d * e == b:
+				f = 0
+			
+			if f == 0:
+				break
+			
+			e += 1
+			if e == b:
+				break
+		d += 1
+		if d == b:
+			break
+	
+	if f == 0:
+		h += 1
+	if b == c:
+		break
+	b += 17
