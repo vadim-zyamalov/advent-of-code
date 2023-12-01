@@ -113,9 +113,7 @@ if __name__ == "__main__":
             ltokens = line.strip().split()
             tmp: list[int | str] = [ltokens[0]]
             for i in range(1, len(ltokens)):
-                tmp.append(
-                    ltokens[i] if ltokens[i] in KEYS else int(ltokens[i])
-                )
+                tmp.append(ltokens[i] if ltokens[i] in KEYS else int(ltokens[i]))
             PROG.append(tuple(tmp))
 
     part1(PROG)

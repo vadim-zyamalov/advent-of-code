@@ -50,17 +50,13 @@ def part1(prog):
 
 
 if __name__ == "__main__":
-    with open(
-        "../../_inputs/2017/day-23/sample.txt", "r", encoding="utf8"
-    ) as f:
+    with open("../../_inputs/2017/day-23/sample.txt", "r", encoding="utf8") as f:
         PROG = []
         for line in f:
             ltokens = line.strip().split()
             tmp: list[int | str] = [ltokens[0]]
             for i in range(1, len(ltokens)):
-                tmp.append(
-                    ltokens[i] if ltokens[i] in KEYS else int(ltokens[i])
-                )
+                tmp.append(ltokens[i] if ltokens[i] in KEYS else int(ltokens[i]))
             PROG.append(tuple(tmp))
 
     part1(PROG)

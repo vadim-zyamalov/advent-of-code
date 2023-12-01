@@ -6,9 +6,7 @@ DIR = {
 }
 
 
-def next(
-    cur: tuple[int, int], dir: str, plan: list[list], shape: tuple[int, int]
-):
+def next(cur: tuple[int, int], dir: str, plan: list[list], shape: tuple[int, int]):
     lx, ly = shape
     x, y = cur
     dx, dy, alts = DIR[dir]
