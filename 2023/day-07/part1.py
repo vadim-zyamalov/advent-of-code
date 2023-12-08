@@ -51,7 +51,6 @@ class Hand:
         for i in range(5):
             si = self.order.index(self.hand[i])
             oi = self.order.index(other.hand[i])
-            print(si, oi)
             if si > oi:
                 return True
             if si < oi:
@@ -98,5 +97,4 @@ if __name__ == "__main__":
             i += 1
         prev = hand
 
-    print(sorted(cards))
     print(f"Part 1: {res}")
