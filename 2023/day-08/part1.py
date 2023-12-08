@@ -1,27 +1,13 @@
 from numpy import lcm, int64
 
 
-def part1(moves: dict, prog: str) -> int:
-    N = len(prog)
-    res = 0
-    i = 0
-    cur = "AAA"
-
-    while cur != "ZZZ":
-        cur = moves[cur][prog[i]]
-        i = (i + 1) % N
-        res += 1
-
-    return res
-
-
-def part2_single(moves: dict, prog: str, beg="AAA") -> int:
+def part1(moves: dict, prog: str, beg="AAA", fin="ZZZ") -> int:
     N = len(prog)
     res = 0
     i = 0
     cur = beg
 
-    while not cur.endswith("Z"):
+    while not cur.endswith(fin):
         cur = moves[cur][prog[i]]
         i = (i + 1) % N
         res += 1
@@ -29,10 +15,10 @@ def part2_single(moves: dict, prog: str, beg="AAA") -> int:
     return res
 
 
-def part2(moves: dict, prog: str) -> int:
-    beg = [el for el in moves.keys() if el.endswith("A")]
+def part2(moves: dict, prog: str, beg="A", fin="Z") -> int:
+    beg = [el for el in moves.keys() if el.endswith(beg)]
 
-    res = [part2_single(moves, prog, beg=el) for el in beg]
+    res = [part1(moves, prog, beg=el, fin=fin) for el in beg]
 
     return lcm.reduce(res, dtype=int64)
 
