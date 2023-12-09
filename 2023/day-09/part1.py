@@ -11,7 +11,7 @@ def extrapolate(history: list[int]) -> tuple[int, int]:
     while True:
         deltas.append(cur)
 
-        if cur.count(0) == len(cur):
+        if not any(cur):
             break
 
         cur = diff(cur)
