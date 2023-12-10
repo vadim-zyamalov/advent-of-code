@@ -72,19 +72,13 @@ def count(sketch: list[list[str]], loop: set) -> int:
                 if tile in "LF":
                     corner = tile
                 elif tile == "J":
-                    if corner == "L":
-                        pass
-                    elif corner == "F":
+                    if corner == "F":
                         inside = not inside
                     corner = ""
                 elif tile == "7":
                     if corner == "L":
                         inside = not inside
-                    elif corner == "F":
-                        pass
                     corner = ""
-                elif (tile == "-") and (corner != ""):
-                    pass
                 elif tile == "|":
                     inside = not inside
 
