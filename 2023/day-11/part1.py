@@ -15,11 +15,9 @@ def exdist(
     x2, y2 = max(g1[0], g2[0]), max(g1[1], g2[1])
 
     res = dist(g1, g2)
-    extra = 0
-    if (s := sum(1 for r in exrows if x1 < r < x2)) > 0:
-        extra += s * (exnum - 1)
-    if (s := sum(1 for c in excols if y1 < c < y2)) > 0:
-        extra += s * (exnum - 1)
+    extra = sum(1 for r in exrows if x1 < r < x2)
+    extra += sum(1 for c in excols if y1 < c < y2)
+    extra *= exnum - 1
 
     return res + extra
 
