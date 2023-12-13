@@ -75,19 +75,15 @@ if __name__ == "__main__":
                 current.append(list(line))
 
         if current != []:
-            for r in current:
-                print(r)
-            print()
             vr, hr = reflections(current)
+
             if vr:
                 res1 += vr[0]
             if hr:
                 res1 += 100 * hr[0]
 
-            print(vr, hr, end=" ")
             vr, hr = smudges(current, vr, hr)
             res2 += vr + 100 * hr
-            print(vr, hr)
 
     print(f"Part 1: {res1}")
     print(f"Part 2: {res2}")
