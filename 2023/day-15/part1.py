@@ -11,20 +11,17 @@ def del_lens(boxes: dict[int, list[tuple[str, int]]], box: int, label: str) -> N
     for lens in boxes[box]:
         if lens[0] == label:
             boxes[box].remove(lens)
-            break
+            return
 
 
 def repl_lens(
     boxes: dict[int, list[tuple[str, int]]], box: int, label: str, focal: int
 ) -> None:
-    found = False
     for i, lens in enumerate(boxes[box]):
         if lens[0] == label:
             boxes[box][i] = (label, focal)
-            found = True
-            break
-    if not found:
-        boxes[box].append((label, focal))
+            return
+    boxes[box].append((label, focal))
 
 
 def power_lens(boxes: dict[int, list[tuple[str, int]]]) -> int:
