@@ -1,6 +1,3 @@
-DIRS = {(-1, 0), (1, 0), (0, -1), (0, 1)}
-
-
 def process(layout: list[str], start=(0, 0), direction=(0, 1)) -> int:
     Nr, Nc = len(layout), len(layout[0])
 

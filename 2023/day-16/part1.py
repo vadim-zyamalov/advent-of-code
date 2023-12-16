@@ -1,6 +1,3 @@
-DIRS = {(-1, 0), (1, 0), (0, -1), (0, 1)}
-
-
 def next_pos(
     x: int, y: int, dx: int, dy: int, layout: list[str], Nr, Nc
 ) -> tuple[tuple[int, ...], ...]:
