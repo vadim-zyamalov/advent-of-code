@@ -64,6 +64,28 @@ def part2(steps, garden):
     return int(result)
 
 
+def part2a(steps, garden):
+    x0 = steps % len(garden)
+    x = steps // len(garden)
+
+    vals = [
+        part1(x0, garden),
+        part1(x0 + len(garden), garden),
+        part1(x0 + 2 * len(garden), garden),
+    ]
+    vvals = [el1 - el0 for el0, el1 in zip(vals[:-1], vals[1:])]
+    aval = vvals[1] - vvals[0]
+
+    result = vals[-1]
+    vresult = vvals[-1]
+
+    for _ in range(3, x + 1):
+        vresult += aval
+        result += vresult
+
+    return int(result)
+
+
 if __name__ == "__main__":
     with open("_inputs/2023/day-21/input.txt") as f:
         garden = f.read().strip().split("\n")
@@ -74,4 +96,7 @@ if __name__ == "__main__":
         print(f"Part 1: {res1}")
 
         res2 = part2(26501365, garden)
+        print(f"Part 2: {res2}")
+
+        res2 = part2a(26501365, garden)
         print(f"Part 2: {res2}")
