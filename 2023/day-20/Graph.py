@@ -13,5 +13,7 @@ with open("input.txt") as f:
             G.edge(nsrc, dest)
         G.node(nsrc, src)
 
-G.format = "png"
+G.format = "pdf"
+G.engine = "dot"
+G.attr(overlap="false")
 G.render("Graph", view=True)
