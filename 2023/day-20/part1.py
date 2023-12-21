@@ -1,4 +1,5 @@
 from collections import deque
+from math import lcm
 
 
 class Module:
@@ -53,18 +54,21 @@ class Network:
         self.modules = {}
         self.cache = {}
         self.push_no = 0
+        self.counter = {}
 
     def reset(self):
         self.cache = {0: 0}
         self.push_no = 0
         for module in self.modules:
             self.modules[module].reset()
+        for name in self.counter:
+            self.counter[name] = 0
 
     def add(self, module):
         self.names.append(module.name)
         self.modules[module.name] = module
 
-    def finalize(self):
+    def finalize(self, fin="rx"):
         tmp_src = {}
 
         for name in self.names:
@@ -80,10 +84,15 @@ class Network:
                     self.names.append(name)
                     self.modules[name] = Module(name, 2, [])
                     continue
-                if self.modules[name].type:
+                if self.modules[name].type == 1:
                     self.modules[name].src = tmp_src[name]
                     for src_name in tmp_src[name]:
                         self.modules[name].memory[src_name] = 0
+
+        for name in self.names:
+            cur_module = self.modules[name]
+            if fin in cur_module.dests:
+                self.counter = {k: 0 for k in cur_module.src}
 
         self.cache[0] = 0
 
@@ -100,7 +109,6 @@ class Network:
 
     def push(self):
         self.push_no += 1
-        is_rx = False
 
         queue = deque()
         signal_count = [1, 0]
@@ -112,8 +120,8 @@ class Network:
             src, dest, signal = queue.popleft()
 
             # Part 2
-            if (dest == "rx") and (signal == 0):
-                is_rx = True
+            if (src in self.counter) and (signal == 1) and (self.counter[src] == 0):
+                self.counter[src] = self.push_no
             # Part 2
 
             signal_count[signal] += 1
@@ -124,10 +132,10 @@ class Network:
         cur_hash = self.hash()
         if cur_hash in self.cache:
             beg = self.cache[cur_hash]
-            return True, beg, *signal_count, is_rx
+            return True, beg, *signal_count, self.counter
 
         self.cache[cur_hash] = self.push_no
-        return False, -1, *signal_count, is_rx
+        return False, -1, *signal_count, self.counter
 
 
 def part1(network, N=1000):
@@ -161,9 +169,9 @@ def part2(network):
     pp = 0
     while True:
         pp += 1
-        _, _, _, _, is_rx = network.push()
-        if is_rx:
-            return pp
+        _, _, _, _, counter = network.push()
+        if all(v != 0 for v in counter.values()):
+            return lcm(*counter.values())
 
 
 if __name__ == "__main__":
