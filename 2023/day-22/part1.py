@@ -3,29 +3,18 @@ def drop(fig, fig_no, bricks, cubes):
 
     bricks[fig_no] = []
 
-    while True:
-        if (x0 == x1) and (y0 == y1) and ((z0 - 1 == 0) or (x0, y0, z0 - 1) in cubes):
-            for z in range(z0, z1 + 1):
-                cubes[(x0, y0, z)] = fig_no
-                bricks[fig_no].append((x0, y0, z))
-            break
-        elif (x0 == x1) and (
-            (z0 - 1 == 0) or any((x0, ny, z0 - 1) in cubes for ny in range(y0, y1 + 1))
-        ):
-            for y in range(y0, y1 + 1):
-                cubes[(x0, y, z0)] = fig_no
-                bricks[fig_no].append((x0, y, z0))
-            break
-        elif (y0 == y1) and (
-            (z0 - 1 == 0) or any((nx, y0, z0 - 1) in cubes for nx in range(x0, x1 + 1))
-        ):
-            for x in range(x0, x1 + 1):
-                cubes[(x, y0, z0)] = fig_no
-                bricks[fig_no].append((x, y0, z0))
-            break
+    try:
+        mz = max(
+            z for x, y, z in cubes if x in range(x0, x1 + 1) and y in range(y0, y1 + 1)
+        )
+    except:
+        mz = 0
 
-        z0 -= 1
-        z1 -= 1
+    for x in range(x0, x1 + 1):
+        for y in range(y0, y1 + 1):
+            for z in range(z0, z1 + 1):
+                cubes |= {(x, y, mz + (z - z0) + 1)}
+                bricks[fig_no].append((x, y, mz + (z - z0) + 1))
 
 
 def adjacent(fig_no, bricks, below=True):
@@ -89,7 +78,7 @@ def part2(removed, lower_bricks, upper_bricks):
 if __name__ == "__main__":
     with open("_inputs/2023/day-22/input.txt", "r", encoding="utf8") as f:
         bricks = {}
-        cubes = {}
+        cubes = set()
 
         data = []
         for line in f:
