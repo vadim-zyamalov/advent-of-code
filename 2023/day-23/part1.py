@@ -1,7 +1,7 @@
 import heapq
+from collections import defaultdict
 
-
-SLOPES = {">": (0, 1), "^": (-1, 0), "<": (0, -1), "v": (1, 0)}
+DIRS = [(0, 1), (-1, 0), (0, -1), (1, 0)]
 
 
 def inside(x, y, Nx, Ny):
@@ -11,7 +11,7 @@ def inside(x, y, Nx, Ny):
 def next_pos(x, y, forest, fsize):
     Nx, Ny = fsize
     result = []
-    for dx, dy in SLOPES.values():
+    for dx, dy in DIRS:
         if inside(x + dx, y + dy, Nx, Ny):
             if forest[x + dx][y + dy] != "#":
                 result.append((x + dx, y + dy))
@@ -26,9 +26,7 @@ def nodes(forest):
     for x in range(1, Nx - 1):
         for y in range(1, Ny - 1):
             if forest[x][y] != "#":
-                n_ways = sum(
-                    forest[x + dx][y + dy] != "#" for dx, dy in SLOPES.values()
-                )
+                n_ways = sum(forest[x + dx][y + dy] != "#" for dx, dy in DIRS)
                 if n_ways > 2:
                     result.add((x, y))
     return sorted(result)
@@ -59,17 +57,12 @@ def graph(forest, nodes, beg, fin):
     queue = [(*beg, *beg, True)]
 
     while queue:
-        x, y, prx, pry, direction = queue.pop(0)
+        x, y, prx, pry, direction = queue.pop()
 
         start = (prx, pry)
         dist = 0 if start != beg else -1
 
-        while (x, y) not in seen:
-            if (x, y) in nodes:
-                break
-
-            if (x, y) in seen:
-                continue
+        while (x, y) not in nodes:
             seen.add((x, y))
 
             next_tile = [
@@ -84,18 +77,17 @@ def graph(forest, nodes, beg, fin):
 
         finish = (x, y)
 
-        if dist > 0:
-            if start == beg:
-                result[beg][finish] = dist + 1
+        if start == beg:
+            result[beg][finish] = dist + 1
+        else:
+            if direction:
+                if start not in result:
+                    result[start] = {}
+                result[start][finish] = dist + 1
             else:
-                if direction:
-                    if start not in result:
-                        result[start] = {}
-                    result[start][finish] = dist + 1
-                else:
-                    if finish not in result:
-                        result[finish] = {}
-                    result[finish][start] = dist + 1
+                if finish not in result:
+                    result[finish] = {}
+                result[finish][start] = dist + 1
 
         next_tile = [
             (nx, ny)
@@ -124,27 +116,22 @@ def heuristic(p0, p1):
 
 
 def part1(graph, beg, fin):
-    queue = [(-heuristic(beg, fin), 0, beg, ())]
-    visited = {}
+    queue = [(0, beg, ())]
     result = 0
 
     while queue:
-        # print(queue)
-        _, dist, cur, path = heapq.heappop(queue)
+        dist, cur, path = heapq.heappop(queue)
         if cur == fin:
-            return abs(dist)
-            # result = max(result, abs(dist))
-            # continue
+            result = max(result, abs(dist))
+            continue
 
         if cur in path:
-            # if visited[cur] < dist:
             continue
-        visited[cur] = dist
 
         for nxt in graph[cur]:
             heapq.heappush(
                 queue,
-                (-heuristic(nxt, fin), dist - graph[cur][nxt], nxt, path + (cur,)),
+                (dist - graph[cur][nxt], nxt, path + (cur,)),
             )
 
     return result
