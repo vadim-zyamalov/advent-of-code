@@ -1,5 +1,4 @@
 import heapq
-from collections import defaultdict
 
 DIRS = [(0, 1), (-1, 0), (0, -1), (1, 0)]
 
@@ -105,14 +104,9 @@ def graph(forest, nodes, beg, fin):
                     nd = ny - y == 1
                 case "<":
                     nd = ny - y == -1
-            if (nx, ny, x, y, nd) not in queue and (x, y) in nodes:
-                queue.append((nx, ny, x, y, nd))
+            queue.append((nx, ny, x, y, nd))
 
     return result
-
-
-def heuristic(p0, p1):
-    return abs(p0[0] - p1[0]) + abs(p0[1] - p1[1])
 
 
 def part1(graph, beg, fin):
