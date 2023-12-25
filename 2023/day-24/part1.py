@@ -1,4 +1,5 @@
 import sympy as sp
+import numpy as np
 
 LB = 200_000_000_000_000
 UB = 400_000_000_000_000
@@ -58,6 +59,38 @@ def part2(hails, N):
     return sum(roots[:3])
 
 
+def part2_lin(hails, N):
+    x0, y0, z0, vx0, vy0, vz0 = hails[0]
+    x1, y1, z1, vx1, vy1, vz1 = hails[1]
+    x2, y2, z2, vx2, vy2, vz2 = hails[2]
+
+    A = np.array(
+        [
+            [(vy1 - vy0), -(vx1 - vx0), 0, -(y1 - y0), (x1 - x0), 0],
+            [(vy2 - vy0), -(vx2 - vx0), 0, -(y2 - y0), (x2 - x0), 0],
+            [(vz1 - vz0), 0, -(vx1 - vx0), -(z1 - z0), 0, (x1 - x0)],
+            [(vz2 - vz0), 0, -(vx2 - vx0), -(z2 - z0), 0, (x2 - x0)],
+            [0, (vz1 - vz0), -(vy1 - vy0), 0, -(z1 - z0), (y1 - y0)],
+            [0, (vz2 - vz0), -(vy2 - vy0), 0, -(z2 - z0), (y2 - y0)],
+        ]
+    )
+
+    b = np.array(
+        [
+            (x1 * vy1 - y1 * vx1) - (x0 * vy0 - y0 * vx0),
+            (x2 * vy2 - y2 * vx2) - (x0 * vy0 - y0 * vx0),
+            (x1 * vz1 - z1 * vx1) - (x0 * vz0 - z0 * vx0),
+            (x2 * vz2 - z2 * vx2) - (x0 * vz0 - z0 * vx0),
+            (y1 * vz1 - z1 * vy1) - (y0 * vz0 - z0 * vy0),
+            (y2 * vz2 - z2 * vy2) - (y0 * vz0 - z0 * vy0),
+        ]
+    ).T
+
+    roots = np.linalg.solve(A, b)
+
+    return sum(roots.flatten()[:3])
+
+
 if __name__ == "__main__":
     with open("_inputs/2023/day-24/input.txt", "r", encoding="utf8") as f:
         hails = []
@@ -74,3 +107,4 @@ if __name__ == "__main__":
 
     print(f"Part 1: {part1(hails, (LB, UB))}")
     print(f"Part 2: {part2(hails, 5)}")
+    print(f"Part 2: {part2_lin(hails, 5)} (linear)")
