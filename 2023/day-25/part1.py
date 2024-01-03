@@ -1,4 +1,29 @@
 import numpy as np
+import random
+import time
+
+
+def karger(graph):
+    while True:
+        G = {k: (list(v), set([k])) for k, v in graph.items()}
+        while len(G.keys()) > 2:
+            e = random.choice(list(G.keys()))
+            f = random.choice(G[e][0])
+
+            nbrs_e, set_e = G[e]
+            nbrs_f, set_f = G[f]
+
+            for w in nbrs_f:
+                if w != e and w != f:
+                    nbrs_e.append(w)
+                    G[w][0].remove(f)
+                    G[w][0].append(e)
+
+            G[e] = ([w for w in nbrs_e if w != f], set_e | set_f)
+            del G[f]
+
+        if len(list(G.values())[0][0]) == 3:
+            return G
 
 
 def laplacian(graph):
@@ -35,6 +60,7 @@ if __name__ == "__main__":
                 graph[lhs].add(rn)
                 graph[rn].add(lhs)
 
+        t0 = time.time()
         laplace = laplacian(graph)
         eigv, eigvec = np.linalg.eig(laplace)
 
@@ -44,3 +70,13 @@ if __name__ == "__main__":
         result = eigvec[1]
 
         print(f"Part 1: {sum(result > 0) * sum(result < 0)}")
+        print(f"    took {time.time() - t0:.2f} sec")
+
+        t0 = time.time()
+        G = karger(graph)
+        result = 1
+        for _, v in G.values():
+            result *= len(v)
+
+        print(f"Part 1: {result} (Karger's method)")
+        print(f"    took {time.time() - t0:.2f} sec")
