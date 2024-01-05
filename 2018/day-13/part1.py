@@ -27,8 +27,6 @@ class Cart:
                 pass
 
     def move(self, turns):
-        if (self.x, self.y) == (0, 117):
-            print(turns[(self.x, self.y)])
         self.turn(turns[(self.x, self.y)])
         self.x += self.dx
         self.y += self.dy
