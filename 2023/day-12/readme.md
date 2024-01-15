@@ -5,4 +5,4 @@
 перебираем числа от 0 до $2^N$ (N --- число ?), меняем 1 на # и
 сравниваем с набором длин.
 
-Вторую часть подсмотрел у [u/pred](https://www.reddit.com/r/adventofcode/comments/18ge41g/comment/kd0dw9e/.
+Вторую часть подсмотрел у [u/pred](https://www.reddit.com/r/adventofcode/comments/18ge41g/comment/kd0dw9e/).

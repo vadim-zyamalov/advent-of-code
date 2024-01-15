@@ -1,6 +1,6 @@
 # Заметки
 
-[Подсмотрел](https://www.reddit.com/r/adventofcode/comments/zpihwi/comment/j0tgt4d/, как надо было сокращать число проверяемых
+[Подсмотрел](https://www.reddit.com/r/adventofcode/comments/zpihwi/comment/j0tgt4d/), как надо было сокращать число проверяемых
 состояний. Обычный алгоритм Дейкстры сыпался уже на тестовых данных,
 работал крайне долго.
 

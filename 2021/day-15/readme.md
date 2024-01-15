@@ -12,8 +12,7 @@
 
 Тем не менее, применение алгоритма Дейкстры в классическом варианте (с
 удалением вершин) для данной задачи неэффективно из-за числа точек (2,5
-миллионов). На странице в Википедии (https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm#Using_a_priority_queue) и в посте на Reddit
-(https://www.reddit.com/r/adventofcode/comments/rgqzt5/comment/hon7qbz/?utm_source=share&utm_medium=web2x&context=3)
+миллионов). [На странице в Википедии](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm#Using_a_priority_queue) и в [посте на Reddit](https://www.reddit.com/r/adventofcode/comments/rgqzt5/comment/hon7qbz)
 приведен вариант для добавления точек, что эффективнее, так как не
 требует постоянного поиска минимального значения в списке расстояний (у
 нас суммы весов) длиной те же 2,5 миллиона.
