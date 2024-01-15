@@ -43,6 +43,18 @@ def laplacian(graph):
     return np.diag(deg) - adj_mat
 
 
+def ad_hoc(graph):
+    nodes = set(graph.keys())
+
+    def count(v):
+        return len(graph[v] - nodes)
+
+    while sum(map(count, nodes)) != 3:
+        nodes.remove(max(nodes, key=count))
+
+    return len(nodes) * (len(graph) - len(nodes))
+
+
 if __name__ == "__main__":
     with open("_inputs/2023/day-25/input.txt", "r", encoding="utf8") as f:
         graph = {}
@@ -79,4 +91,8 @@ if __name__ == "__main__":
             result *= len(v)
 
         print(f"Part 1: {result} (Karger's method)")
+        print(f"    took {time.time() - t0:.2f} sec")
+
+        t0 = time.time()
+        print(f"Part 1: {ad_hoc(graph)} (ad-hoc method)")
         print(f"    took {time.time() - t0:.2f} sec")
