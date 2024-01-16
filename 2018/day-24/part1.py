@@ -1,11 +1,10 @@
 import re
-from collections import defaultdict
 
 
 class Group:
     def __init__(self, line, team, no):
-        self.id = f"{team}_{no}"
-        self.immune = team == "immune"
+        self.id = f"{team}{no}"
+        self.immune = team == "Imm"
 
         res = re.findall(r"(\d*) units", line)
         self.N = int(res[0])
@@ -32,16 +31,6 @@ class Group:
                 else:
                     self.resist.extend(chunk[2:])
 
-    def __repr__(self):
-        result = (
-            f"{self.id}, N: {self.N}, hp: {self.hp}, {self.attack}:{self.dmg}"
-        )
-        if self.weak:
-            result += f", weak: {', '.join(self.weak)}"
-        if self.resist:
-            result += f", resist: {', '.join(self.resist)}"
-        return f"[{result}]"
-
     def power(self, boost=0):
         return self.N * (self.dmg + (boost if self.immune else 0))
 
@@ -54,18 +43,18 @@ class Game:
     def __init__(self, lines):
         self.groups = []
 
-        current_team = "immune"
-        no = 0
+        current_team = "I"
+        no = 1
 
         for line in lines:
             if line == "":
                 continue
             if line.startswith("Immune"):
-                current_team = "immune"
-                no = 0
+                current_team = "Imm"
+                no = 1
             elif line.startswith("Infection"):
-                current_team = "infection"
-                no = 0
+                current_team = "Inf"
+                no = 1
             else:
                 self.groups.append(Group(line, current_team, no))
                 no += 1
@@ -87,7 +76,7 @@ class Game:
                     continue
                 if g.attack in eg.resist:
                     continue
-                pos_dmg = (g.power(boost)) * (2 if g.attack in eg.weak else 1)
+                pos_dmg = g.power(boost) * (2 if g.attack in eg.weak else 1)
                 if pos_dmg > max_dmg:
                     max_dmg = pos_dmg
                     tgt = eg.id
@@ -104,18 +93,33 @@ class Game:
             if g.id not in targets:
                 continue
 
-            eg = [el for el in self.groups if el.id == targets[g.id]][0]
+            # Распаковываем единственный элемент списка
+            [eg] = [el for el in self.groups if el.id == targets[g.id]]
             dmg = g.power(boost) * (2 if g.attack in eg.weak else 1)
+
+            # Данная команда изменяет группу ВНУТРИ списка self.groups.
+            # Это возможно благодаря тому, что, во-первых,
+            # экземпляры пользовательских классов, в общем случае, мутабельны;
+            # и во-вторых, оператор `=` не делает присваивание, а связывает
+            # имя с объектом.
             eg.suffer(dmg)
 
     def move(self, boost=0):
+        # Если сохранились команды обоих типов
         if sum(g.immune for g in self.groups) and sum(
             not g.immune for g in self.groups
         ):
             targets = self.ph_selection(boost)
             if targets == {}:
+                # Контролируем крайний случай,
+                # когда ни одна из команд не может выбрать цель.
+                # Данный случай возникает,
+                # когда команды устойчивы к атакам друг друга.
                 return False
+
             self.ph_attack(targets, boost)
+
+            # Удаляем погибшие группы
             self.groups = [g for g in self.groups if g.N > 0]
             return True
         return False
@@ -133,6 +137,10 @@ if __name__ == "__main__":
     result = sum(g.N for g in game.groups)
     print(f"Part 1: {result}")
 
+    # Для оптимизации перебора значений буста сначала идем большими шагами.
+    # Как только мы победим, уменьшим шаг и начнем с предыдущего значения,
+    # на котором мы еще проигрывали.
+    # Продолжаем до тех пор, пока мы не победим с размером шага 1.
     boost = 0
     delta = 100
 
