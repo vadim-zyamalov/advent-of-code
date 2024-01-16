@@ -1,4 +1,5 @@
 import heapq as hq
+import time
 
 
 def dist(x, y):
@@ -89,6 +90,7 @@ if __name__ == "__main__":
         max_r = 0
         max_bot = (0, 0, 0)
 
+        t0 = time.time()
         for line in f:
             line = line.strip()
             if line == "":
@@ -111,9 +113,12 @@ if __name__ == "__main__":
 
     result = sum(dist(max_bot, el) <= max_r for el in bots)
     print(f"Part 1: {result}")
+    print(f"    took {time.time() - t0:.2f} secs")
 
-    result = part2_incorrect(bots)
-    print(f"Part 2: {result}")
+    t0 = time.time()
+    print(f"Part 2: {part2_incorrect(bots)}")
+    print(f"    took {time.time() - t0:.2f} secs")
 
-    result = part2_correct(bots)
-    print(f"Part 2: {result}")
+    t0 = time.time()
+    print(f"Part 2: {part2_correct(bots)}")
+    print(f"    took {time.time() - t0:.2f} secs")
