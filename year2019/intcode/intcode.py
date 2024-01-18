@@ -1,4 +1,5 @@
 from typing import NamedTuple
+from .dynlist import DynList
 
 Params = NamedTuple("Params", [("N", int), ("outoff", int)])
 
@@ -17,7 +18,7 @@ OPCODES = {
 
 class Intcode:
     def __init__(self, program: list[int]):
-        self._regs = list(program)
+        self._regs = DynList(program)
 
     def reset(self):
         del self.regs
