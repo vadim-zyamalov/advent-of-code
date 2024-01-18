@@ -41,6 +41,8 @@ def timingw(path):
                 dp = Pos(0, -1 if d == "U" else 1)
             case "L" | "R":
                 dp = Pos(-1 if d == "L" else 1, 0)
+            case _:
+                assert False
         for _ in range(s):
             pos += dp
             lng += 1
