@@ -1,17 +1,13 @@
 from collections import defaultdict
-import cmath as cm
+import math as m
 
 
 def angdist(p0, p1):
     d0, d1 = p1[0] - p0[0], p1[1] - p0[1]
-    if d0 == 0:
-        ang = d1 / abs(d1) - 0 * 1j
-    elif d1 == 0:
-        ang = -d0 / abs(d0) * 1j
-    else:
-        ang = d1 / abs(d1) - 1j * d0 / abs(d1)
+    ang = m.atan2(d0, d1)
+    _ang = m.atan2(-d0, -d1)
     dist = abs(d0) + abs(d1)
-    return cm.phase(ang), cm.phase(-ang), dist
+    return ang, _ang, dist
 
 
 def angdists(asteroids):
@@ -51,7 +47,7 @@ def part1(asteroids):
 
 def part2(data, aim=200):
     lists = queues(data)
-    angles = sorted(lists.keys())
+    angles = sorted(lists.keys(), reverse=True)
 
     N = len(angles)
 
