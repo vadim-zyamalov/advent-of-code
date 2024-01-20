@@ -1,4 +1,3 @@
-from .dynlist import DynList
 from collections import defaultdict
 import warnings
 
@@ -79,7 +78,7 @@ class Intcode:
         self._rbase = 0
 
     def process(
-        self, in3: list[int] | None = None, verbose=False, resume=False
+        self, inputs: list[int] | None = None, verbose=False, resume=False
     ):
         if not resume:
             self.regs = self._regs.copy()
@@ -121,11 +120,11 @@ class Intcode:
                     self.regs[_outaddr] = values[0] * values[1]
 
                 case 3:
-                    if in3 is None:
+                    if inputs is None:
                         self.regs[_outaddr] = int(input(r"[INPUT?]: "))
                     else:
-                        if in3:
-                            self.regs[_outaddr] = in3.pop(0)
+                        if inputs:
+                            self.regs[_outaddr] = inputs.pop(0)
                         else:
                             self._ip = ip
                             return _outputs, False

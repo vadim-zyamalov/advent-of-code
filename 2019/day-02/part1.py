@@ -1,8 +1,8 @@
 import sys
 
-sys.path.append(".\\2019\\")
+sys.path.append(".\\")
 
-from intcode.intcode import Intcode
+from utils.intcode import Intcode
 
 
 if __name__ == "__main__":

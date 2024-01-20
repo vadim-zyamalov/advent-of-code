@@ -1,8 +1,8 @@
 import sys
 
-sys.path.append(".\\2019\\")
+sys.path.append(".\\")
 
-from intcode.intcode import Intcode
+from utils.intcode import Intcode
 from itertools import permutations
 
 
@@ -18,7 +18,7 @@ if __name__ == "__main__":
         _input = 0
         for i, phase in enumerate(phases):
             _output, _ = amplifiers[i].process(
-                in3=[phase, _input], verbose=False
+                inputs=[phase, _input], verbose=False
             )
             if _output is []:
                 assert False
@@ -35,13 +35,13 @@ if __name__ == "__main__":
     for phases in permutations([5, 6, 7, 8, 9]):
         _input = 0
         for i, phase in enumerate(phases):
-            _output, _ = amplifiers[i].process(in3=[phase], verbose=False)
+            _output, _ = amplifiers[i].process(inputs=[phase], verbose=False)
 
         finished = [False] * 5
         while not all(finished):
             for i in range(5):
                 _output, _finished = amplifiers[i].process(
-                    in3=[_input], resume=True
+                    inputs=[_input], resume=True
                 )
                 if _output is []:
                     assert False
