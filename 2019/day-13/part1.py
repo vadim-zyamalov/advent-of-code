@@ -52,7 +52,7 @@ if __name__ == "__main__":
 
     tiles = defaultdict(int)
     computer.reset()
-    computer._regs[0] = 2
+    computer.regs[0] = 2
     output, _ = computer.process(inputs=[])
 
     scores, ball, bat = parse(output, tiles)
