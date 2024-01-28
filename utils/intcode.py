@@ -36,6 +36,8 @@ class Intcode:
         self.regs = defaultdict(int)
         for i, num in enumerate(program):
             self.regs[i] = num
+
+        self._regs = self.regs.copy()
         self._ip = 0
         self._rbase = 0
 
@@ -72,7 +74,7 @@ class Intcode:
         return opcode, _npar, modes, address, values
 
     def reset(self):
-        del self._regs
+        self._regs = self.regs.copy()
         self._ip = 0
         self._rbase = 0
 
@@ -91,7 +93,7 @@ class Intcode:
         self, inputs: list[int] | None = None, verbose=False, resume=False
     ):
         if not resume:
-            self._regs = self.regs.copy()
+            self.reset()
 
         ip = self._ip
 

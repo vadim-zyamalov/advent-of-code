@@ -5,6 +5,9 @@ class Pos(NamedTuple("Pos", [("x", int), ("y", int)])):
     def __add__(self, other):
         return Pos(self.x + other.x, self.y + other.y)
 
+    def dist(self, other) -> int:
+        return abs(self.x - other.x) + abs(self.y - other.y)
+
     @property
     def near4(self):
         return [
