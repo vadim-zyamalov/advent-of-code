@@ -1,8 +1,3 @@
-import heapq
-
-DIRS = [(0, 1), (-1, 0), (0, -1), (1, 0)]
-
-
 def nodes(forest):
     result = set()
 
@@ -77,7 +72,7 @@ def graph(forest, nodes, beg, fin):
                     nd = nx - x == -1
                 case ">":
                     nd = nx - x == 1j
-                case "<":
+                case "<" | _:
                     nd = nx - x == -1j
             queue.append((nx, x, nd))
 
@@ -85,8 +80,7 @@ def graph(forest, nodes, beg, fin):
 
 
 def part1(graph, beg, fin):
-    queue = [(0, beg, ())]
-    result = 0
+    queue: list[tuple[int, complex, tuple]] = [(0, beg, ())]
     visited = {}
 
     while queue:
