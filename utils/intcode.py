@@ -73,6 +73,9 @@ class Intcode:
 
         return opcode, _npar, modes, address, values
 
+    def _ascii_codes(self, line):
+        return list(map(ord, list(line)))
+
     def reset(self):
         self._regs = self.regs.copy()
         self._ip = 0
@@ -90,7 +93,11 @@ class Intcode:
             self._rbase = rbase
 
     def process(
-        self, inputs: list[int] | None = None, verbose=False, resume=False
+        self,
+        inputs: list[int] | str | None = None,
+        verbose=False,
+        resume=False,
+        ascii=False,
     ):
         if not resume:
             self.reset()
@@ -132,13 +139,25 @@ class Intcode:
 
                 case 3:
                     if inputs is None:
-                        self._regs[_outaddr] = int(input(r"[INPUT?]: "))
-                    else:
-                        if inputs:
-                            self._regs[_outaddr] = inputs.pop(0)
+                        inputs = input(r"[INPUT?]: ")
+                    if ascii:
+                        if isinstance(inputs, str):
+                            if not inputs.endswith("\n"):
+                                inputs += "\n"
+                            inputs = self._ascii_codes(inputs)
+                            ascii = False
                         else:
-                            self._ip = ip
-                            return _outputs, False
+                            raise ValueError(
+                                "non-string input provided for ascii-mode"
+                            )
+                    else:
+                        if isinstance(inputs, str):
+                            inputs = [int(inputs)]
+                    if inputs:
+                        self._regs[_outaddr] = inputs.pop(0)
+                    else:
+                        self._ip = ip
+                        return _outputs, False
 
                 case 4:
                     if verbose:

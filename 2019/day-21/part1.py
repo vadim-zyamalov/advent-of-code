@@ -40,14 +40,14 @@ if __name__ == "__main__":
         "RUN\n",
     ]
 
-    inputs = [list(map(ord, list(inp))) for inp in inputs]
-    inputs2 = [list(map(ord, list(inp))) for inp in inputs2]
+    # inputs = [list(map(ord, list(inp))) for inp in inputs]
+    # inputs2 = [list(map(ord, list(inp))) for inp in inputs2]
 
     computer = Intcode(numbers)
     computer.process(inputs=[])
 
     for inp in inputs:
-        output, _ = computer.process(inputs=inp, resume=True)
+        output, _ = computer.process(inputs=inp, resume=True, ascii=True)
 
     print(to_string(output[:-1]))
     print(f"Part 1: {output[-1]}")
@@ -56,7 +56,7 @@ if __name__ == "__main__":
     computer.process(inputs=[])
 
     for inp in inputs2:
-        output, _ = computer.process(inputs=inp, resume=True)
+        output, _ = computer.process(inputs=inp, resume=True, ascii=True)
 
     print(to_string(output[:-1]))
     print(f"Part 2: {output[-1]}")
