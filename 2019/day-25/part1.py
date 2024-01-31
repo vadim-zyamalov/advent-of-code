@@ -5,7 +5,7 @@ from typing import Deque
 
 sys.path.append(".\\")
 
-from utils.intcode import Intcode
+from utils.intcode import Intcode, State
 
 PROHIBITED = [
     "escape pod",
@@ -55,15 +55,15 @@ def parse(output):
     return _room, _doors, _items, _wght
 
 
-def collect(computer, initmsg):
+def collect(computer, initmsg) -> tuple[str, frozenset, State]:
     seen = set()
-    queue: Deque[tuple[str, frozenset, str, tuple]] = deque(
+    queue: Deque[tuple[str, frozenset, str, State]] = deque(
         [("Hull Breach", frozenset(), initmsg, computer.save())]
     )
 
     _msg = ""
     _inv = frozenset()
-    _state = ()
+    _state = computer.save()
 
     while queue:
         room, inv, msg, state = queue.popleft()
@@ -82,35 +82,32 @@ def collect(computer, initmsg):
         _, doors, items, _ = parse(msg)
 
         if items and (item := items[0]) not in PROHIBITED:
-            computer.load(*state)
-            computer.process(inputs=f"take {item}", ascii=True, resume=True)
+            computer.load(state)
+            computer.process(inputs=f"take {item}")
             state = computer.save()
             inv |= {item}
 
         for door in doors:
-            computer.load(*state)
-            output, _ = computer.process(
-                inputs=f"{door}", ascii=True, resume=True
-            )
-            output = to_string(output)
-            nxt, _, _, _ = parse(output)
-            queue.append((nxt, inv, output, computer.save()))
+            computer.load(state)
+            output = computer.process(inputs=f"{door}")
+            nxt, _, _, _ = parse(output.ascii)
+            queue.append((nxt, inv, output.ascii, computer.save()))
     return _msg, _inv, _state
 
 
 def weight(computer, inv, door):
     for item in inv:
-        computer.process(inputs=f"drop {item}", ascii=True, resume=True)
+        computer.process(inputs=f"drop {item}")
 
     queue = deque()
     state = computer.save()
 
     # Добавляем в очередь первый возможный из всех наборов
     for item in inv:
-        computer.load(*state)
-        computer.process(inputs=f"take {item}", ascii=True, resume=True)
-        output, _ = computer.process(inputs=f"{door}", ascii=True, resume=True)
-        _, _, _, _wght = parse(output)
+        computer.load(state)
+        computer.process(inputs=f"take {item}")
+        output = computer.process(inputs=f"{door}")
+        _, _, _, _wght = parse(output.ascii)
         if _wght == 0:
             print(f"Set found: [{item}]")
             print(to_string(output))
@@ -132,16 +129,14 @@ def weight(computer, inv, door):
                 continue
             seen.add(_items)
 
-            computer.load(*state)
-            computer.process(inputs=f"take {item}", ascii=True, resume=True)
-            output, _ = computer.process(
-                inputs=f"{door}", ascii=True, resume=True
-            )
-            _, _, _, _wght = parse(output)
+            computer.load(state)
+            computer.process(inputs=f"take {item}")
+            output = computer.process(inputs=f"{door}")
+            _, _, _, _wght = parse(output.ascii)
 
             if _wght == 0:
                 print(f"Set found: [{', '.join(_items)}]")
-                print(to_string(output))
+                print(output.ascii)
                 return
             elif _wght > 0:
                 queue.append((_items, computer.save()))
@@ -151,11 +146,10 @@ if __name__ == "__main__":
     with open("_inputs/2019/day-25/input.txt", "r", encoding="utf8") as f:
         numbers = list(map(int, f.read().strip().split(",")))
 
-    computer = Intcode(numbers)
-    output, _ = computer.process(inputs=[])
-    output = to_string(output)
+    computer = Intcode(numbers, ascii=True)
+    output = computer.start(inputs=[])
 
-    _msg, _inv, _state = collect(computer, output)
+    _msg, _inv, _state = collect(computer, output.ascii)
 
     _, doors, _, _ = parse(_msg)
 
@@ -165,12 +159,12 @@ if __name__ == "__main__":
         [door] = doors
     else:
         for d in doors:
-            computer.load(*_state)
-            output, _ = computer.process(inputs=f"{d}", ascii=True, resume=True)
-            _room, _, _, _ = parse(output)
+            computer.load(_state)
+            output = computer.process(inputs=f"{d}")
+            _room, _, _, _ = parse(output.ascii)
             if _room == CHECKER:
                 door = d
                 break
 
-    computer.load(*_state)
+    computer.load(_state)
     weight(computer, _inv, door)

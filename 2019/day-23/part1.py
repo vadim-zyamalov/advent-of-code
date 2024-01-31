@@ -18,9 +18,9 @@ if __name__ == "__main__":
     # Initial loop
     for i in range(50):
         packets[i] = []
-        output, _ = network[i].process(inputs=[i])
-        if output:
-            oi = iter(output)
+        output = network[i].start(inputs=[i])
+        if output.list:
+            oi = iter(output.list)
             for addr, x, y in zip(oi, oi, oi):
                 packets[addr].append((x, y))
 
@@ -29,12 +29,12 @@ if __name__ == "__main__":
         for i in range(50):
             if packets[i]:
                 inp = packets[i].pop(0)
-                output, _ = network[i].process(inputs=list(inp), resume=True)
+                output = network[i].process(inputs=list(inp))
             else:
-                output, _ = network[i].process(inputs=[-1], resume=True)
+                output = network[i].process(inputs=[-1])
 
-            if output:
-                oi = iter(output)
+            if output.list:
+                oi = iter(output.list)
                 for addr, x, y in zip(oi, oi, oi):
                     packets[addr].append((x, y))
         # NAT

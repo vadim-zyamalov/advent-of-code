@@ -46,5 +46,5 @@ if __name__ == "__main__":
         lower, upper = tuple(map(int, f.read().strip().split("-")))
     print(f"Part 1: {count(lower) - count(upper)}")
     print(
-        f"Part 1: {count(lower, cond=lambda x: x == 2) - count(upper, cond=lambda x: x == 2)}"
+        f"Part 2: {count(lower, cond=lambda x: x == 2) - count(upper, cond=lambda x: x == 2)}"
     )

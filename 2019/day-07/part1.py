@@ -17,16 +17,11 @@ if __name__ == "__main__":
     for phases in permutations([0, 1, 2, 3, 4]):
         _input = 0
         for i, phase in enumerate(phases):
-            _output, _ = amplifiers[i].process(
-                inputs=[phase, _input], verbose=False
-            )
+            _output = amplifiers[i].start(inputs=[phase, _input])
             if _output is []:
                 assert False
-            [_input] = _output
+            _input = _output.list[0]
         max_signal = max(max_signal, _input)
-
-        for i in range(5):
-            amplifiers[i].reset()
 
     print(f"Part 1: {max_signal}")
 
@@ -35,22 +30,17 @@ if __name__ == "__main__":
     for phases in permutations([5, 6, 7, 8, 9]):
         _input = 0
         for i, phase in enumerate(phases):
-            _output, _ = amplifiers[i].process(inputs=[phase], verbose=False)
+            _output = amplifiers[i].start(inputs=[phase])
 
         finished = [False] * 5
         while not all(finished):
             for i in range(5):
-                _output, _finished = amplifiers[i].process(
-                    inputs=[_input], resume=True
-                )
-                if _output is []:
+                _output = amplifiers[i].process(inputs=[_input])
+                if _output.list == ():
                     assert False
-                [_input] = _output
-                finished[i] = _finished
+                _input = _output.list[0]
+                finished[i] = _output.status
 
         max_signal = max(max_signal, _input)
-
-        for i in range(5):
-            amplifiers[i].reset()
 
     print(f"Part 2: {max_signal}")

@@ -10,10 +10,10 @@ if __name__ == "__main__":
 
         computer = Intcode(numbers)
 
-        output, _ = computer.process(inputs=[1], verbose=False)
-        print(f"Part 1: {output[-1]}")
+        output = computer.start(inputs=[1])
+        print(f"Part 1: {output.list[-1]}")
 
-        computer.reset()
+        # computer.reset()
 
-        output, _ = computer.process(inputs=[5], verbose=False)
-        print(f"Part 2: {output[-1]}")
+        output = computer.start(inputs=[5])
+        print(f"Part 2: {output.list[-1]}")

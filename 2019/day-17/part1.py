@@ -6,10 +6,6 @@ from utils.intcode import Intcode
 from utils.pos import Pos
 
 
-def to_string(output):
-    return str("".join(map(chr, output)))
-
-
 def parse(data):
     lines = data.strip().split("\n")
 
@@ -40,16 +36,14 @@ if __name__ == "__main__":
     with open("_inputs/2019/day-17/input.txt", "r", encoding="utf8") as f:
         numbers = list(map(int, f.read().strip().split(",")))
 
-    computer = Intcode(numbers)
-    output, _ = computer.process(inputs=[])
-    data = to_string(output)
-    bot, tiles = parse(data)
+    computer = Intcode(numbers, ascii=True)
+    output = computer.start(inputs=[])
+    bot, tiles = parse(output.ascii)
 
     print(f"Part 1: {alignment(tiles)}")
 
-    computer.reset()
-    computer.regs[0] = 2
-    computer.process(inputs=[])
+    computer.initials[0] = 2
+    computer.start(inputs=[])
 
     inputs = [
         "C,A,C,B,A,C,A,B,B,A\n",
@@ -59,9 +53,7 @@ if __name__ == "__main__":
         "n\n",
     ]
 
-    inputs = [list(map(ord, list(inp))) for inp in inputs]
-
     for inp in inputs:
-        output, _ = computer.process(inputs=inp, resume=True)
+        output = computer.process(inputs=inp)
 
-    print(f"Part 2: {output[-1]}")
+    print(f"Part 2: {output.rest[0]}")

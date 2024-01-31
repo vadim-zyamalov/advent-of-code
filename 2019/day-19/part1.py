@@ -11,17 +11,16 @@ def lr(y, computer, pr=(0, 0)):
     l, r = pr
 
     while True:
-        [o], _ = computer.process(inputs=[l, y])
+        [o], _, _, _ = computer.start(inputs=[l, y])
         if o != 0:
             break
         l += 1
         if l > y**2:
             l = 0
             return 0, 0
-            break
     r = max(l, r)
     while True:
-        [o], _ = computer.process(inputs=[r, y])
+        [o], _, _, _ = computer.start(inputs=[r, y])
         if o == 0:
             break
         r += 1

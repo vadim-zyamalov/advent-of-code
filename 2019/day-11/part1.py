@@ -39,22 +39,22 @@ if __name__ == "__main__":
     painted = set()
 
     computer = Intcode(numbers)
-    computer.process(inputs=[])
+    computer.start(inputs=[])
 
     halted = False
 
     while not halted:
-        output, halted = computer.process(
-            inputs=[1 if pos in white else 0], resume=True
-        )
-        if output[0] == 0:
+        output = computer.process(inputs=[1 if pos in white else 0])
+        if output.list[0] == 0:
             white -= {pos}
-        elif output[0] == 1:
+        elif output.list[0] == 1:
             white |= {pos}
         painted.add(pos)
 
-        dpos = TURNS[output[1]](dpos)
+        dpos = TURNS[output.list[1]](dpos)
         pos += dpos
+
+        halted = output.status
 
     print(f"Part 1: {len(painted)}")
 
@@ -64,22 +64,21 @@ if __name__ == "__main__":
     white = set()
     white.add(pos)
 
-    computer.reset()
-    computer.process(inputs=[])
+    computer.start(inputs=[])
 
     halted = False
 
     while not halted:
-        output, halted = computer.process(
-            inputs=[1 if pos in white else 0], resume=True
-        )
-        if output[0] == 0:
+        output = computer.process(inputs=[1 if pos in white else 0])
+        if output.list[0] == 0:
             white -= {pos}
-        elif output[0] == 1:
+        elif output.list[0] == 1:
             white |= {pos}
 
-        dpos = TURNS[output[1]](dpos)
+        dpos = TURNS[output.list[1]](dpos)
         pos += dpos
+
+        halted = output.status
 
     print("Part 2:")
     paint(white)

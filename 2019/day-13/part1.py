@@ -9,7 +9,7 @@ TILES = {1: "#", 2: "@", 3: "_", 4: "O", 0: " "}
 
 
 def parse(data, tiles):
-    oi = iter(data)
+    oi = iter(data.list)
     scores = []
     ball = None
     bat = None
@@ -46,14 +46,13 @@ if __name__ == "__main__":
 
     tiles = defaultdict(int)
     computer = Intcode(numbers)
-    output, _ = computer.process(inputs=[])
+    output = computer.start(inputs=[])
     _ = parse(output, tiles)
     print(f"Part 1: {sum(v == 2 for v in tiles.values())}")
 
     tiles = defaultdict(int)
-    computer.reset()
-    computer.regs[0] = 2
-    output, _ = computer.process(inputs=[])
+    computer.initials[0] = 2
+    output = computer.start(inputs=[])
 
     scores, ball, bat = parse(output, tiles)
     assert ball is not None
@@ -63,7 +62,7 @@ if __name__ == "__main__":
 
     while bricks(tiles) > 0:
         i = -1 if ball[1] < bat[1] else 1 if ball[1] > bat[1] else 0
-        output, finished = computer.process(inputs=[i], resume=True)
+        output = computer.process(inputs=[i])
 
         _scores, _ball, _bat = parse(output, tiles)
 

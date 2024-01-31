@@ -43,20 +43,19 @@ if __name__ == "__main__":
     # inputs = [list(map(ord, list(inp))) for inp in inputs]
     # inputs2 = [list(map(ord, list(inp))) for inp in inputs2]
 
-    computer = Intcode(numbers)
-    computer.process(inputs=[])
+    computer = Intcode(numbers, ascii=True)
+    computer.start(inputs=[])
 
     for inp in inputs:
-        output, _ = computer.process(inputs=inp, resume=True, ascii=True)
+        output = computer.process(inputs=inp)
 
-    print(to_string(output[:-1]))
-    print(f"Part 1: {output[-1]}")
+    print(output.ascii)
+    print(f"Part 1: {output.rest[-1]}")
 
-    computer.reset()
-    computer.process(inputs=[])
+    computer.start(inputs=[])
 
     for inp in inputs2:
-        output, _ = computer.process(inputs=inp, resume=True, ascii=True)
+        output = computer.process(inputs=inp)
 
-    print(to_string(output[:-1]))
-    print(f"Part 2: {output[-1]}")
+    print(output.ascii)
+    print(f"Part 2: {output.rest[-1]}")
