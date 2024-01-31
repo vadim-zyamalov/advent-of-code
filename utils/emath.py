@@ -4,7 +4,7 @@ def extended_gcd(a, b):
     while b:
         q, r = divmod(a, b)
         a, b = b, r
-        s1 = s0 - q * s1
-        t1 = s0 - q * t1
+        s0, s1 = s1, s0 - q * s1
+        t0, t1 = t1, s0 - q * t1
 
     return a, s1, t1
