@@ -62,7 +62,7 @@ if __name__ == "__main__":
 
     while bricks(tiles) > 0:
         i = -1 if ball[1] < bat[1] else 1 if ball[1] > bat[1] else 0
-        output = computer.process(inputs=[i])
+        output = computer.resume(inputs=[i])
 
         _scores, _ball, _bat = parse(output, tiles)
 

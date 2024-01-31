@@ -47,7 +47,7 @@ if __name__ == "__main__":
     computer.start(inputs=[])
 
     for inp in inputs:
-        output = computer.process(inputs=inp)
+        output = computer.resume(inputs=inp)
 
     print(output.ascii)
     print(f"Part 1: {output.rest[-1]}")
@@ -55,7 +55,7 @@ if __name__ == "__main__":
     computer.start(inputs=[])
 
     for inp in inputs2:
-        output = computer.process(inputs=inp)
+        output = computer.resume(inputs=inp)
 
     print(output.ascii)
     print(f"Part 2: {output.rest[-1]}")

@@ -23,7 +23,7 @@ def path(computer):
         seen.add(pos)
         for i, dpos in DIRS.items():
             computer.load(state)
-            [output], _, _, _ = computer.process(inputs=[i])
+            [output], _, _, _ = computer.resume(inputs=[i])
             if output == 0:
                 continue
             if output == 2:
@@ -47,7 +47,7 @@ def fill(computer, pos, state):
                 if _pos + dpos in filled:
                     continue
                 computer.load(_state)
-                [output], _, _, _ = computer.process(inputs=[i])
+                [output], _, _, _ = computer.resume(inputs=[i])
                 if output == 0:
                     continue
                 filled.add(_pos + dpos)

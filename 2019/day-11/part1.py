@@ -44,7 +44,7 @@ if __name__ == "__main__":
     halted = False
 
     while not halted:
-        output = computer.process(inputs=[1 if pos in white else 0])
+        output = computer.resume(inputs=[1 if pos in white else 0])
         if output.list[0] == 0:
             white -= {pos}
         elif output.list[0] == 1:
@@ -69,7 +69,7 @@ if __name__ == "__main__":
     halted = False
 
     while not halted:
-        output = computer.process(inputs=[1 if pos in white else 0])
+        output = computer.resume(inputs=[1 if pos in white else 0])
         if output.list[0] == 0:
             white -= {pos}
         elif output.list[0] == 1:

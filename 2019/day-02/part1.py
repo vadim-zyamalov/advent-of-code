@@ -19,7 +19,7 @@ if __name__ == "__main__":
                 for j in range(100):
                     computer.reset()
                     computer.initials[1], computer.initials[2] = i, j
-                    computer.process()
+                    computer.resume()
                     if computer.registers[0] == 19690720:
                         print(f"Part 2: {100 * i + j}")
                         exit()

@@ -29,9 +29,9 @@ if __name__ == "__main__":
         for i in range(50):
             if packets[i]:
                 inp = packets[i].pop(0)
-                output = network[i].process(inputs=list(inp))
+                output = network[i].resume(inputs=list(inp))
             else:
-                output = network[i].process(inputs=[-1])
+                output = network[i].resume(inputs=[-1])
 
             if output.list:
                 oi = iter(output.list)

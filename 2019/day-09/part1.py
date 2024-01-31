@@ -9,9 +9,9 @@ if __name__ == "__main__":
         numbers = list(map(int, f.read().strip().split(",")))
 
     computer = Intcode(numbers)
-    output = computer.process(inputs=[1])
+    output = computer.resume(inputs=[1])
     print(f"Part 1: {output.list[0]}")
 
     computer.reset()
-    output = computer.process(inputs=[2], verbose=False)
+    output = computer.resume(inputs=[2], verbose=False)
     print(f"Part 2: {output.list[0]}")

@@ -136,9 +136,9 @@ class Intcode:
         self, inputs: list[int] | str | None = None, verbose=False
     ) -> Output:
         self.reset()
-        return self.process(inputs=inputs, verbose=verbose)
+        return self.resume(inputs=inputs, verbose=verbose)
 
-    def process(
+    def resume(
         self,
         inputs: list[int] | str | None = None,
         verbose=False,

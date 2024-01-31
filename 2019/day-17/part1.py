@@ -54,6 +54,6 @@ if __name__ == "__main__":
     ]
 
     for inp in inputs:
-        output = computer.process(inputs=inp)
+        output = computer.resume(inputs=inp)
 
     print(f"Part 2: {output.rest[0]}")

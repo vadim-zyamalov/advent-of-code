@@ -35,7 +35,7 @@ if __name__ == "__main__":
         finished = [False] * 5
         while not all(finished):
             for i in range(5):
-                _output = amplifiers[i].process(inputs=[_input])
+                _output = amplifiers[i].resume(inputs=[_input])
                 if _output.list == ():
                     assert False
                 _input = _output.list[0]
