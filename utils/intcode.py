@@ -139,9 +139,7 @@ class Intcode:
         return self.resume(inputs=inputs, verbose=verbose)
 
     def resume(
-        self,
-        inputs: list[int] | str | None = None,
-        verbose=False,
+        self, inputs: list[int] | str | None = None, verbose=False
     ) -> Output:
         pointer = self.pointer
         ascii = self.ascii
