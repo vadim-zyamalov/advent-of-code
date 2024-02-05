@@ -86,7 +86,7 @@ def part1(image, rules2, rules3, n=5):
 
 if __name__ == "__main__":
     image = []
-    with open("../../_inputs/2017/day-21/start.txt", "r", encoding="utf8") as f:
+    with open("_inputs/2017/day-21/start.txt", "r", encoding="utf8") as f:
         for line in f:
             line = line.strip()
             if line == "":
@@ -95,7 +95,7 @@ if __name__ == "__main__":
 
     rules2 = {}
     rules3 = {}
-    with open("../../_inputs/2017/day-21/input.txt", "r", encoding="utf8") as f:
+    with open("_inputs/2017/day-21/input.txt", "r", encoding="utf8") as f:
         for line in f:
             line = line.strip()
             if line == "":

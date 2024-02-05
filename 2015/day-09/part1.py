@@ -44,7 +44,7 @@ def distance(candidate, matrix):
     return result
 
 
-with open("../../_inputs/2015/day-09/input.txt", "r") as f:
+with open("_inputs/2015/day-09/input.txt", "r") as f:
     result = []
     for line in f:
         city1, _, city2, _, dist = line.strip().split()

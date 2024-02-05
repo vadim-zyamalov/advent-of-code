@@ -107,7 +107,7 @@ def part2(prog):
 
 
 if __name__ == "__main__":
-    with open("../../_inputs/2017/day-18/input.txt", "r", encoding="utf8") as f:
+    with open("_inputs/2017/day-18/input.txt", "r", encoding="utf8") as f:
         PROG = []
         for line in f:
             ltokens = line.strip().split()

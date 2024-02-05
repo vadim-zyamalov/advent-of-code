@@ -36,7 +36,7 @@ def process():
                 rotate_row(fst, snd)
 
 
-with open("../../_inputs/2016/day-08/input.txt", "r", encoding="utf-8") as f:
+with open("_inputs/2016/day-08/input.txt", "r", encoding="utf-8") as f:
     for line in f:
         if line.strip() == "":
             continue

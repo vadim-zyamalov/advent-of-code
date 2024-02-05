@@ -16,7 +16,7 @@ def moves(pos, path, code):
     return result
 
 
-with open("../../_inputs/2016/day-17/input.txt", "r", encoding="utf-8") as f:
+with open("_inputs/2016/day-17/input.txt", "r", encoding="utf-8") as f:
     CODE = f.readline().strip()
 
 START = (0, 0)

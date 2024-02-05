@@ -57,7 +57,7 @@ def process(step, z, backwards=True):
             i += 1
 
 
-with open("../../_inputs/2021/day-24/input.txt", "r", encoding="utf-8") as f:
+with open("_inputs/2021/day-24/input.txt", "r", encoding="utf-8") as f:
     for line in f:
         if line.strip() == "":
             continue

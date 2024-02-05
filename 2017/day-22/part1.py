@@ -69,7 +69,7 @@ def part2(start, n=10_000_000):
 
 
 if __name__ == "__main__":
-    with open("../../_inputs/2017/day-22/input.txt", "r", encoding="utf8") as f:
+    with open("_inputs/2017/day-22/input.txt", "r", encoding="utf8") as f:
         i, j = 0, 0
         for line in f:
             line = line.strip()

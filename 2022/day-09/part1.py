@@ -20,7 +20,7 @@ for i in range(10):
 visited = set()
 visited2 = set()
 
-with open("../../_inputs/2022/day-09/input.txt", "r", encoding="utf8") as f:
+with open("_inputs/2022/day-09/input.txt", "r", encoding="utf8") as f:
     for line in f:
         dir, dist = line.strip().split()
         dist = int(dist)

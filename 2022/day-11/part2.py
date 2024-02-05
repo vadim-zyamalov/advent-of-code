@@ -6,7 +6,7 @@ monkeys = {}
 monkeys_indices = []
 cur_monkey = -1
 
-with open("../../_inputs/2022/day-11/input.txt", "r", encoding="utf8") as f:
+with open("_inputs/2022/day-11/input.txt", "r", encoding="utf8") as f:
     for line in f:
         if line.strip() == "":
             continue

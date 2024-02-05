@@ -49,7 +49,7 @@ BLOCKS = [
     [(0, 0), (0, 1), (1, 0), (1, 1)],
 ]
 
-with open("../../_inputs/2022/day-17/input.txt", "r", encoding="utf8") as f:
+with open("_inputs/2022/day-17/input.txt", "r", encoding="utf8") as f:
     FLOWS = f.readline().strip()
     lenFlows = len(FLOWS)
 

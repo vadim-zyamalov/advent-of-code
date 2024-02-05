@@ -2,7 +2,7 @@ from itertools import product
 
 NODES = {}
 
-with open("../../_inputs/2016/day-22/input.txt", "r", encoding="utf-8") as f:
+with open("_inputs/2016/day-22/input.txt", "r", encoding="utf-8") as f:
     max_x = -1
     max_y = -1
     for line in f:

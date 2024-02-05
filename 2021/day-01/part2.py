@@ -5,7 +5,7 @@ a1 = None
 a2 = None
 a3 = None
 
-with open("../../_inputs/2021/day-01/input.txt", "r", encoding="utf-8") as f:
+with open("_inputs/2021/day-01/input.txt", "r", encoding="utf-8") as f:
     for i in f:
         if not a1:
             a1 = int(i)

@@ -22,7 +22,7 @@ cycle = 0
 sig_strength = []
 CRT = ["."] * 240
 
-with open("../../_inputs/2022/day-10/input.txt", "r", encoding="utf8") as f:
+with open("_inputs/2022/day-10/input.txt", "r", encoding="utf8") as f:
     while line := f.readline():
         tmp = line.strip().split()
         match tmp[0]:

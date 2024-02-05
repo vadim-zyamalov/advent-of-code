@@ -4,7 +4,7 @@ flight = []
 rest = []
 score = []
 
-with open("../../_inputs/2015/day-14/input.txt", "r", encoding="utf-8") as f:
+with open("_inputs/2015/day-14/input.txt", "r", encoding="utf-8") as f:
     for line in f:
         string = line.strip().strip(".").split()
         deer.append(string[0])

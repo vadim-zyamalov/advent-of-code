@@ -43,7 +43,7 @@ def dump(grid):
         print()
 
 
-with open("../../_inputs/2015/day-18/input.txt", "r", encoding="utf-8") as f:
+with open("_inputs/2015/day-18/input.txt", "r", encoding="utf-8") as f:
     for line in f:
         if line.strip() != "":
             grid.append([0 if c == "." else 1 for c in line.strip()])
@@ -59,7 +59,7 @@ print(f"Part 1: {sum(v for row in grid for v in row)}")
 
 grid = []
 
-with open("../../_inputs/2015/day-18/input.txt", "r", encoding="utf-8") as f:
+with open("_inputs/2015/day-18/input.txt", "r", encoding="utf-8") as f:
     for line in f:
         if line.strip() != "":
             grid.append([0 if c == "." else 1 for c in line.strip()])

@@ -1,4 +1,4 @@
-with open("../../_inputs/2017/day-06/input.txt", "r", encoding="utf-8") as f:
+with open("_inputs/2017/day-06/input.txt", "r", encoding="utf-8") as f:
     line = f.read()
     CELLS = [int(b) for b in line.split("\t")]
 

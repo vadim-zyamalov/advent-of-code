@@ -5,7 +5,7 @@ def rotate(letter, num):
 answer = 0
 correct = []
 
-with open("../../_inputs/2016/day-04/input.txt", "r", encoding="utf-8") as f:
+with open("_inputs/2016/day-04/input.txt", "r", encoding="utf-8") as f:
     for line in f:
         if line.strip() == "":
             continue

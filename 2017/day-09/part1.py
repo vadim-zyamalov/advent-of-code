@@ -37,7 +37,7 @@ def process_str(input_str):
     return total_score, garbage_count
 
 
-with open("../../_inputs/2017/day-09/input.txt", "r", encoding="utf-8") as f:
+with open("_inputs/2017/day-09/input.txt", "r", encoding="utf-8") as f:
     step = 0
     for line in f:
         r1, r2 = process_str(line.strip())

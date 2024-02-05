@@ -48,7 +48,7 @@ def move_south(grid):
     return True
 
 
-with open("../../_inputs/2021/day-25/input.txt", "r", encoding="utf-8") as f:
+with open("_inputs/2021/day-25/input.txt", "r", encoding="utf-8") as f:
     for line in f:
         if line.strip() == "":
             continue

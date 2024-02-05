@@ -37,7 +37,7 @@ def dijkstra(bp, limit):
 
 BLUEPRNT = {}
 
-with open("../../_inputs/2022/day-19/input.txt", "r", encoding="utf8") as f:
+with open("_inputs/2022/day-19/input.txt", "r", encoding="utf8") as f:
     for line in f:
         fst, snd = line.strip().split(": ")
         bp_id = int(fst.split()[1])

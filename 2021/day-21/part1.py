@@ -118,7 +118,7 @@ def dirac_play_cached(current_player, positions, scores, limit):
     return result
 
 
-with open("../../_inputs/2021/day-21/input.txt", "r", encoding="utf-8") as f:
+with open("_inputs/2021/day-21/input.txt", "r", encoding="utf-8") as f:
     pos_0 = int(f.readline().strip().split(": ")[1])
     pos_1 = int(f.readline().strip().split(": ")[1])
 

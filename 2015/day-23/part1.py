@@ -34,7 +34,7 @@ def execute(program, init={"a": 0, "b": 0}):
 program = []
 allowed = ["hlf", "tpl", "inc", "jmp", "jie", "jio"]
 
-with open("../../_inputs/2015/day-23/input.txt", "r", encoding="utf-8") as f:
+with open("_inputs/2015/day-23/input.txt", "r", encoding="utf-8") as f:
     for line in f:
         if line.strip() == "":
             continue

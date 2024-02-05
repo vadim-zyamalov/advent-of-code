@@ -48,7 +48,7 @@ def split_line(ln):
 
 answer_1 = 0
 answer_2 = 0
-with open("../../_inputs/2016/day-07/input.txt", "r", encoding="utf-8") as f:
+with open("_inputs/2016/day-07/input.txt", "r", encoding="utf-8") as f:
     for line in f:
         if line.strip() == "":
             continue

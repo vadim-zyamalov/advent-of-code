@@ -31,7 +31,7 @@ def five_to_dec(number):
     return res
 
 
-with open("../../_inputs/2022/day-25/input.txt", "r", encoding="utf8") as f:
+with open("_inputs/2022/day-25/input.txt", "r", encoding="utf8") as f:
     res = 0
     for num in f:
         num = num.strip()

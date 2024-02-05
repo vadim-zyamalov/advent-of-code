@@ -40,7 +40,7 @@ def score(board):
     return answer
 
 
-with open("../../_inputs/2021/day-04/input.txt", "r", encoding="utf-8") as f:
+with open("_inputs/2021/day-04/input.txt", "r", encoding="utf-8") as f:
     line = f.readline()
     numbers = [int(i) for i in line.strip().split(",")]
 

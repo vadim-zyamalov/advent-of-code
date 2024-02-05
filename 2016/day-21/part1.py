@@ -62,7 +62,7 @@ def move_str(pos_0, pos_1, data):
     return tmp_data[:pos_1] + letter + tmp_data[pos_1:]
 
 
-with open("../../_inputs/2016/day-21/input.txt", "r", encoding="utf-8") as f:
+with open("_inputs/2016/day-21/input.txt", "r", encoding="utf-8") as f:
     for line in f:
         if line.strip() == "":
             continue

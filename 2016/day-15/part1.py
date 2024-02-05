@@ -5,7 +5,7 @@ def test_moment(t, disc):
     return (t - DISCS[disc][1]) % DISCS[disc][0] == 0
 
 
-with open("../../_inputs/2016/day-15/input.txt", "r", encoding="utf-8") as f:
+with open("_inputs/2016/day-15/input.txt", "r", encoding="utf-8") as f:
     for line in f:
         if line.strip() == "":
             continue

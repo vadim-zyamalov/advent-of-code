@@ -57,7 +57,7 @@ def dump(used, comps):
 
 if __name__ == "__main__":
     components = []
-    with open("../../_inputs/2017/day-24/input.txt", "r", encoding="utf8") as f:
+    with open("_inputs/2017/day-24/input.txt", "r", encoding="utf8") as f:
         for line in f:
             line = line.strip()
             if line == "":

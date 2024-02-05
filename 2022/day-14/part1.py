@@ -55,7 +55,7 @@ def fall_floor(start, threshold, grid):
 
 TILES = set()
 
-with open("../../_inputs/2022/day-14/input.txt", "r", encoding="utf8") as f:
+with open("_inputs/2022/day-14/input.txt", "r", encoding="utf8") as f:
     for line in f:
         fill(line.strip(), TILES)
 

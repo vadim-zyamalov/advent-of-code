@@ -43,7 +43,7 @@ def process(plan: list[list]):
 
 if __name__ == "__main__":
     MAP = []
-    with open("../../_inputs/2017/day-19/input.txt", "r", encoding="utf8") as f:
+    with open("_inputs/2017/day-19/input.txt", "r", encoding="utf8") as f:
         for line in f:
             if line.strip("\n") == "":
                 break

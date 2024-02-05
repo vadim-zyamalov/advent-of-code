@@ -21,7 +21,7 @@ def counter(line, vents, nodiag=False):
     return vents
 
 
-with open("../../_inputs/2021/day-05/input.txt", "r", encoding="utf-8") as f:
+with open("_inputs/2021/day-05/input.txt", "r", encoding="utf-8") as f:
     for line in f:
         vents1 = counter(line, vents1, True)
         vents2 = counter(line, vents2, False)

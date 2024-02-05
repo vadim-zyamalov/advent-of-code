@@ -6,7 +6,7 @@ with open("clues.txt", "r", encoding="utf-8") as f:
             fact, _, val = line.strip().partition(":")
             clues[fact] = int(val.strip())
 
-with open("../../_inputs/2015/day-16/input.txt", "r", encoding="utf-8") as f:
+with open("_inputs/2015/day-16/input.txt", "r", encoding="utf-8") as f:
     for line in f:
         if line.strip() != "":
             name, _, rest = line.strip().partition(":")

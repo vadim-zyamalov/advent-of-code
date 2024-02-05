@@ -59,7 +59,7 @@ def score(r, c, forest):
 
 forest = []
 
-with open("../../_inputs/2022/day-08/input.txt", "r", encoding="utf8") as f:
+with open("_inputs/2022/day-08/input.txt", "r", encoding="utf8") as f:
     for line in f:
         forest.append([int(i) for i in line.strip()])
 

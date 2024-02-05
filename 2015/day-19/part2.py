@@ -26,7 +26,7 @@ def process(molecule, replacements, echo):
     return None
 
 
-with open("../../_inputs/2015/day-19/input.txt", "r") as f:
+with open("_inputs/2015/day-19/input.txt", "r") as f:
     for line in f:
         if "=>" in line:
             key, _, val = line.strip().partition(" => ")

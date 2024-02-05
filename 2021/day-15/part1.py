@@ -121,7 +121,7 @@ def process_dijkstra_add(grid):
     return (cost[dimi - 1, dimj - 1], path)
 
 
-with open("../../_inputs/2021/day-15/input.txt", "r") as f:
+with open("_inputs/2021/day-15/input.txt", "r") as f:
     for line in f:
         if line.strip() == "":
             continue

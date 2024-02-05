@@ -59,7 +59,7 @@ def process():
 COMMANDS = []
 REGISTERS = {"a": 7, "b": 0, "c": 0, "d": 0}
 
-with open("../../_inputs/2016/day-23/input.txt", "r", encoding="utf-8") as f:
+with open("_inputs/2016/day-23/input.txt", "r", encoding="utf-8") as f:
     for line in f:
         if line.strip() == "":
             continue
@@ -73,7 +73,7 @@ print(f"Part 1: {REGISTERS['a']}")
 COMMANDS = []
 REGISTERS = {"a": 12, "b": 0, "c": 0, "d": 0}
 
-with open("../../_inputs/2016/day-23/input.txt", "r", encoding="utf-8") as f:
+with open("_inputs/2016/day-23/input.txt", "r", encoding="utf-8") as f:
     for line in f:
         if line.strip() == "":
             continue

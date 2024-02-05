@@ -33,7 +33,7 @@ def basin(i, j, visited, levels=levels):
     return result
 
 
-with open("../../_inputs/2021/day-09/input.txt", "r", encoding="utf-8") as f:
+with open("_inputs/2021/day-09/input.txt", "r", encoding="utf-8") as f:
     for line in f:
         levels.append([int(i) for i in line.strip()])
 

@@ -1,4 +1,4 @@
-with open("../../_inputs/2022/day-06/input.txt", "r", encoding="utf8") as f:
+with open("_inputs/2022/day-06/input.txt", "r", encoding="utf8") as f:
     tmp = f.read(3)
     steps = 3
     d = f.read(1)
@@ -12,7 +12,7 @@ with open("../../_inputs/2022/day-06/input.txt", "r", encoding="utf8") as f:
 
 print(f"Part 1: {steps}")
 
-with open("../../_inputs/2022/day-06/input.txt", "r", encoding="utf8") as f:
+with open("_inputs/2022/day-06/input.txt", "r", encoding="utf8") as f:
     tmp = f.read(13)
     steps = 13
     d = f.read(1)

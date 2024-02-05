@@ -141,7 +141,7 @@ def detect_scanners(current, rotations, pairs_matrix, scanners_list, coordinates
 
 
 input_data = {}
-with open("../../_inputs/2021/day-19/input.txt", "r", encoding="utf-8") as f:
+with open("_inputs/2021/day-19/input.txt", "r", encoding="utf-8") as f:
     i = -1
     for line in f:
         if line.strip() == "":

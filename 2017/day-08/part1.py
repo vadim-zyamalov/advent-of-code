@@ -31,7 +31,7 @@ def apply_reg(reg, op, val):
 
 max_val = 0
 
-with open("../../_inputs/2017/day-08/input.txt", "r", encoding="utf-8") as f:
+with open("_inputs/2017/day-08/input.txt", "r", encoding="utf-8") as f:
     for line in f:
         tmp = line.strip().split()
         tmp[2] = int(tmp[2])

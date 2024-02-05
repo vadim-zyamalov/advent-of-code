@@ -22,7 +22,7 @@ def calc_vol(variant, containers):
     return result
 
 
-with open("../../_inputs/2015/day-17/input.txt", "r") as f:
+with open("_inputs/2015/day-17/input.txt", "r") as f:
     for line in f:
         if line.strip() != "":
             containers.append(int(line.strip()))

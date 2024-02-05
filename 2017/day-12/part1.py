@@ -30,7 +30,7 @@ def find_groups(map: dict, init=0):
 if __name__ == "__main__":
     pipes = {}
 
-    with open("../../_inputs/2017/day-12/input.txt", "r", encoding="utf8") as f:
+    with open("_inputs/2017/day-12/input.txt", "r", encoding="utf8") as f:
         for line in f:
             lhs, rhs = line.strip().split(" <-> ")
             pipes[int(lhs)] = [int(i) for i in rhs.split(",")]

@@ -1,7 +1,7 @@
 answer = 0
 bad = ["ab", "cd", "pq", "xy"]
 
-with open("../../_inputs/2015/day-05/input.txt", "r", encoding="utf-8") as f:
+with open("_inputs/2015/day-05/input.txt", "r", encoding="utf-8") as f:
     for line in f:
         vowels = sum([1 for i in line if i in "aeiou"])
         tmp = [f"{a}{b}" for a, b in zip(line[:-1], line[1:])]

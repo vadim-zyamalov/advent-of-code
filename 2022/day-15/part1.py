@@ -88,7 +88,7 @@ beacons = set()
 lower = float("inf")
 upper = -float("inf")
 
-with open("../../_inputs/2022/day-15/input.txt", "r", encoding="utf8") as f:
+with open("_inputs/2022/day-15/input.txt", "r", encoding="utf8") as f:
     for line in f:
         s = (0, 0)
         b = (0, 0)

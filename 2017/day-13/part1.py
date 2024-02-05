@@ -45,7 +45,7 @@ def solve_p2(map):
 if __name__ == "__main__":
     scans = {}
 
-    with open("../../_inputs/2017/day-13/input.txt", "r", encoding="utf8") as f:
+    with open("_inputs/2017/day-13/input.txt", "r", encoding="utf8") as f:
         for line in f:
             layer, width = line.strip().split(":")
             scans[int(layer)] = [0, int(width), 1]

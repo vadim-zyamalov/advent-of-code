@@ -1,4 +1,4 @@
-with open("../../_inputs/2022/day-04/input.txt", "r", encoding="utf8") as f:
+with open("_inputs/2022/day-04/input.txt", "r", encoding="utf8") as f:
     res = 0
     res2 = 0
     for line in f:

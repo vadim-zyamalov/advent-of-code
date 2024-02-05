@@ -1,6 +1,6 @@
 answer = 0
 
-with open("../../_inputs/2016/day-03/input.txt", "r", encoding="utf-8") as f:
+with open("_inputs/2016/day-03/input.txt", "r", encoding="utf-8") as f:
     for line in f:
         if line.strip() == "":
             continue
@@ -11,7 +11,7 @@ with open("../../_inputs/2016/day-03/input.txt", "r", encoding="utf-8") as f:
 print(f"Part 1: {answer}")
 
 answer = 0
-with open("../../_inputs/2016/day-03/input.txt", "r", encoding="utf-8") as f:
+with open("_inputs/2016/day-03/input.txt", "r", encoding="utf-8") as f:
     for line_a, line_b, line_c in zip(f, f, f):
         a_0, a_1, a_2 = (int(el) for el in line_a.strip().split())
         b_0, b_1, b_2 = (int(el) for el in line_b.strip().split())

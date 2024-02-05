@@ -42,7 +42,7 @@ def decompress(data):
     return result
 
 
-with open("../../_inputs/2016/day-09/input.txt", "r", encoding="utf-8") as f:
+with open("_inputs/2016/day-09/input.txt", "r", encoding="utf-8") as f:
     INPUT = f.readline().strip()
 
 print(f"Part 1: {len(parse(INPUT))}")

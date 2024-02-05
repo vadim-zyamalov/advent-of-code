@@ -30,7 +30,7 @@ def walk(cave, visited, allowed):
     return None
 
 
-with open("../../_inputs/2021/day-12/input.txt", "r") as f:
+with open("_inputs/2021/day-12/input.txt", "r") as f:
     for line in f:
         if line.strip() != "":
             cave1, cave2 = line.strip().split("-")

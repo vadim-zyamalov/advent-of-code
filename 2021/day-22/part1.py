@@ -91,7 +91,7 @@ def process(rule, on_list, limits=None):
     return result
 
 
-with open("../../_inputs/2021/day-22/input.txt", "r", encoding="utf-8") as f:
+with open("_inputs/2021/day-22/input.txt", "r", encoding="utf-8") as f:
     for line in f:
         if line.strip() == "":
             continue

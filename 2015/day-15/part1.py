@@ -39,7 +39,7 @@ def score2(recipe, ingredients):
     return answer
 
 
-with open("../../_inputs/2015/day-15/input.txt", "r", encoding="utf-8") as f:
+with open("_inputs/2015/day-15/input.txt", "r", encoding="utf-8") as f:
     index = 0
     for line in f:
         _, other = line.strip().split(":")

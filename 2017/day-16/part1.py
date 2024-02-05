@@ -18,7 +18,7 @@ if __name__ == "__main__":
     seq = [chr(ord("a") + i) for i in range(16)]
     init = seq.copy()
 
-    with open("../../_inputs/2017/day-16/input.txt", "r", encoding="utf8") as f:
+    with open("_inputs/2017/day-16/input.txt", "r", encoding="utf8") as f:
         line = f.read().strip().split(",")
 
     seq = dance(line, seq)

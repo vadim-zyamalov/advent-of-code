@@ -48,7 +48,7 @@ def dijkstra_valves(rates, dists, limit):
     return pressures, paths
 
 
-with open("../../_inputs/2022/day-16/input.txt", "r", encoding="utf8") as f:
+with open("_inputs/2022/day-16/input.txt", "r", encoding="utf8") as f:
     for line in f:
         fst, snd = line.strip().split(";")
         fst = fst.split()

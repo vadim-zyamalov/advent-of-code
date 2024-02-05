@@ -66,7 +66,7 @@ def part2(points, rr=3):
 
 
 if __name__ == "__main__":
-    with open("../../_inputs/2017/day-20/input.txt", "r", encoding="utf8") as f:
+    with open("_inputs/2017/day-20/input.txt", "r", encoding="utf8") as f:
         points = []
         for line in f:
             point = {}

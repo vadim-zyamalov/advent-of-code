@@ -52,7 +52,7 @@ def process(data, program, sequentially=False):
             REGISTERS[arg_0] = 1 if REGISTERS[arg_0] == arg_1 else 0
 
 
-with open("../../_inputs/2021/day-24/input.txt", "r", encoding="utf-8") as f:
+with open("_inputs/2021/day-24/input.txt", "r", encoding="utf-8") as f:
     for line in f:
         if line.strip() == "":
             continue

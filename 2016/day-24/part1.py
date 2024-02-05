@@ -30,7 +30,7 @@ def possible_moves(pos, grid):
 
 
 GRID = []
-with open("../../_inputs/2016/day-24/input.txt", "r", encoding="utf-8") as f:
+with open("_inputs/2016/day-24/input.txt", "r", encoding="utf-8") as f:
     for line in f:
         if line.strip() == "":
             continue

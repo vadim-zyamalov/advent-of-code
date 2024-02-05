@@ -1,6 +1,6 @@
 from math import sqrt
 
-with open("../../_inputs/2015/day-20/input.txt", "r", encoding="utf-8") as f:
+with open("_inputs/2015/day-20/input.txt", "r", encoding="utf-8") as f:
     goal = int(f.readline().strip())
 
 

@@ -3,7 +3,7 @@ answer = 0
 vowels = "aeiou"
 bad = ["ab", "cd", "pq", "xy"]
 
-with open("../../_inputs/2015/day-05/input.txt", "r", encoding="utf-8") as f:
+with open("_inputs/2015/day-05/input.txt", "r", encoding="utf-8") as f:
     for line in f:
         prev = ""
         nvowel = 0

@@ -1,4 +1,4 @@
-with open("../../_inputs/2021/day-07/input.txt", "r", encoding="utf-8") as f:
+with open("_inputs/2021/day-07/input.txt", "r", encoding="utf-8") as f:
     crabs = [int(i) for i in f.readline().strip().split(",")]
 
 answer = None

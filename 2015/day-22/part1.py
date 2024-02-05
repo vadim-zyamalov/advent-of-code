@@ -83,7 +83,7 @@ for k in spells:
 player = {"hp": 50, "mana": 500, "armor": 0}
 
 boss = {}
-with open("../../_inputs/2015/day-22/input.txt", "r", encoding="utf-8") as f:
+with open("_inputs/2015/day-22/input.txt", "r", encoding="utf-8") as f:
     line = f.readline()
     _, val = line.strip().split(":")
     boss["hp"] = int(val.strip())

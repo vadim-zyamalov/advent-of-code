@@ -16,7 +16,7 @@ def splitx(molecule):
     return result
 
 
-with open("../../_inputs/2015/day-19/input.txt", "r", encoding="utf-8") as f:
+with open("_inputs/2015/day-19/input.txt", "r", encoding="utf-8") as f:
     for line in f:
         if "=>" in line:
             key, _, val = line.strip().partition(" => ")
