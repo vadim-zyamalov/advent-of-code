@@ -30,20 +30,15 @@ def parse(chunks):
     return rules, ticket, tickets
 
 
-def find_pos(
-    rules, tickets, wrong, by_pos=False
-) -> dict[str, set[int]] | dict[int, set[str]]:
+def find_pos(rules, tickets, wrong) -> dict[str, int]:
     _tickets = [el for i, el in enumerate(tickets) if i not in wrong]
 
-    count = {k: set() for k in (rules if not by_pos else range(len(tickets[0])))}
+    count = {k: set() for k in rules}
 
     for i, vals in enumerate(zip(*_tickets)):
         for k, f in rules.items():
             if all(f(val) for val in vals):
-                if not by_pos:
-                    count[k].add(i)
-                else:
-                    count[i].add(k)
+                count[k].add(i)
 
     queue = [k for k, v in count.items() if len(v) == 1]
     done = []
@@ -59,7 +54,7 @@ def find_pos(
 
         queue.extend([k for k, v in count.items() if len(v) == 1 and k not in done])
 
-    return {k: v for k, v in count.items()}
+    return {k: list(v)[0] for k, v in count.items()}
 
 
 def part1(rules, tickets):
@@ -74,12 +69,12 @@ def part1(rules, tickets):
 
 
 def part2(rules, ticket, tickets, wrong):
-    positions: dict[str, set[int]] = find_pos(rules, tickets, wrong)
+    positions: dict[str, int] = find_pos(rules, tickets, wrong)
     res = 1
 
     for k, v in positions.items():
         if k.startswith("departure"):
-            res *= ticket[list(v)[0]]
+            res *= ticket[v]
 
     return res
 
