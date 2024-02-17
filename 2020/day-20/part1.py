@@ -45,32 +45,6 @@ def fliph(tile):
     return tile[::-1]
 
 
-class Image:
-    def __init__(self, image):
-        coords = sorted(image.keys())
-        minx, miny = coords[0]
-        maxx, maxy = coords[-1]
-
-        self.image = []
-
-        for y in range(miny, maxy + 1):
-            new_row = [r[1:-1] for r in image[minx, y].tile[1:-1]]
-            for x in range(minx + 1, maxx + 1):
-                new_row = [
-                    r0 + r1[1:-1] for r0, r1 in zip(new_row, image[x, y].tile[1:-1])
-                ]
-            self.image += new_row
-
-    def rot(self):
-        self.image = ["".join(z) for z in zip(*reversed(self.image))]
-
-    def flipv(self):
-        self.image = [r[::-1] for r in self.image]
-
-    def fliph(self):
-        self.image = self.image[::-1]
-
-
 def search_tile(
     cur: tuple[int, list], side: str, tiles: dict[int, list], used: list[int]
 ):
