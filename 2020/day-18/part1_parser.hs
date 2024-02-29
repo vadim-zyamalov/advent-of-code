@@ -1,4 +1,5 @@
-import Data.Char (isDigit, isSpace)
+import Data.Char                    ( isDigit, isSpace )
+
 import Text.ParserCombinators.ReadP
 
 data Expr =
@@ -27,7 +28,7 @@ pExprP = pAddExpr `chainl1` (OpExpr <$> pOpSymbol '*')
 evalExpr :: Expr -> Int
 evalExpr (OpExpr '+' x y) = evalExpr x + evalExpr y
 evalExpr (OpExpr '*' x y) = evalExpr x * evalExpr y
-evalExpr (NumExpr x) = x
+evalExpr (NumExpr x)      = x
 
 solve1 :: [String] -> Int
 solve1 = sum . map (evalExpr . fst . last . readP_to_S pExpr)

@@ -1,8 +1,9 @@
 -- https://mrmr.io/memoization-in-haskell
 
-import System.Environment (getArgs)
-import System.IO (readFile)
-import Data.List (sort)
+import Data.List          ( sort )
+
+import System.Environment ( getArgs )
+import System.IO          ( readFile )
 
 type Cache = [(Int, Int)]
 

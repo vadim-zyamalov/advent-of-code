@@ -1,8 +1,9 @@
 -- https://stackoverflow.com/questions/3208258/memoization-in-haskell
 
-import System.Environment (getArgs)
-import System.IO (readFile)
-import Data.List (sort)
+import Data.List          ( sort )
+
+import System.Environment ( getArgs )
+import System.IO          ( readFile )
 
 memoize :: (([Int] -> Int -> Integer) -> [Int] -> Int -> Integer) -> [Int] -> Int -> Integer
 memoize f xs = memoizedF xs

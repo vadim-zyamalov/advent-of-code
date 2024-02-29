@@ -1,19 +1,20 @@
-import Text.Read
-import Data.Default
--- import Debug.Trace
 import Control.Monad
 
+import Data.Default
+
+import Text.Read
+
 shead :: forall a. Default a => [a] -> a
-shead [] = def :: a
+shead []     = def :: a
 shead (x:xs) = x
 
 stail :: [a] -> [a]
-stail [] = []
+stail []     = []
 stail (x:xs) = xs
 
 mshow :: Maybe Int -> String
 mshow (Just x) = show x
-mshow Nothing = ""
+mshow Nothing  = ""
 
 summ :: [Maybe Int] -> Maybe Int
 summ = foldl (liftM2 (+)) (Just 0)
@@ -24,7 +25,7 @@ normalize (x:xs) = unBr x ++ normalize xs
     where
         unBr '(' = "( "
         unBr ')' = " )"
-        unBr c = [c]
+        unBr c   = [c]
 
 checkNum :: String -> Maybe Int
 checkNum s = readMaybe s :: Maybe Int
@@ -39,7 +40,6 @@ oper op (Just x) (Just y)
 
 
 solveEq :: [String] -> String -> [String] -> [Maybe Int] -> Int -> Maybe Int
--- solveEq xs o ops is _ | traceShow (xs, o, ops, is) False = undefined
 solveEq [] _ _ xs 0 = shead xs
 solveEq [] _ _ xs l = Nothing
 solveEq ("(":xs) op ops ints lev = solveEq xs "" (op:ops) ints (lev + 1)
